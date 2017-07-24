@@ -1,6 +1,6 @@
 //'use strict';
 
-angular.module('amcomanApp', ['ui.router', 'ngResource', 'ngDialog'])
+angular.module('amcomanApp', ['ui.router','ui.grid', 'ngResource', 'ngDialog'])
     .config(function($stateProvider, $urlRouterProvider) {
         $stateProvider
 
