@@ -1,4 +1,4 @@
-'use strict';
+//'use strict';
 
 angular.module('amcomanApp')
 
@@ -60,7 +60,7 @@ angular.module('amcomanApp')
 
 }])
 
-.controller('HeaderController', ['$scope', '$state', '$rootScope', 'ngDialog', 'AuthFactory', function ($scope, $state, $rootScope, ngDialog, AuthFactory) {
+.controller('NavController', ['$scope', '$state', '$rootScope', 'ngDialog', 'AuthFactory', function ($scope, $state, $rootScope, ngDialog, AuthFactory) {
 
     $scope.loggedIn = false;
     $scope.username = '';

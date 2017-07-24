@@ -1,79 +1,26 @@
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" ui-sref="app"><img src="images/amcomanlogo.png" height=30 width=41></a>
-            </div>
-            <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li ng-class="{active: stateis('app')}"><a ui-sref="app">
-                        <span class="glyphicon glyphicon-home"
-                         aria-hidden="true"></span> Home</a></li>
- 					<li class="dropdown">
-					  <a  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin <span class="caret"></span></a>
- 					  <ul class="dropdown-menu">
-						<li ng-class="{active: stateis('app.orgs_zzzz')}">
-							<a ui-sref="app.orgs">Organization</a>
-						</li>
-						<li ng-class="{active: stateis('app.entities')}">
-							<a ui-sref="app.entities">Entities</a>
-						</li>
-						<li ng-class="{active: stateis('app.articles')}">
-							<a ui-sref="app.articles">Articles</a>
-						</li>
-						<li role="separator" class="divider"></li>
-						<li role="separator" class="divider"></li>
-					  </ul>
-					</li>
-                    <li ng-class="{active: stateis('app.aboutus')}"><a ui-sref="app.aboutus">
-                        <span class="glyphicon glyphicon-info-sign"
-                         aria-hidden="true"></span> About</a></li>
-                    <li ng-class="{active: stateis('app.contactus')}"><a ui-sref="app.contactus">
-                    <i class="fa fa-envelope-o"></i> Contact</a></li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li ng-if="!loggedIn"><a ng-click="openLogin()">
-                    <span class="glyphicon glyphicon-log-in"></span> Login</a>
-                    </li>
-                    <li ng-if="loggedIn">
-                    <a>{{username}}</a>
-                    </li>
-                    <li ng-if="loggedIn">
-                    <a ng-click="logOut()">
-                    <span class="glyphicon glyphicon-log-in"></span> Logout</a>
-                    </li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li ng-if="!loggedIn || isAdmin"><a ng-click="openRegister()">
-                    <span class="glyphicon glyphicon-plus-sign"></span> Register</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>         
-               
-    <header class="jumbotron">
+<header class="jumbotron">
 
-        <!-- Main component for a primary marketing message or call to action -->
+    <!-- Main component for a primary marketing message or call to action -->
 
-        <div class="container">
-            <div class="row row-header">
-                <div class="col-xs-12 col-sm-8">
-                    <h1>AMCOMAN</h1>
-                    <p style="padding:20px;"></p>
-                    <p>Manage your affiliate marketing website links with Amcoman</p>
-                </div>
-                <div class="col-xs-12 col-sm-2">
+    <div class="container">
+        <div class="row row-header">
+            <div class="col-xs-12 col-sm-5">
+                <h1>Nutrients Shopping</h1>
+                <p style="padding:10px;"></p>
+                <p>Your Source of information for vitamins, mineral, nutritions characteristics, supplements, natural products and other nutrients components</p>
+            </div>
+            <div class="col-xs-12 col-sm-5 col-sm-push-1">
                 <p style="padding:20px;"></p>
-                <img src="images/amcomanlogo.png" class="img-responsive">
-                </div>
-                <div class="col-xs-12 col-sm-2">
+                <img src="images/Parsley-and-Herbs.jpg" class="img-responsive">
+            </div>
+            <!--<div class="col-xs-12 col-sm-2">
+                </div>-->
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="affiliateDisclosure">
+                    <strong>Disclosure:</strong> This is an affiliate website and we may earn comission when you click on some of the links. More info on the <a ui-sref="app.affiliateDisclosure">Disclosure Page</a>
                 </div>
             </div>
         </div>
-    </header>
+</header>

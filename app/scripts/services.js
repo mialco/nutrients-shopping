@@ -1,7 +1,6 @@
-'use strict';
-
+//'use strict';
 angular.module('amcomanApp')
-.constant("baseURL", "http://localhost:3022/")
+.constant("baseURL", "http://localhost:49970/api")
 //.constant("baseURL", "https://amcoman.mybluemix.net/")
 .factory('menuFactory', ['$resource', 'baseURL', function ($resource, baseURL) {
 
@@ -12,6 +11,7 @@ angular.module('amcomanApp')
         });
 
 }])
+
 
 .factory('$localStorage', ['$window', function ($window) {
     return {
@@ -85,14 +85,13 @@ angular.module('amcomanApp')
            function(response){
               isAuthenticated = false;
             
-              var message = '\
-                <div class="ngdialog-message">\
-                <div><h3>Login Unsuccessful</h3></div>' +
+              var message = '<div class="ngdialog-message">' +
+                '<div><h3>Login Unsuccessful</h3></div>' +
                   '<div><p>' +  response.data.err.message + '</p><p>' +
                     response.data.err.name + '</p></div>' +
-                '<div class="ngdialog-buttons">\
-                    <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click=confirm("OK")>OK</button>\
-                </div>';
+                '<div class="ngdialog-buttons">' +
+                    '<button type="button" class="ngdialog-button ngdialog-button-primary" ng-click=confirm("OK")>OK</button>' +
+                '</div>';
             
                 ngDialog.openConfirm({ template: message, plain: 'true'});
            }
@@ -122,9 +121,9 @@ angular.module('amcomanApp')
            },
            function(response){
             
-              var message = '\
-                <div class="ngdialog-message">\
-                <div><h3>Registration Unsuccessful</h3></div>' +
+              var message = 
+                '<div class="ngdialog-message">' +
+                '<div><h3>Registration Unsuccessful</h3></div>' +
                   '<div><p>' +  response.data.err.message + 
                   '</p><p>' + response.data.err.name + '</p></div>';
 

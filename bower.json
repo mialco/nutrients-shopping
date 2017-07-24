@@ -1,5 +1,5 @@
 {
-  "name": "conFusion",
+  "name": "confusion",
   "version": "1.0.0",
   "description": "Website for an awesome restaurant",
   "main": "index.html",
@@ -11,7 +11,7 @@
   ],
   "authors": [
     "Jogesh Muppala",
-	"Mike Onciulescu"
+    "Mike Onciulescu"
   ],
   "license": "MIT",
   "homepage": "",
@@ -26,7 +26,7 @@
     "angular": "~1.5.5",
     "angular-ui-router": "~0.2.18",
     "angular-mocks": "~1.5.5",
-    "angular-resource": "~1.5.5",
+    "angular-resource": "^1.6.4",
     "angular-route": "~1.5.5",
     "bootstrap": "~3.3.6",
     "font-awesome": "fontawesome#~4.6.1",

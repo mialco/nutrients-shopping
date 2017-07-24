@@ -1,13 +1,17 @@
-'use strict';
+//'use strict';
 
-angular.module('amcomanApp', ['ui.router','ngResource','ngDialog'])
-.config(function($stateProvider, $urlRouterProvider) {
-    $stateProvider
+angular.module('amcomanApp', ['ui.router', 'ngResource', 'ngDialog'])
+    .config(function($stateProvider, $urlRouterProvider) {
+        $stateProvider
 
         // route for the home page
-        .state('app', {
+            .state('app', {
             url: '/',
             views: {
+                'navigation': {
+                    templateUrl: 'views/navigation.html',
+                    controller: 'NavController'
+                },
                 'header': {
                     templateUrl: 'views/header.html',
                     controller: 'HeaderController'
@@ -47,14 +51,29 @@ angular.module('amcomanApp', ['ui.router','ngResource','ngDialog'])
 
         // route for the dishdetail page
         .state('app.orgs', {
-            url: 'admin/orgs',
-            views: {
-                'content@': {
-                    templateUrl: 'views/organizations.html',
-                    controller: 'OrganizationController'
+                url: 'admin/orgs',
+                views: {
+                    'content@': {
+                        templateUrl: 'views/organizations.html',
+                        controller: 'OrganizationController'
+                    }
                 }
-            }
-        })
+            })
+            .state('app.nutrients', {
+                url: 'nutrient/:categoryName/:page/:pageSize',
+                views: {
+                    'header@': {
+                        templateUrl: 'views/headerArticleList.html',
+                        controller: 'HeaderController'
+                    },  
+                    'content@': {
+                        templateUrl: 'views/nutrients.html',
+                        controller: 'NutrientsController'
+
+                    }
+                }
+
+            })
 
         // route for the dishdetail page
         .state('app.orgDetails', {
@@ -90,16 +109,15 @@ angular.module('amcomanApp', ['ui.router','ngResource','ngDialog'])
         })
 
         // route for the dishdetail page
-        .state('app.articles', {
-            url: 'admin/articles',
+        .state('app.affiliateDisclosure', {
+            url: 'affiliateDisclosure',
             views: {
+                'header@': '',
                 'content@': {
-                    templateUrl: 'views/articles.html',
-                    controller: 'ArticleController'
+                    templateUrl: 'views/affiliateDisclosure.html'
                 }
             }
         });
 
         $urlRouterProvider.otherwise('/');
-    })
-;
+    });
