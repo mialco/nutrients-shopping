@@ -129,7 +129,7 @@ body {
   border: 1px solid blue;
 }
 
-.myGrid {
-    width: 500px;
-    height: 250px;
+.nutrientsGrid {
+    width: 1200px;
+    height: auto; 
   }

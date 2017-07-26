@@ -8,20 +8,25 @@ angular.module('amcomanApp')
         var pageSize = $stateParams.pageSize;
         console.log("Nutrients controller calls the resource");
         
-        $scope.myData = [
-        {
-            "firstName": "Cox",
-            "lastName": "Carney"
-        },{
-            "firstName": "Cox1",
-            "lastName": "Carney1"
-        }];
+        $scope.gridData = [];
+        $scope.gridOptions = {
+            enableSorting: false,
+            columnDefs: [
+            { name:'Product', field: 'productName' },
+            { name:'Description', field: 'description' }
+        ]
+        };
+
         
+        
+
         $scope.data = NutrientsService.nutrients.query({categoryName:categoryName, page:page, pageSize:pageSize},function(data){
             //Data received here from resource
 
             //console.log('From within the controller we received data from the service');
             //console.log(JSON.stringify(data));
+            $scope.gridData = data.aflProducts;
+            $scope.gridOptions.data = data.aflProducts;
         },function (){
             console.log('From within the controller we received data ERROR from the service');
         }

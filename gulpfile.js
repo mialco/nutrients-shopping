@@ -50,6 +50,8 @@ gulp.task('copyfonts', ['clean'], function() {
    .pipe(gulp.dest('./dist/fonts'));
    gulp.src('./bower_components/bootstrap/dist/fonts/**/*.{ttf,woff,eof,svg}*')
    .pipe(gulp.dest('./dist/fonts'));
+   gulp.src('./bower_components/angular-ui-grid/**/*.{ttf,woff,eof,svg}*')
+   .pipe(gulp.dest('./dist/styles'));
 });
 
 // Watch
