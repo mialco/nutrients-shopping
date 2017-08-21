@@ -1,27 +1,45 @@
 <div class="container">
-    <div class="row  row-content-tall">
+    <div class="row  <row-content>  </row-content>">
         <div class="col-xs-12">
             Nutrients Dynamic Page {{pageName}}
         </div>
-        <div>{{data}}</div>
-        <!--<div>
-            <div ui-grid="gridOptions" class="nutrientsGrid"></div>
-        </div>-->
     </div>
     <div class="table-responsive">
         <table class="table">
             <thead>
                 <tr>
+                    <td></td>
+                    <td>Product</td>
+                    <td>Price</td>
                 </tr>
-
             </thead>
             <tbody>
                 <tr ng-repeat="line in gridData">
-                    <td><a href="{{line.navigateUrl}}" target="_blank"><img src="{{line.imgUrl}}" alt="{{line.imgAlt}}"/></a></td>
-                    <td>{{line.description}}</td>
+                    <td>
+                        <a href="{{line.navigateUrl}}" target="_blank">
+                            <img src="{{line.imgUrl}}" alt="{{line.imgAlt}}" class="aflProductListImage" />
+                            </a>
+                    </td>
+                    <td ng-bind-html="line.description"></td>
+                    <td>${{line.price}}</td>
                 </tr>
             </tbody>
+            <tfoot>
+                <tr>
+                    <td>cdcdcdc</td>
+                    <td>
+                        xcxvcxcv
+                        </td>
+                            <td>hghg</td>
+
+                </tr>
+            </tfoot>
         </table>
 
     </div>
+<ul class="pager">
+  <li><a href="#">Previous</a></li>
+  <li><a href="#">Next</a></li>
+</ul>
+
 </div>

@@ -1,6 +1,7 @@
 //'use strict';
 angular.module('amcomanApp')
 .constant("baseURL", "http://localhost:49970/api")
+.constant('identityURL',"http://localhost:5001")
 //.constant("baseURL", "https://amcoman.mybluemix.net/")
 .factory('menuFactory', ['$resource', 'baseURL', function ($resource, baseURL) {
 

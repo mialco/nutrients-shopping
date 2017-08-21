@@ -1,6 +1,6 @@
 //'use strict';
 
-angular.module('amcomanApp', ['ui.router','ui.grid', 'ngResource', 'ngDialog'])
+angular.module('amcomanApp', ['ui.router','ui.grid', 'ngResource', 'ngDialog','ngSanitize'])
     .config(function($stateProvider, $urlRouterProvider) {
         $stateProvider
 
@@ -49,6 +49,14 @@ angular.module('amcomanApp', ['ui.router','ui.grid', 'ngResource', 'ngDialog'])
             }
         })
 
+        .state('app.login',{
+            url: 'login',
+            views: {
+                'content@' : {
+                    templateUrl: "views/login.html"
+                }
+            }
+        })
         // route for the dishdetail page
         .state('app.orgs', {
                 url: 'admin/orgs',

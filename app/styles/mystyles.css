@@ -129,6 +129,13 @@ body {
   border: 1px solid blue;
 }
 
+.aflProductListImage{
+  padding:2px;
+  max-height:150px;
+  max-width: 150px ;
+  min-width: 50px;
+  min-height: 50px; 
+}
 .nutrientsGrid {
     width: 1200px;
     height: auto; 
