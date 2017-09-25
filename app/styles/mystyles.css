@@ -140,3 +140,8 @@ body {
     width: 1200px;
     height: auto; 
   }
+
+.nutrients-table{
+  height:300px;
+  overflow-y: scroll;
+}

@@ -1,5 +1,5 @@
 angular.module('amcomanApp')
-.factory('IdentityService',['$resource', 'baseURL', 'identityURL',function($resource, baseUrl,identityURL){
+.factory('IdentityService',['$resource', 'baseURL', 'identityURL','TokenStorage',function($resource, baseUrl,identityURL, TokenStorage){
     var identityFac ={};
     var urlString = baseUrl ;
     var urlIdentity = identityURL;
@@ -17,6 +17,15 @@ angular.module('amcomanApp')
         }
     }
         );
+
+    identityFac.logout = function() {
+        TokenStorage.clearToken();
+    }
+
+    identityFac.login = function (){
+
+    }
+
     // nutrientsFac.nutrients = $resource(baseUrl + '/aflproducts/:categoryName/:page/:pageSize',{categoryName:'@categoryName',page:'@page',pageSize: '@pageSize'}, {
     //     query:{method: 'GET', 
     //     //params: {categoryName:'',page:0 },

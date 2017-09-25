@@ -4,7 +4,7 @@
             Nutrients Dynamic Page {{pageName}}
         </div>
     </div>
-    <div class="table-responsive">
+    <div class="table-responsive nutrients-table">
         <table class="table">
             <thead>
                 <tr>
@@ -38,8 +38,12 @@
 
     </div>
 <ul class="pager">
-  <li><a href="#">Previous</a></li>
-  <li><a href="#">Next</a></li>
+    <li><a href="{{pagerData.firstPageLink}}">First</a></li>
+  <li><a href="{{pagerData.previousPageLink}}">Previous</a></li>
+    <li><span>Page {{pagerData.currentPage}} of  {{pagerData.totalPages}}</span></li>
+    <li><a href="{{pagerData.nextPageLink}}">Next</a></li>
+    <li><a href="{{pagerData.lastPageLink}}">Last</a></li>
+
 </ul>
 
 </div>
