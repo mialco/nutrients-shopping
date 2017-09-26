@@ -35,67 +35,67 @@ The access_token will be passed to the web API via the Authorization header with
 Add this code to implement those three functions in our application:
 
 */
-var identityConfig = {
-    authority: "http://localhost:5000",
-    client_id: "nutrientsClient",   
-    redirect_uri: "http://localhost:3000/#!/login",
-    response_type: "id_token token",
-    scope:"openid profile nutrientsApi",
-    post_logout_redirect_uri : "http://localhost:3000/index.html",
-    //grant_type:"client_credentials",
-    //client_secret:"mybestkeptnutrientsshoppingsecret",
-    //code:"nutrientsApi",
-    issuer: "localhost:3000"
-};
+// var identityConfig = {
+//     authority: "http://localhost:5000",
+//     client_id: "nutrientsClient",   
+//     redirect_uri: "http://localhost:3000/#!/login",
+//     response_type: "id_token token",
+//     scope:"openid profile nutrientsApi",
+//     post_logout_redirect_uri : "http://localhost:3000/index.html",
+//     //grant_type:"client_credentials",
+//     //client_secret:"mybestkeptnutrientsshoppingsecret",
+//     //code:"nutrientsApi",
+//     issuer: "localhost:3000"
+// };
 
-var identityConfig = {
-    authority: "http://localhost:5000",
-    client_id: "js",
-    redirect_uri: "http://localhost:3000/#!/aboutus",
-    response_type: "id_token token",
-    scope:"openid profile nutrientsApi",
-    post_logout_redirect_uri : "http://localhost:3000/index.html"
- };
+// var identityConfig = {
+//     authority: "http://localhost:5000",
+//     client_id: "js",
+//     redirect_uri: "http://localhost:3000/#!/aboutus",
+//     response_type: "id_token token",
+//     scope:"openid profile nutrientsApi",
+//     post_logout_redirect_uri : "http://localhost:3000/index.html"
+//  };
 
-var mgr = new Oidc.UserManager(identityConfig);
+// var mgr = new Oidc.UserManager(identityConfig);
 
-mgr.getUser().then(function (user) {
-    if (user) {
-        console.log("User logged in", user.profile);
-    }
-    else {
-        console.log("User not logged in");
-    }
-}, function(){
-    console.log('response error from user login');
-});
+// mgr.getUser().then(function (user) {
+//     if (user) {
+//         console.log("User logged in", user.profile);
+//     }
+//     else {
+//         console.log("User not logged in");
+//     }
+// }, function(){
+//     console.log('response error from user login');
+// });
 
-function login() {
-    console.log('Login function called');
-    mgr.signinRedirect();
-    console.log('about to exit login function');
-}
+// function login() {
+//     console.log('Login function called');
+//     mgr.signinRedirect();
+//     console.log('about to exit login function');
+// }
 
-function api() {
-    console.log("Calling the API function");
-    mgr.getUser().then(function (user) {
-        var url = "http://localhost:5001/identity";
+// function api() {
+//     console.log("Calling the API function");
+//     mgr.getUser().then(function (user) {
+//         var url = "http://localhost:5001/identity";
 
-        var xhr = new XMLHttpRequest();
-        xhr.open("GET", url);
-        xhr.onload = function () {
-            log(xhr.status, JSON.parse(xhr.responseText));
-        };
-        xhr.setRequestHeader("Authorization", "Bearer " + user.access_token);
-        xhr.send();
-    });
-}
+//         var xhr = new XMLHttpRequest();
+//         xhr.open("GET", url);
+//         xhr.onload = function () {
+//             log(xhr.status, JSON.parse(xhr.responseText));
+//         };
+//         xhr.setRequestHeader("Authorization", "Bearer " + user.access_token);
+//         xhr.send();
+//     });
+// }
 
-function logout() {
-    mgr.signoutRedirect();
-}
+// function logout() {
+//     mgr.signoutRedirect();
+// }
 
-function requestToken(){}
+// function requestToken(){}
 
 /* This HTML file is the designated redirect_uri page once the user has logged into IdentityServer. 
 It will complete the OpenID Connect protocol sign-in handshake with IdentityServer. 
