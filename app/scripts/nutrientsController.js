@@ -79,7 +79,7 @@ angular.module('amcomanApp')
                 }
                 var timenow = new Date();
                 var lastUpdated = new Date(storedToken.lastUpdated);
-                if (timenow - lastUpdated > ((storedToken.tokenObject.expires_in) - 10) * 1000) {
+                if (IdentityService.enableAuthenticationCheck && timenow - lastUpdated > ((storedToken.tokenObject.expires_in) - 10) * 1000) {
                     storedToken.updated = new Date();
                     storedToken.tokenObject = CommonData.tokenObject;
                     //This is the data  that we post to the server in a webform data format
