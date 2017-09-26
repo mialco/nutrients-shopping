@@ -1,0 +1,9 @@
+<div>
+<a ui-sref="app.nutrientItem({productId:$ctrl.product.prodId})" ng-if="$ctrl.product.detailIsActive">
+        <img src="{{$ctrl.product.imgUrl}}" alt="{{$ctrl.product.imgAlt}}" class="aflProductListImage" />
+</a>
+
+<a href="{{$ctrl.product.navigateUrl}}" target="_blank" ng-if="!$ctrl.product.detailIsActive">
+        <img src="{{$ctrl.product.imgUrl}}" alt="{{$ctrl.product.imgAlt}}" class="aflProductListImage" />
+</a>
+</div>

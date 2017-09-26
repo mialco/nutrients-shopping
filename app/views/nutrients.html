@@ -16,9 +16,10 @@
             <tbody>
                 <tr ng-repeat="line in gridData">
                     <td>
-                        <a href="{{line.navigateUrl}}" target="_blank">
-                            <img src="{{line.imgUrl}}" alt="{{line.imgAlt}}" class="aflProductListImage" />
-                            </a>
+                        <product-image product="line">
+
+                        </product-image>
+                        
                     </td>
                     <td ng-bind-html="line.description"></td>
                     <td>${{line.price}}</td>

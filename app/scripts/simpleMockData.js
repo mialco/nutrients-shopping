@@ -27,7 +27,7 @@ angular.module('amcomanApp')
                     "advertizerLinkID": "213389",
                     "categoryId": 0,
                     "categoryName": null,
-                    "detailIsActive": true
+                    "detailIsActive": false
                 },
                 {
                     "prodId": 31741,
