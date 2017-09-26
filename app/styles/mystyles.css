@@ -135,6 +135,7 @@ body {
   max-width: 150px ;
   min-width: 50px;
   min-height: 50px; 
+  cursor: pointer;
 }
 .nutrientsGrid {
     width: 1200px;

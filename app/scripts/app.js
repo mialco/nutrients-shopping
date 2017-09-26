@@ -73,7 +73,7 @@ angular.module('amcomanApp', ['ui.router', 'ui.grid', 'ngResource', 'ngDialog', 
 
             })
             .state('app.nutrientItem', {
-                url: 'nutrient/article/:productId',
+                url: 'nutrient/article/:productId',params : {backPageData: null},
                 views: {
                     'header@': {
                         templateUrl: 'views/headerArticleList.html',
@@ -81,7 +81,7 @@ angular.module('amcomanApp', ['ui.router', 'ui.grid', 'ngResource', 'ngDialog', 
                     },
                     'content@': {
                         templateUrl: 'views/article.html',
-                        controller: 'NutrientsController'
+                        controller: 'ArticleController'
                     }
 
                 }})

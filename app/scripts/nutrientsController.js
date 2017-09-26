@@ -1,11 +1,11 @@
 angular.module('amcomanApp')
-    .controller('NutrientsController', ['$scope', '$stateParams','$state', 'NutrientsService', 'IdentityService', 'TokenStorage', 'CommonData','SimpleMockData',
-        function ($scope, $stateParams,$state, NutrientsService, IdentityService, TokenStorage, CommonData, SimpleMockData) {
+    .controller('NutrientsController', ['$scope', '$stateParams', '$state', 'NutrientsService', 'IdentityService', 'TokenStorage', 'CommonData', 'SimpleMockData',
+        function ($scope, $stateParams, $state, NutrientsService, IdentityService, TokenStorage, CommonData, SimpleMockData) {
             console.log('Nutrients controller routeParams: CategoryName: ' + $stateParams.categoryName + '--- Page:' + $stateParams.page + '--- Page sizes: ' + $stateParams.pageSize);
             $scope.affiliateDisclosure = 'Disclosure: This is an affiliate website and we may earn comission when you click on some of the links.';
             $scope.pageName = 'This is the dynamic page Name';
-            $scope.categoryName =$stateParams.categoryName;
-            $scope.urlPrefix  = $state.$current.url.prefix;
+            $scope.categoryName = $stateParams.categoryName;
+            $scope.urlPrefix = $state.$current.url.prefix;
 
             var categoryName = $stateParams.categoryName;
             var page = $stateParams.page;
@@ -14,11 +14,11 @@ angular.module('amcomanApp')
             $scope.gridData = [];
             $scope.gridOptions = {
                 enableSorting: false,
-                paginationPageSizes : [25,50,75],
-                paginationPageSize : 25,
+                paginationPageSizes: [25, 50, 75],
+                paginationPageSize: 25,
                 columnDefs: [
-                    {name: 'Product', field: 'productName'},
-                    {name: 'Description', field: 'description'}
+                    { name: 'Product', field: 'productName' },
+                    { name: 'Description', field: 'description' }
                 ],
             };
 
@@ -113,16 +113,16 @@ angular.module('amcomanApp')
 
             var getDataFromApi = function (bearerToken) {
                 NutrientsService.nutrients(bearerToken).query({
-                        categoryName: categoryName,
-                        page: page,
-                        pageSize: pageSize
-                    },
+                    categoryName: categoryName,
+                    page: page,
+                    pageSize: pageSize
+                },
                     function (data) {
                         //Data received here from resource
                         NutrientsService.setBearerToken(bearerToken);
                         // We set the pager information:
                         $scope.pagerData.pageSize = data.pageSize;
-                        $scope.pagerData.currentPage=data.page;
+                        $scope.pagerData.currentPage = data.page;
                         $scope.pagerData.totalPages = data.pages;
                         calculatePagerValues($scope.pagerData);
                         console.log('From within the controller we received data from the service');
@@ -137,16 +137,16 @@ angular.module('amcomanApp')
 
             var getItemDataFromApi = function (bearerToken) {
                 NutrientsService.nutrientItem(bearerToken).query({
-                        productId: categoryName,
-                        page: page,
-                        pageSize: pageSize
-                    },
+                    productId: categoryName,
+                    page: page,
+                    pageSize: pageSize
+                },
                     function (data) {
                         //Data received here from resource
                         NutrientsService.setBearerToken(bearerToken);
                         // We set the pager information:
                         $scope.pagerData.pageSize = data.pageSize;
-                        $scope.pagerData.currentPage=data.page;
+                        $scope.pagerData.currentPage = data.page;
                         $scope.pagerData.totalPages = data.pages;
                         calculatePagerValues($scope.pagerData);
                         console.log('From within the controller we received data from the service');
@@ -166,19 +166,21 @@ angular.module('amcomanApp')
 
             // It takes the currunt values of the pager and it calculates the next and previous page
             // in such way that will not go over the boudaries
-            var calculatePagerValues = function(pagerData){
-                pagerData.nextPage = Math.min(pagerData.totalPages, pagerData.currentPage+1);
-                pagerData.previousPage = Math.max(1, pagerData.currentPage-1);
-                pagerData.isLast = pagerData.currentPage === pagerData.totalPages ;
+            var calculatePagerValues = function (pagerData) {
+                pagerData.nextPage = Math.min(pagerData.totalPages, pagerData.currentPage + 1);
+                pagerData.previousPage = Math.max(1, pagerData.currentPage - 1);
+                pagerData.isLast = pagerData.currentPage === pagerData.totalPages;
                 pagerData.isFirst = pagerData.currentPage === 1;
                 //ui-sref="app.nutrients({categoryName:'Allergy &amp; Sinus',page:1, pageSize: 20})
                 //var pageLink = "app.nutrients({categoryName:'" + $scope.stateParams.categoryName + "',page:" + pagerData.next + ",pageSize: 20})";
                 var pageLinkRoot = '#!' + $scope.urlPrefix + $scope.stateParams.categoryName + '/';
-                var pageLink = pageLinkRoot  + pagerData.nextPage + '/' +  pagerData.pageSize;
-                pagerData.nextPageLink =pageLink;
-                pagerData.previousPageLink = pageLinkRoot  + pagerData.previousPage + '/' +  pagerData.pageSize;
-                pagerData.firstPageLink = pageLinkRoot   + '1/' +  pagerData.pageSize;
-                pagerData.lastPageLink = pageLinkRoot  + pagerData.totalPages + '/' +  pagerData.pageSize;
+                var pageLink = pageLinkRoot + pagerData.nextPage + '/' + pagerData.pageSize;
+                pagerData.nextPageLink = pageLink;
+                pagerData.previousPageLink = pageLinkRoot + pagerData.previousPage + '/' + pagerData.pageSize;
+                pagerData.firstPageLink = pageLinkRoot + '1/' + pagerData.pageSize;
+                pagerData.lastPageLink = pageLinkRoot + pagerData.totalPages + '/' + pagerData.pageSize;
             };
-
+            $scope.onProductSelect = function (productId) {
+                $state.go("app.nutrientItem", { productId: productId, backPageData : {categoryName : categoryName,page:page,pageSize:pageSize}  });
+            }
         }]);
