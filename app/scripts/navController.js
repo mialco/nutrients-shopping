@@ -1,5 +1,5 @@
 angular.module("amcomanApp")
-    .controller('NavController',['$scope', '$state', '$rootScope', 'ngDialog', 'AuthFactory','NavController', function ($scope, $state, $rootScope, ngDialog, AuthFactory, NavController) {
+    .controller('NavController',['$scope', '$state', '$rootScope', 'ngDialog', 'AuthFactory', function ($scope, $state, $rootScope, ngDialog, AuthFactory) {
 
         $scope.loggedIn = false;
         $scope.username = '';
