@@ -135,29 +135,7 @@ angular.module('amcomanApp')
                     });
             };
 
-            var getItemDataFromApi = function (bearerToken) {
-                NutrientsService.nutrientItem(bearerToken).query({
-                    productId: categoryName,
-                    page: page,
-                    pageSize: pageSize
-                },
-                    function (data) {
-                        //Data received here from resource
-                        NutrientsService.setBearerToken(bearerToken);
-                        // We set the pager information:
-                        $scope.pagerData.pageSize = data.pageSize;
-                        $scope.pagerData.currentPage = data.page;
-                        $scope.pagerData.totalPages = data.pages;
-                        calculatePagerValues($scope.pagerData);
-                        console.log('From within the controller we received data from the service');
-                        //console.log(JSON.stringify(data));
-                        $scope.gridData = data.aflProducts;
-                        //$scope.gridOptions.data = data.aflProducts;
-                    }, function (error) {
-                        console.log('From within the controller we received data ERROR from the service');
-                        $scope.gridData = SimpleMockData.nutrientsList.aflProducts;
-                    });
-            };
+            
 
 
             $scope.data = ensureToken();

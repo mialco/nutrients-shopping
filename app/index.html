@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="amcomanApp">
 
-<head>
+<head ng-controller="GlobalController">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head 
          content must come *after* these tags -->
-
-    <title>Nutrients Shopping</title>
+    <meta name="description" content="{{getPageHeaderData().metaDescription}}">
+    <meta name="keywords" content="{{getPageHeaderData().metaKeywords}}">
+    
+    <title ng-bind="getPageHeaderData().title"></title>
     <!-- Bootstrap -->
     <!-- build:css styles/main.css -->
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -57,6 +59,7 @@
     <script src="scripts/nutrientsService.js"></script>
     <script src="scripts/nutrientsController.js"></script>
     <script src="scripts/articleController.js"></script>
+    <script src="scripts/globalController.js"></script>
     <script src="scripts/identityClient.js"></script>
     <script src="scripts/identityService.js"></script>
     <script src="scripts/commonData.js"></script>
@@ -64,9 +67,9 @@
     <script src="scripts/simpleMockData.js"></script>
     <script src="scripts/navController.js"></script>
     <script src="scripts/productImageComponent.js"></script>
-    
+
     <!-- endbuild -->
-    
+
 
 </body>
 

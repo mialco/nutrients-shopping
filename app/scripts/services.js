@@ -3,6 +3,7 @@ angular.module('amcomanApp')
     //.constant("baseURL", "http://localhost:49970/api")
     .constant("baseURL", "http://localhost:3001/api")
     .constant('identityURL', "http://localhost:5001")
+    .constant('AppHeaderData', {title :"Nutrients Shopping", metaKeywords : "Keyword 1,keyword 2",metaDescription: "sample meta description"})
     //.constant("baseURL", "https://amcoman.mybluemix.net/")
     .factory('menuFactory', ['$resource', 'baseURL', function ($resource, baseURL) {
 
@@ -80,27 +81,27 @@ angular.module('amcomanApp')
 
             $resource(baseURL + "users/login")
                 .save(loginData,
-                    function (response) {
-                        storeUserCredentials({
-                            username: loginData.username,
-                            token: response.token,
-                            admin: response.admin
-                        });
-                        $rootScope.$broadcast('login:Successful');
-                    },
-                    function (response) {
-                        isAuthenticated = false;
+                function (response) {
+                    storeUserCredentials({
+                        username: loginData.username,
+                        token: response.token,
+                        admin: response.admin
+                    });
+                    $rootScope.$broadcast('login:Successful');
+                },
+                function (response) {
+                    isAuthenticated = false;
 
-                        var message = '<div class="ngdialog-message">' +
-                            '<div><h3>Login Unsuccessful</h3></div>' +
-                            '<div><p>' + response.data.err.message + '</p><p>' +
-                            response.data.err.name + '</p></div>' +
-                            '<div class="ngdialog-buttons">' +
-                            '<button type="button" class="ngdialog-button ngdialog-button-primary" ng-click=confirm("OK")>OK</button>' +
-                            '</div>';
+                    var message = '<div class="ngdialog-message">' +
+                        '<div><h3>Login Unsuccessful</h3></div>' +
+                        '<div><p>' + response.data.err.message + '</p><p>' +
+                        response.data.err.name + '</p></div>' +
+                        '<div class="ngdialog-buttons">' +
+                        '<button type="button" class="ngdialog-button ngdialog-button-primary" ng-click=confirm("OK")>OK</button>' +
+                        '</div>';
 
-                        ngDialog.openConfirm({template: message, plain: 'true'});
-                    }
+                    ngDialog.openConfirm({ template: message, plain: 'true' });
+                }
                 );
 
         };
@@ -115,30 +116,30 @@ angular.module('amcomanApp')
 
             $resource(baseURL + "users/register")
                 .save(registerData,
-                    function (response) {
-                        authFac.login({
-                            username: registerData.username,
-                            password: registerData.password,
-                            admin: registerData.admin
-                        });
-                        if (registerData.rememberMe) {
-                            $localStorage.storeObject('userinfo',
-                                {username: registerData.username, password: registerData.password});
-                        }
-
-                        $rootScope.$broadcast('registration:Successful');
-                    },
-                    function (response) {
-
-                        var message =
-                            '<div class="ngdialog-message">' +
-                            '<div><h3>Registration Unsuccessful</h3></div>' +
-                            '<div><p>' + response.data.err.message +
-                            '</p><p>' + response.data.err.name + '</p></div>';
-
-                        ngDialog.openConfirm({template: message, plain: 'true'});
-
+                function (response) {
+                    authFac.login({
+                        username: registerData.username,
+                        password: registerData.password,
+                        admin: registerData.admin
+                    });
+                    if (registerData.rememberMe) {
+                        $localStorage.storeObject('userinfo',
+                            { username: registerData.username, password: registerData.password });
                     }
+
+                    $rootScope.$broadcast('registration:Successful');
+                },
+                function (response) {
+
+                    var message =
+                        '<div class="ngdialog-message">' +
+                        '<div><h3>Registration Unsuccessful</h3></div>' +
+                        '<div><p>' + response.data.err.message +
+                        '</p><p>' + response.data.err.name + '</p></div>';
+
+                    ngDialog.openConfirm({ template: message, plain: 'true' });
+
+                }
                 );
         };
 
@@ -173,17 +174,17 @@ angular.module('amcomanApp')
 
     .factory('OrgFactory', ['$resource', '$http', '$localStorage', '$rootScope', '$window', 'baseURL', 'ngDialog', function ($resource, $http, $localStorage, $rootScope, $window, baseURL, ngDialog) {
         var orgFac = {};
-        orgFac.orgs = $resource(baseURL + "orgs/:orgId", {orgId: '@orgId'}, {
-            'update': {method: 'PUT'},
-            'query': {method: 'GET', isArray: true},
-            'getOne': {method: 'GET', isArray: false},
-            'save': {method: 'POST'}
+        orgFac.orgs = $resource(baseURL + "orgs/:orgId", { orgId: '@orgId' }, {
+            'update': { method: 'PUT' },
+            'query': { method: 'GET', isArray: true },
+            'getOne': { method: 'GET', isArray: false },
+            'save': { method: 'POST' }
 
         });
 
-        orgFac.ents = $resource(baseURL + "orgs/entity/:orgId/:entId", {orgId: '@orgId', entId: '@entId'}, {
-            'update': {method: 'PUT'},
-            'delete': {method: 'DELETE'}
+        orgFac.ents = $resource(baseURL + "orgs/entity/:orgId/:entId", { orgId: '@orgId', entId: '@entId' }, {
+            'update': { method: 'PUT' },
+            'delete': { method: 'DELETE' }
         });
 
 
@@ -193,17 +194,17 @@ angular.module('amcomanApp')
     .factory('EntityFactory', ['$resource', '$http', '$localStorage', '$rootScope', '$window', 'baseURL', 'ngDialog', function ($resource, $http, $localStorage, $rootScope, $window, baseURL, ngDialog) {
 
         var entFac = {};
-        entFac.entities = $resource(baseURL + 'entities/:entId', {entId: '@entId'}, {
+        entFac.entities = $resource(baseURL + 'entities/:entId', { entId: '@entId' }, {
             'update': {
                 method: 'PUT'
             },
-            'query': {method: 'GET', isArray: true},
-            'getOne': {method: 'GET', isArray: false},
-            'save': {method: 'POST'},
-            'delete': {method: 'DELETE'}
+            'query': { method: 'GET', isArray: true },
+            'getOne': { method: 'GET', isArray: false },
+            'save': { method: 'POST' },
+            'delete': { method: 'DELETE' }
         });
 
-        entFac.entitiesNotInOrg = $resource(baseURL + 'entities/notinorg/:orgId', {orgId: '@orgId'}, {
+        entFac.entitiesNotInOrg = $resource(baseURL + 'entities/notinorg/:orgId', { orgId: '@orgId' }, {
             get: {
                 method: 'GET',
                 isArray: true
@@ -217,14 +218,40 @@ angular.module('amcomanApp')
     .factory('ArticleFactory', ['$resource', '$http', '$localStorage', '$rootScope', '$window', 'baseURL', 'ngDialog', function ($resource, $http, $localStorage, $rootScope, $window, baseURL, ngDialog) {
 
         var artFac = {};
-        artFac.articles = $resource(baseURL + "articles/:artId", {artId: '@artId'}, {
-            'update': {method: 'PUT'},
-            'query': {method: 'GET', isArray: true},
-            'save': {method: 'POST'}
+        artFac.articles = $resource(baseURL + "articles/:artId", { artId: '@artId' }, {
+            'update': { method: 'PUT' },
+            'query': { method: 'GET', isArray: true },
+            'save': { method: 'POST' }
         });
 
 
         return artFac;
     }])
 
-;
+    .factory('PageService', ['AppHeaderData', '$state', function (AppHeaderData, $state) {
+
+        var pageFac = {};
+        var stateData = $state;
+
+        //headerInfo should be in form {title : 'sample title', metaKeywords : 'keyword1,keyword2',metaDescription : 'sample description'}
+        pageFac.setPageHeaderData = function (headerInfo) {
+            pageFac.title = headerInfo.title;
+            pageFac.metaKeywords = headerInfo.metaKeywords;
+            pageFac.metaDescription = headerInfo.metaDescription;
+        }
+        pageFac.getPageHeaderData = function () {
+            
+            return  { title :pageFac.title?pageFac.title +' | ' +AppHeaderData.title : AppHeaderData.title,
+            metaKeywords : pageFac.metaKeywords || '',
+            metaDescription : pageFac.metaDescription || ''}; 
+
+        }
+        pageFac.getDefaultPageHeaderData = function () {
+            return AppHeaderData;
+        }
+        
+        return pageFac;
+
+    }])
+
+    ;

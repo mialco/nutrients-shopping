@@ -17,7 +17,9 @@ angular.module('amcomanApp')
     }});};
 
     nutrientsFac.nutrientItem =  function(bearerToken){
-        return $resource(baserUrl + '/aflProducts/:productId',{
+        return $resource(baseUrl + '/aflProducts/:productId',
+        {productId:'@productId'}, 
+        {
             query:{method:'GET',
                 headers: {'Authorization': 'bearer ' + bearerToken},
                 isArray: false
