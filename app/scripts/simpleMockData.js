@@ -404,7 +404,7 @@ angular.module('amcomanApp')
             "productName": "GREEN BARLEY GRASS 500 mg-500 mg-120-Tablets",
             "description": "GREEN BARLEY GRASS 500 mg-500 mg-120-Tablets  GREEN BARLEY GRASS 500 mg-500 mg-120-Tablets  GREEN BARLEY GRASS 500 mg-500 mg-120-Tablets  GREEN BARLEY GRASS 500 mg-500 mg-120-Tablets  GREEN BARLEY GRASS 500 mg-500 mg-120-Tablets  GREEN BARLEY GRASS 500 mg-500 mg-120-Tablets  GREEN BARLEY GRASS 500 mg-500 mg-120-Tablets  GREEN BARLEY GRASS 500 mg-500 mg-120-Tablets  GREEN BARLEY GRASS 500 mg-500 mg-120-Tablets  GREEN BARLEY GRASS 500 mg-500 mg-120-Tablets  GREEN BARLEY GRASS 500 mg-500 mg-120-Tablets  GREEN BARLEY GRASS 500 mg-500 mg-120-Tablets  GREEN BARLEY GRASS 500 mg-500 mg-120-Tablets  GREEN BARLEY GRASS 500 mg-500 mg-120-Tablets  GREEN BARLEY GRASS 500 mg-500 mg-120-Tablets  ",
             "navigateUrl": "http://click.linksynergy.com/fs-bin/click?id=pSK2wtK8sX8&offerid=116038.5840&type=2&subid=0",
-            "imgUrl": "http://www.123puritan.com/VF/Assets/Puritan_Products/005840.jpg",
+            "imgUrl": "http://www.puritan.com/VF/Assets/Puritan_Products/005840.jpg",
             "imgAlt": "GREEN BARLEY GRASS 500 mg-500 mg-120-Tablets",
             "imgDescription": "GREEN BARLEY GRASS 500 mg-500 mg-120-Tablets",
             "additionalInfoTitle": null,

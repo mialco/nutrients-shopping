@@ -148,9 +148,9 @@ body {
 }
 
 .aflProduct{
-  min-height: 19em;
+  min-height: 20em;
 }
-.aflProduct .aflProduct-image{
+.aflProduct .aflProductImage{
   margin-top: 1em;
   height: 16em;
   position: relative;
@@ -163,4 +163,10 @@ body {
   left: 0;  
   right: 0;  
   margin: auto; 
+}
+
+.aflProduct .backLink
+{
+  margin-top: 1em;
+  margin-bottom: 1em;
 }
