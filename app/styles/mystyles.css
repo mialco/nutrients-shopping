@@ -146,3 +146,21 @@ body {
   height:300px;
   overflow-y: scroll;
 }
+
+.aflProduct{
+  min-height: 19em;
+}
+.aflProduct .aflProduct-image{
+  margin-top: 1em;
+  height: 16em;
+  position: relative;
+}
+.aflProduct a img{
+  max-height: 16em;  
+  position: absolute;  
+  top: 0;  
+  bottom: 0;  
+  left: 0;  
+  right: 0;  
+  margin: auto; 
+}
