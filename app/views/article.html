@@ -1,11 +1,39 @@
 <div class="container">
-    <div class="row  <row-content>  </row-content>">
-        <div class="col-xs-12">
-            Nutrient Item {{productId}}
-            {{productDetails}}
-            <div>
-                <a ui-sref="app.nutrients({categoryName: backPageData.categoryName,page : backPageData.page,pageSize : backPageData.pageSize })">Back</a>
+    <div class="row">
+        <div class="col-md-4 text-center">
+            <img src={{productDetails.imgUrl}} alt="{{imgAlt}}" class="image-responsive" />
+        </div>
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 ng-bind="productDetails.articleTitle"></h1>
+                    <h4 ng-if="productDetails.desc1" ng-bind="productDetails.desc1"></h4>
+                </div>
             </div>
+            
+            <div class="row" ng-if="productDetails.desc2">
+                <div class="col-md-12">
+                    <h5 ng-bind="productDetails.desc2">
+                    </h5>
+                </div>
+            </div>
+            <div class="row" ng-if="productDetails.price">
+                <div class="col-md-12">
+                    <h2>$ {{::productDetails.price}}
+                    </h2>
+                </div>
+            </div>
+            <div class="row" ng-if="productDetails.description">
+                <div class="col-md-12">
+                    <span ng-bind="productDetails.description"></span>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div>
+            <a ui-sref="app.nutrients({categoryName: backPageData.categoryName,page : backPageData.page,pageSize : backPageData.pageSize })"> &lt; Back to list</a>
         </div>
     </div>
 
