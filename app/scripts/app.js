@@ -27,6 +27,7 @@ angular.module('amcomanApp', ['ui.router', 'ui.grid', 'ngResource', 'ngDialog', 
 
             })
 
+ 
             // route for the aboutus page
             .state('app.aboutus', {
                 url: 'aboutus',
@@ -83,8 +84,82 @@ angular.module('amcomanApp', ['ui.router', 'ui.grid', 'ngResource', 'ngDialog', 
                         templateUrl: 'views/article.html',
                         controller: 'ArticleController'
                     }
-
                 }})
+
+                            // route for the admin home page
+            // .state('app.admin', {
+            //     name : 'admin',
+            //     url:  'admin',
+            //     views: {
+            //         // 'navigation': {
+            //         //     templateUrl: 'views/navigation.html',
+            //         //     controller: 'NavController'
+            //         // },
+            //         // 'header': {
+            //         //     templateUrl: 'views/header.html',
+            //         //     controller: 'HeaderController'
+            //         // },
+            //          'content@': {
+            //             templateUrl: 'views/admin/home.html',
+            //             controller: 'HomeController'
+            //         }
+            //     //     'footer': {
+            //     //         templateUrl: 'views/footer.html',
+            //     //     }
+            //     }
+
+            // })
+
+            .state('admin', {
+                name: 'admin',
+                url: '/admin',
+                views: {
+                    'navigation': {
+                        templateUrl: 'views/navigation.html',
+                        controller: 'NavController'
+                    },
+                    'header': {
+                        templateUrl: 'views/header.html',
+                        controller: 'HeaderController'
+                    },
+                    'content': {
+                        templateUrl: 'views/admin/home.html',
+                        controller: 'HomeController'
+                    },
+                    'footer': {
+                        templateUrl: 'views/footer.html',
+                    }
+                }
+
+            })
+               .state('app.adminnewarticle',{
+                    name : 'adminnewarticle',
+                    //parent: 'admin',
+                    url:'admin/article/new',
+                     views:{
+                        //  'header@': {
+                        //      templateUrl: 'views/headerArticleList.html',
+                        //      controller: 'HeaderController'
+                        //  },
+                        'content@': {
+                            templateUrl: 'views/admin/article.html',
+                            controller: 'ArticleController'
+                        }
+                    }
+                })
+                .state('app.adminEditArticle',{
+                    url:'admin/article/edit',
+                     views:{
+                        //  'header@': {
+                        //      templateUrl: 'views/headerArticleList.html',
+                        //      controller: 'HeaderController'
+                        //  },
+                        'content@': {
+                            templateUrl: 'views/admin/article.html',
+                            controller: 'ArticleController'
+                        }
+                    }
+                })
             // route for the dishdetail page
             .state('app.affiliateDisclosure', {
                 url: 'affiliateDisclosure',
