@@ -32,9 +32,9 @@
                     </div>
                 </div>
 
-                <div class="row backLink" >
+                <div class="row backLink" ng-if="queryParamObject.categoryName">
                     <div class="col-md-12">
-                            <a  ui-sref="app.nutrients({categoryName: backPageData.categoryName,page : backPageData.page,pageSize : backPageData.pageSize })"> &lt; Back to list</a>
+                            <a  ui-sref="app.nutrients({categoryName: queryParamObject.categoryName,page : queryParamObject.page,pageSize : queryParamObject.pageSize })"> &lt; Back to list</a>
                     </div>
                 </div>
 

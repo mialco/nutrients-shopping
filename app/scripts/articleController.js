@@ -1,6 +1,6 @@
 angular.module('amcomanApp')
-.controller('ArticleController', ['$scope', '$stateParams','NutrientsService','SimpleMockData','PageService',
-    function ($scope, $stateParams,NutrientsService,SimpleMockData,PageService) {
+.controller('ArticleController', ['$scope', '$stateParams','NutrientsService','SimpleMockData','PageService','$location',
+    function ($scope, $stateParams,NutrientsService,SimpleMockData,PageService,$location) {
         
         var productId = $stateParams.productId;
         $scope.backPageData = $stateParams.backPageData;
@@ -8,6 +8,7 @@ angular.module('amcomanApp')
         //Defining bearerToken as undefined for now 
         //To Do : Get bearerToken properly whhen connecting app with authentication server
         var bearerToken =undefined;
+        $scope.queryParamObject = $location.search();
 
         //Load Item data from the productId received in stateparams
         function getItemDataFromApi(bearerToken) {

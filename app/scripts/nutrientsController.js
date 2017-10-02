@@ -24,7 +24,7 @@ angular.module('amcomanApp')
 
             $scope.pagerData = CommonData.pagerData;
             $scope.stateParams = $stateParams;
-
+            $scope.objectToPassToItemState = {categoryName : categoryName,page:page,pageSize:pageSize};
             //Returns web form data which structure is based on the storedToken
             // If username and password are not empty we return the web form for client credentials
             // else we return web form  data for user authentication
@@ -158,7 +158,4 @@ angular.module('amcomanApp')
                 pagerData.firstPageLink = pageLinkRoot + '1/' + pagerData.pageSize;
                 pagerData.lastPageLink = pageLinkRoot + pagerData.totalPages + '/' + pagerData.pageSize;
             };
-            $scope.onProductSelect = function (productId) {
-                $state.go("app.nutrientItem", { productId: productId, backPageData : {categoryName : categoryName,page:page,pageSize:pageSize}  });
-            }
         }]);
