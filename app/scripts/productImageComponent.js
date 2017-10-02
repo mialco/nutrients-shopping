@@ -6,20 +6,22 @@ angular.module('amcomanApp').component('productImage', {
     },
     controller: ['$state', function ($state) {
         var ctrl = this;
-        
+
 
         ctrl.onImageclick = function (productId) {
-            if (ctrl.onProductSelect) {
-                ctrl.onProductSelect({productId : productId});
-            } else if (ctrl.product.detailIsActive) {
-                $state.go("app.nutrientItem", { productId: productId });
+            if (ctrl.product.detailIsActive) {
+                if (ctrl.onProductSelect) {
+                    ctrl.onProductSelect({ productId: productId });
+                } else {
+                    $state.go("app.nutrientItem", { productId: productId });
+                }
             }
             else {
                 window.open(
                     ctrl.product.navigateUrl,
                     '_blank'
                 );
-                
+
             }
 
         }
