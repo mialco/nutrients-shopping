@@ -147,6 +147,9 @@ body {
   overflow-y: scroll;
 }
 
+.appContent{
+  min-height: 20em;
+}
 .aflProduct{
   min-height: 20em;
 }

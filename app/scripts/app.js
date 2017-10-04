@@ -137,10 +137,10 @@ angular.module('amcomanApp', ['ui.router', 'ui.grid', 'ngResource', 'ngDialog', 
                     //parent: 'admin',
                     url:'admin/article/new',
                      views:{
-                        //  'header@': {
-                        //      templateUrl: 'views/headerArticleList.html',
-                        //      controller: 'HeaderController'
-                        //  },
+                         'header@': {
+                             templateUrl: 'views/headerArticleList.html',
+                             controller: 'HeaderController'
+                         },
                         'content@': {
                             templateUrl: 'views/admin/article.html',
                             controller: 'ArticleController'
@@ -150,10 +150,10 @@ angular.module('amcomanApp', ['ui.router', 'ui.grid', 'ngResource', 'ngDialog', 
                 .state('app.adminEditArticle',{
                     url:'admin/article/edit',
                      views:{
-                        //  'header@': {
-                        //      templateUrl: 'views/headerArticleList.html',
-                        //      controller: 'HeaderController'
-                        //  },
+                         'header@': {
+                             templateUrl: 'views/headerArticleList.html',
+                             controller: 'HeaderController'
+                         },
                         'content@': {
                             templateUrl: 'views/admin/article.html',
                             controller: 'ArticleController'
