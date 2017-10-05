@@ -34,9 +34,9 @@
                 </li>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" role="button" area-haspopup="true" area-expanded="false">Supplements <span class=caret></span></a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a ui-sref="app.nutrients({categoryName:'Aminoacids',page:1, pageSize: 10})">Aminoacids<a/>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a ui-sref="app.nutrients({categoryName:'Aminoacids',page:1, pageSize: 10})">Aminoacids<a/>
                         </li>
                         <li>
                             <a ui-sref="app.nutrients({categoryName:'Antioxidants',page:1, pageSize: 10})">Antioxidants<a/>
@@ -63,34 +63,40 @@
 
  					<li class="dropdown">
 					  <a  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li ng-class="{active: stateis('app.orgs_zzzz')}">
-                                    <a ui-sref="app.orgs">Organization</a>
+                                    <ul class="dropdown-menu">
+                                        <li ng-class="{active: stateis('app.orgs_zzzz')}">
+                                            <a ui-sref="app.orgs">Organization</a>
+                                        </li>
+                                        <li ng-class="{active: stateis('app.entities')}">
+                                            <a ui-sref="app.entities">Entities</a>
+                                        </li>
+                                        <li ng-class="{active: stateis('app.articles')}">
+                                            <a ui-sref="app.adminNewArticle">Articles New</a>
+                                        </li>
+                                        <li ng-class="{active: stateis('app.articles')}">
+                                            <a ui-sref="app.adminEditArticle({id:1682})">Articles Edit</a>
+                                        </li>
+                                        <li ng-class="{active: stateis('app.articles')}">
+                                            <a ui-sref="app.adminViewArticle({id:1682})">Articles View</a>
+                                        </li>
+                                        <li role="separator" class="divider"></li>
+                                        <li role="separator" class="divider"></li>
+                                    </ul>
                                 </li>
-                                <li ng-class="{active: stateis('app.entities')}">
-                                    <a ui-sref="app.entities">Entities</a>
-                                </li>
-                                <li ng-class="{active: stateis('app.articles')}">
-                                    <a ui-sref="app.articles">Articles</a>
-                                </li>
-                                <li role="separator" class="divider"></li>
-                                <li role="separator" class="divider"></li>
-                            </ul>
-                        </li>
-                        <li ng-class="{active: stateis('app.aboutus')}">
-                            <a ui-sref="app.aboutus">
+                                <li ng-class="{active: stateis('app.aboutus')}">
+                                    <a ui-sref="app.aboutus">
                                 <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> About</a>
-                        </li>
-                        <li ng-class="{active: stateis('app.contactus')}">
-                            <a ui-sref="app.contactus">
+                                </li>
+                                <li ng-class="{active: stateis('app.contactus')}">
+                                    <a ui-sref="app.contactus">
                                 <i class="fa fa-envelope-o"></i> Contact</a>
-                        </li>
-                        <li>
-                            <a ui-sref="app.affiliateDisclosure">Affiliate Disclosure</a>
+                                </li>
+                                <li>
+                                    <a ui-sref="app.affiliateDisclosure">Affiliate Disclosure</a>
 
-                        </li>
-                    </ul>
-                    <!--
+                                </li>
+                            </ul>
+                            <!--
                 <ul class="nav navbar-nav navbar-right">
                     <li ng-if="!loggedIn"><a ng-click="openLogin()">
                     <span class="glyphicon glyphicon-log-in"></span> Login</a>

@@ -5,15 +5,15 @@ angular.module('amcomanApp')
             //can be part of component
             $scope.mode = undefined;
             switch ($state.current.name) {
-                case 'app.adminnewarticle':
-                    $scope.mode = 'new';
+                case 'app.adminNewArticle':
+                    $scope.mode = 'New';
                     $scope.isSaveAllowed = true;
                     $scope.isEditAllowed = false;
                     $scope.isNewAllowed = false;
                     $scope.isDeleteAllowed =false;
                     break;
                 case 'app.adminEditArticle':
-                    $scope.mode = 'edit';
+                    $scope.mode = 'Edit';
                     $scope.isSaveAllowed = true;
                     $scope.isEditAllowed = false;
                     $scope.isNewAllowed = true;
@@ -21,7 +21,7 @@ angular.module('amcomanApp')
                     break;
 
                 default:
-                    $scope.mode = 'view';
+                    $scope.mode = 'View';
                     $scope.isSaveAllowed = false;
                     $scope.isEditAllowed = true;
                     $scope.isNewAllowed = true;
@@ -29,6 +29,7 @@ angular.module('amcomanApp')
             }
             //--end--//
 
+            
             $scope.product = {};
             $scope.product.imgAlt = "asdad";
         }]);

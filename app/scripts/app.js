@@ -4,7 +4,7 @@ angular.module('amcomanApp', ['ui.router', 'ui.grid', 'ngResource', 'ngDialog', 
     .config(function ($stateProvider, $urlRouterProvider) {
         $stateProvider
 
-        // route for the home page
+            // route for the home page
             .state('app', {
                 url: '/',
                 views: {
@@ -27,7 +27,7 @@ angular.module('amcomanApp', ['ui.router', 'ui.grid', 'ngResource', 'ngDialog', 
 
             })
 
- 
+
             // route for the aboutus page
             .state('app.aboutus', {
                 url: 'aboutus',
@@ -74,7 +74,7 @@ angular.module('amcomanApp', ['ui.router', 'ui.grid', 'ngResource', 'ngDialog', 
 
             })
             .state('app.nutrientItem', {
-                url: 'nutrient/article/:productId',params : {backPageData: null},
+                url: 'nutrient/article/:productId', params: { backPageData: null },
                 views: {
                     'header@': {
                         templateUrl: 'views/headerArticleList.html',
@@ -84,9 +84,10 @@ angular.module('amcomanApp', ['ui.router', 'ui.grid', 'ngResource', 'ngDialog', 
                         templateUrl: 'views/article.html',
                         controller: 'ArticleController'
                     }
-                }})
+                }
+            })
 
-                            // route for the admin home page
+            // route for the admin home page
             // .state('app.admin', {
             //     name : 'admin',
             //     url:  'admin',
@@ -110,56 +111,69 @@ angular.module('amcomanApp', ['ui.router', 'ui.grid', 'ngResource', 'ngDialog', 
 
             // })
 
-            .state('admin', {
-                name: 'admin',
-                url: '/admin',
+            // .state('admin', {
+            //     name: 'admin',
+            //     url: '/admin',
+            //     views: {
+            //         'navigation': {
+            //             templateUrl: 'views/navigation.html',
+            //             controller: 'NavController'
+            //         },
+            //         'header': {
+            //             templateUrl: 'views/header.html',
+            //             controller: 'HeaderController'
+            //         },
+            //         'content': {
+            //             templateUrl: 'views/admin/home.html',
+            //             controller: 'HomeController'
+            //         },
+            //         'footer': {
+            //             templateUrl: 'views/footer.html',
+            //         }
+            //     }
+
+            // })
+            .state('app.adminNewArticle', {
+                name: 'adminNewArticle',
+                //parent: 'admin',
+                url: 'admin/article/new',
                 views: {
-                    'navigation': {
-                        templateUrl: 'views/navigation.html',
-                        controller: 'NavController'
-                    },
-                    'header': {
-                        templateUrl: 'views/header.html',
+                    'header@': {
+                        templateUrl: 'views/headerArticleList.html',
                         controller: 'HeaderController'
                     },
-                    'content': {
-                        templateUrl: 'views/admin/home.html',
-                        controller: 'HomeController'
-                    },
-                    'footer': {
-                        templateUrl: 'views/footer.html',
+                    'content@': {
+                        templateUrl: 'views/admin/article.html',
+                        controller: 'AdminArticleController'
                     }
                 }
-
             })
-               .state('app.adminnewarticle',{
-                    name : 'adminnewarticle',
-                    //parent: 'admin',
-                    url:'admin/article/new',
-                     views:{
-                         'header@': {
-                             templateUrl: 'views/headerArticleList.html',
-                             controller: 'HeaderController'
-                         },
-                        'content@': {
-                            templateUrl: 'views/admin/article.html',
-                            controller: 'AdminArticleController'
-                        }
+            .state('app.adminEditArticle', {
+                url: 'admin/article/edit/:id',
+                views: {
+                    'header@': {
+                        templateUrl: 'views/headerArticleList.html',
+                        controller: 'HeaderController'
+                    },
+                    'content@': {
+                        templateUrl: 'views/admin/article.html',
+                        controller: 'AdminArticleController'
                     }
-                })
-                .state('app.adminEditArticle',{
-                    url:'admin/article/edit',
-                     views:{
-                         'header@': {
-                             templateUrl: 'views/headerArticleList.html',
-                             controller: 'HeaderController'
-                         },
-                        'content@': {
-                            templateUrl: 'views/admin/article.html',
-                            controller: 'AdminArticleController'
-                        }
+                }
+            })
+            .state('app.adminViewArticle', {
+                url: 'admin/article/view/:id',
+                views: {
+                    'header@': {
+                        templateUrl: 'views/headerArticleList.html',
+                        controller: 'HeaderController'
+                    },
+                    'content@': {
+                        templateUrl: 'views/admin/article.html',
+                        controller: 'AdminArticleController'
                     }
-                })
+                }
+            })
             // route for the dishdetail page
             .state('app.affiliateDisclosure', {
                 url: 'affiliateDisclosure',
