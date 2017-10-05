@@ -143,7 +143,7 @@ angular.module('amcomanApp', ['ui.router', 'ui.grid', 'ngResource', 'ngDialog', 
                          },
                         'content@': {
                             templateUrl: 'views/admin/article.html',
-                            controller: 'ArticleController'
+                            controller: 'AdminArticleController'
                         }
                     }
                 })
@@ -156,7 +156,7 @@ angular.module('amcomanApp', ['ui.router', 'ui.grid', 'ngResource', 'ngDialog', 
                          },
                         'content@': {
                             templateUrl: 'views/admin/article.html',
-                            controller: 'ArticleController'
+                            controller: 'AdminArticleController'
                         }
                     }
                 })

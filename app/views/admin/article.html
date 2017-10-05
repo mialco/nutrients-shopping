@@ -1,46 +1,53 @@
 <div class="container">
-    <div class="row">
-        <form>
+
+    <form >
+        <div class="row">
+            <div class="col-md-11 col-md-offset-1 col-sm-12 text-xs-center">
+
+                <h1 class="">Product Name <small>{{product.prodId?'(Edit)':'(New)' }}</small></h1>
+            </div>
+
             <div class="col-md-6 col-sm-12">
-                <div class="row text-center">
-                    <div>
-                        <h1 class="">Product Name <small>(New)</small></h1>
-                    </div>
 
-                </div>
 
-                <div class="row form-group">
-                    <div class="col-md-12">
-                        <label for="ProductId" name="ProductId">Product Id :</label>
-                        <label for="" name="ProductId">123432</label>
-                    </div>
+                <div class="row form-groups " ng-if="product.prodId">
+                    <div class="col-md-12"><label for="ProductId" name="ProductId">Product Id :</label>
+                        <label for="" name="ProductId" ng-bind="product.prodId"></label></div>
 
                 </div>
                 <div class="row form-group">
                     <div class="col-md-3"> <label for="ProductName">Product Name :</label> </div>
-                    <div class="col-md-9"><input type="text" name="ProductName" class="form-control" id=""></div>
+                    <div class="col-md-9"><input type="text" name="ProductName" ng-model="product.productName" class="form-control" id=""></div>
                 </div>
                 <div class="row form-group">
                     <div class="col-md-5"> <label for="ProductDescription">Product Description :</label> </div>
-                    <div class="col-md-12"><textarea name="ProductDescription" id="" class="form-control"></textarea></div>
+                    <div class="col-md-12"><textarea name="ProductDescription" id="" class="form-control" ng-model="product.description" rows=10></textarea></div>
                 </div>
             </div>
 
-            <div class="col-md-6 col-sm-12" style="margin-top:5em">
+            <div class="col-md-6 col-sm-12">
                 <div class="row form-group">
                     <div class="col-md-3"> <label for="ImageAlt">Image Alt :</label> </div>
-                    <div class="col-md-9"><input type="text" name="ImageAlt" class="form-control" id=""></div>
+                    <div class="col-md-9"><input type="text" ng-model="product.imgAlt" name="ImageAlt" ng-model="product.imgAlt" class="form-control" id=""></div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-md-3"> <label for="ImageSrc">Image Source (External Url) :</label> </div>
+                    <div class="col-md-9"><input type="text" name="ImageSrc" ng-model="product.imgSrc"  ng-modal="product.imgUrl" class="form-control" id=""></div>
+                </div>
+
+                <div class="row form-group text-center" ng-if="product.imgSrc" style="min-height:12.5em">
+                    <a href="{{product.imgSrc}}" target="_blank"><img src="{{product.imgSrc}}" alt="{{product.imgAlt}}" style="max-height:12.5em;"></a>
                 </div>
             </div>
 
             <div class="col-md-12">
                 <div class="row form-group">
                     <div class="col-md-2"> <label for="ImageDescription">Image Description :</label> </div>
-                    <div class="col-md-10"><input type="text" name="ImageDescription" class="form-control" id=""></div>
+                    <div class="col-md-10"><input type="text" name="ImageDescription" class="form-control" id="" ng-model="product.imgDescription" ></div>
                 </div>
                 <div class="row form-group">
                     <div class="col-md-2"> <label for="NavigateUrl">Navigate Url :</label> </div>
-                    <div class="col-md-10"><input type="text" name="NavigateUrl" class="form-control" id=""></div>
+                    <div class="col-md-10"><input type="text" name="NavigateUrl" class="form-control" ng-model="product.navigateUrl" id=""></div>
                 </div>
 
                 <div class="row form-group">
@@ -48,31 +55,35 @@
 
                     <!-- <div class="col-md-6 form-group"> -->
                     <div class="col-md-2"> <label for="Advertizer">Advertizer :</label> </div>
-                    <div class="col-md-5"><input type="text" name="Advertizer" class="form-control" id=""></div>
+                    <div class="col-md-5"><input type="text" name="Advertizer" class="form-control" ng-model="product.advertiser" id=""></div>
 
                     <!-- <div class="col-md-6 form-group"> -->
                     <div class="col-md-1"> <label for="Price">Price :</label> </div>
-                    <div class="col-md-4"><input type="text" name="Price" class="form-control" id=""></div>
+                    <div class="col-md-4"><input type="text" name="Price" class="form-control" ng-model="product.price" id=""></div>
                 </div>
             </div>
             <div class="col-md-12 form-group">
-                <a href="" >Back to previous page</a>
+                <a href="">Back to previous page</a>
             </div>
             <div class="col-md-12 ">
-                <div class="col-md-1 form-group">
-                        <button class="form-control col-md-12 btn btn-primary" > Save</button>    
+                <div ng-if="isSaveAllowed" class="col-md-1 form-group">
+                    <button class="form-control col-md-12 btn btn-primary"> Save</button>
                 </div>
-                <div class="col-md-1 form-group">
-                        <button class="form-control col-md-12 btn btn-success" > Edit</button>    
+                <div ng-if="isEditAllowed" class="col-md-1 form-group">
+                    <button class="form-control col-md-12 btn btn-success"> Edit</button>
                 </div>
-                <div class="col-md-1 form-group">
-                        <button class="form-control col-md-12 btn btn-danger" > Delete</button>    
+                <div ng-if="isNewAllowed" class="col-md-1 form-group">
+                    <button class="form-control col-md-12 btn btn-success"> New</button>
                 </div>
-                <div class="col-md-1 col-md-offset-8 form-group">
-                        <button class="form-control col-md-12 btn btn-default" > Cancel</button>    
+                <div ng-if="isDeleteAllowed" class="col-md-1 form-group">
+                    <button class="form-control col-md-12 btn btn-danger"> Delete</button>
                 </div>
-                
+                <div class="pull-right form-group">
+                    <button class="form-control col-md-12 btn btn-default"> Cancel</button>
+                </div>
+
             </div>
-        </form>
-    </div>
+        </div>
+    </form>
+
 </div>
