@@ -1,6 +1,6 @@
 angular.module('amcomanApp')
-    .controller('AdminArticleController', ['$scope', '$state', '$stateParams', 'NutrientsService', 'SimpleMockData', 'PageService', '$location',
-        function ($scope, $state, $stateParams, NutrientsService, SimpleMockData, PageService, $location) {
+    .controller('AdminArticleController', ['$scope', '$state','AdminArticleService',
+        function ($scope, $state,AdminArticleService) {
 
             //can be part of component
             $scope.mode = undefined;
@@ -32,4 +32,9 @@ angular.module('amcomanApp')
             
             $scope.product = {};
             $scope.product.imgAlt = "asdad";
+            AdminArticleService.product.get({id: 31741},function(data){
+                console.log(JSON.stringify(data));
+            },function(error){
+                console.log(JSON.stringify(error));
+            });
         }]);
