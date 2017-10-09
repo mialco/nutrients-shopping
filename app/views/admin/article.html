@@ -1,6 +1,6 @@
 <div class="container">
 
-    <form >
+    <form name="form">
         <div class="row">
             <div class="col-md-11 col-md-offset-1 col-sm-12 text-xs-center">
 
@@ -66,8 +66,8 @@
                 <a href="">Back to previous page</a>
             </div>
             <div class="col-md-12 ">
-                <div ng-if="isSaveAllowed" class="col-md-1 form-group">
-                    <button class="form-control col-md-12 btn btn-primary"> Save</button>
+                <div ng-if="isSaveAllowed" class="col-md-1 form-group" >
+                    <button class="form-control col-md-12 btn btn-primary" ng-disabled="!form.$dirty" ng-click="saveProduct(product);"> Save</button>
                 </div>
                 <div ng-if="isEditAllowed" class="col-md-1 form-group">
                     <button class="form-control col-md-12 btn btn-success"> Edit</button>
