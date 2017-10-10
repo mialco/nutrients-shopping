@@ -17,37 +17,55 @@
                 </div>
                 <div class="row form-group">
                     <div class="col-md-3"> <label for="ProductName">Product Name :</label> </div>
-                    <div class="col-md-9"><input type="text" name="ProductName" ng-model="product.productName" class="form-control" id=""></div>
+                    <div class="col-md-9">
+                        <input type="text" ng-if="mode!='View'" name="ProductName" ng-model="product.productName" class="form-control" id="">
+                        <span ng-if="mode=='View'" ng-bind="product.productName"></span>
+                    </div>
                 </div>
                 <div class="row form-group">
                     <div class="col-md-5"> <label for="ProductDescription">Product Description :</label> </div>
-                    <div class="col-md-12"><textarea name="ProductDescription" id="" class="form-control" ng-model="product.description" rows=10></textarea></div>
+                    <div class="col-md-12" style="max-height:12.5em;">
+                        <textarea ng-if="mode!='View'" name="ProductDescription" id="" class="form-control" ng-model="product.description" rows=10></textarea>
+                        <span ng-if="mode=='View'" ng-bind="product.description"></span>
+                    </div>
                 </div>
             </div>
 
             <div class="col-md-6 col-sm-12">
                 <div class="row form-group">
                     <div class="col-md-3"> <label for="ImageAlt">Image Alt :</label> </div>
-                    <div class="col-md-9"><input type="text" ng-model="product.imgAlt" name="ImageAlt" ng-model="product.imgAlt" class="form-control" id=""></div>
+                    <div class="col-md-9" >
+                        <input ng-if="mode!='View'" type="text" ng-model="product.imgAlt" name="ImageAlt" ng-model="product.imgAlt" class="form-control" id="">
+                        <span ng-if="mode=='View'" ng-bind="product.imgAlt"></span>
+                    </div>
                 </div>
                 <div class="row form-group">
                     <div class="col-md-3"> <label for="ImageSrc">Image Source (External Url) :</label> </div>
-                    <div class="col-md-9"><input type="text" name="ImageSrc" ng-model="product.imgSrc"  ng-modal="product.imgUrl" class="form-control" id=""></div>
+                    <div class="col-md-9">
+                        <input ng-if="mode!='View'" type="text" name="ImageSrc" ng-model="product.imgUrl"  class="form-control" id="">
+                        <span ng-if="mode=='View'" ng-bind="product.imgUrl"></span>
+                    </div>
                 </div>
 
-                <div class="row form-group text-center" ng-if="product.imgSrc" style="min-height:12.5em">
-                    <a href="{{product.imgSrc}}" target="_blank"><img src="{{product.imgSrc}}" alt="{{product.imgAlt}}" style="max-height:12.5em;"></a>
+                <div class="row form-group text-center" ng-if="product.imgUrl" style="min-height:12.5em">
+                    <a href="{{product.imgUrl}}" target="_blank"><img src="{{product.imgUrl}}" alt="{{product.imgAlt}}" style="max-height:12.5em;"></a>
                 </div>
             </div>
 
             <div class="col-md-12">
                 <div class="row form-group">
                     <div class="col-md-2"> <label for="ImageDescription">Image Description :</label> </div>
-                    <div class="col-md-10"><input type="text" name="ImageDescription" class="form-control" id="" ng-model="product.imgDescription" ></div>
+                    <div class="col-md-10">
+                        <input type="text" ng-if="mode!='View'" name="ImageDescription" class="form-control" id="" ng-model="product.imgDescription" >
+                        <span ng-if="mode=='View'" ng-bind="product.imgDescription"></span>
+                    </div>
                 </div>
                 <div class="row form-group">
                     <div class="col-md-2"> <label for="NavigateUrl">Navigate Url :</label> </div>
-                    <div class="col-md-10"><input type="text" name="NavigateUrl" class="form-control" ng-model="product.navigateUrl" id=""></div>
+                    <div class="col-md-10">
+                        <input type="text" ng-if="mode!='View'" name="NavigateUrl" class="form-control" ng-model="product.navigateUrl" id="">
+                        <span ng-if="mode=='View'" ng-bind="product.navigateUrl"></span>
+                    </div>
                 </div>
 
                 <div class="row form-group">
@@ -55,11 +73,17 @@
 
                     <!-- <div class="col-md-6 form-group"> -->
                     <div class="col-md-2"> <label for="Advertizer">Advertizer :</label> </div>
-                    <div class="col-md-5"><input type="text" name="Advertizer" class="form-control" ng-model="product.advertiser" id=""></div>
+                    <div class="col-md-5">
+                        <input type="text" ng-if="mode!='View'" name="Advertizer" class="form-control" ng-model="product.advertiser" id="">
+                        <span ng-if="mode=='View'" ng-bind="product.advertiser"></span>
+                    </div>
 
                     <!-- <div class="col-md-6 form-group"> -->
                     <div class="col-md-1"> <label for="Price">Price :</label> </div>
-                    <div class="col-md-4"><input type="text" name="Price" class="form-control" ng-model="product.price" id=""></div>
+                    <div class="col-md-4">
+                        <input type="number" ng-if="mode!='View'" name="Price" class="form-control" step=".01" ng-model="product.price" id="">
+                        <span ng-if="mode=='View'" ng-bind="product.price"></span>
+                    </div>
                 </div>
             </div>
             <div class="col-md-12 form-group">
@@ -79,7 +103,7 @@
                     <button class="form-control col-md-12 btn btn-danger"> Delete</button>
                 </div>
                 <div class="pull-right form-group">
-                    <button class="form-control col-md-12 btn btn-default"> Cancel</button>
+                    <button class="form-control col-md-12 btn btn-default" ng-click="cancelChanges();"> Cancel</button>
                 </div>
 
             </div>

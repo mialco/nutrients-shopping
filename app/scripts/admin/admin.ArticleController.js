@@ -1,9 +1,12 @@
 angular.module('amcomanApp')
-    .controller('AdminArticleController', ['$scope', '$state', 'AdminArticleService',
-        function ($scope, $state, AdminArticleService) {
+    .controller('AdminArticleController', ['$scope', '$state','$stateParams', 'AdminArticleService','SimpleMockData',
+        function ($scope, $state,$stateParams, AdminArticleService,SimpleMockData) {
 
             //can be part of component
             $scope.mode = undefined;
+
+            //to store product info and reset on click of cancel
+            var backedupProductObj = {};
             switch ($state.current.name) {
                 case 'app.adminNewArticle':
                     $scope.mode = 'New';
@@ -29,15 +32,20 @@ angular.module('amcomanApp')
             }
             //--end--//
 
-
-            $scope.product = {};
-            $scope.product.imgAlt = "asdad";
-            AdminArticleService.product.get({ id: 31741 }, function (data) {
-                console.log(JSON.stringify(data));
-            }, function (error) {
-                console.log(JSON.stringify(error));
-            });
-
+            if($scope.mode== "New"){
+                $scope.product = {};
+                $scope.product.imgAlt = "asdad";    
+                backedupProductObj = angular.copy($scope.product);
+            }else{
+                var id = $stateParams.id;
+                AdminArticleService.product.get({ id: id }, function (data) {
+                    console.log(JSON.stringify(data));
+                }, function (error) {
+                    console.log(JSON.stringify(error));
+                    $scope.product = SimpleMockData.nutrientItem;
+                    backedupProductObj = angular.copy($scope.product);
+                });
+            }
 
             $scope.saveProduct = function(product){
                 //call api to save peroduct
@@ -46,6 +54,10 @@ angular.module('amcomanApp')
                 $scope.form.$dirty = false;
                 $state.go("app.aboutus");
                 
+            }
+
+            $scope.cancelChanges = function(){
+                $scope.product = angular.copy(backedupProductObj);
             }
             //To ask confirmation is user sure to leave the page
             $scope.$on('$stateChangeStart', function (event) {
