@@ -24,7 +24,7 @@ angular.module('amcomanApp')
                     //Setting the product details statically
                     //To do: Once the server is set up, populating $scope.productDetails should be the responsibility of above function.
                     // here we should Handle error properly
-                    $scope.productDetails = SimpleMockData.nutrientItem;
+                    $scope.productDetails = angular.copy(SimpleMockData.nutrientItem);
                     PageService.setPageHeaderData({title :$scope.productDetails.title, metaKeywords : $scope.productDetails.metaKeywords,metaDescription: $scope.productDetails.metaDescription});
                     
                 });

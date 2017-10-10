@@ -7,30 +7,21 @@ angular.module('amcomanApp')
 
             //to store product info and reset on click of cancel
             var backedupProductObj = {};
+
+            //To resolve the form variable undefined issue. Ref : https://stackoverflow.com/questions/22436501/simple-angularjs-form-is-undefined-in-scope
+            $scope.form = {};
             switch ($state.current.name) {
                 case 'app.adminNewArticle':
                     $scope.mode = 'New';
-                    $scope.isSaveAllowed = true;
-                    $scope.isEditAllowed = false;
-                    $scope.isNewAllowed = false;
-                    $scope.isDeleteAllowed = false;
                     break;
                 case 'app.adminEditArticle':
                     $scope.mode = 'Edit';
-                    $scope.isSaveAllowed = true;
-                    $scope.isEditAllowed = false;
-                    $scope.isNewAllowed = true;
-                    $scope.isDeleteAllowed = true;
                     break;
-
                 default:
                     $scope.mode = 'View';
-                    $scope.isSaveAllowed = false;
-                    $scope.isEditAllowed = true;
-                    $scope.isNewAllowed = true;
-                    $scope.isDeleteAllowed = true;
+                    
             }
-            //--end--//
+            
 
             if($scope.mode== "New"){
                 $scope.product = {};
@@ -42,26 +33,46 @@ angular.module('amcomanApp')
                     console.log(JSON.stringify(data));
                 }, function (error) {
                     console.log(JSON.stringify(error));
-                    $scope.product = SimpleMockData.nutrientItem;
+                    $scope.product = angular.copy(SimpleMockData.nutrientItem);
                     backedupProductObj = angular.copy($scope.product);
                 });
             }
 
             $scope.saveProduct = function(product){
                 //call api to save peroduct
-
-                $scope.product = {};
-                $scope.form.$dirty = false;
-                $state.go("app.aboutus");
+                if($scope.mode=='New')
+                {
+                    //call POST API
+                }
+                else{
+                    //Call PUT API
+                }
+                
+                $scope.form.adminForm.$dirty = false;
+                $state.go("app.adminViewArticle",{id:$scope.product.prodId});
                 
             }
 
             $scope.cancelChanges = function(){
                 $scope.product = angular.copy(backedupProductObj);
+                $scope.form.adminForm.$dirty = false;
+            }
+
+            $scope.deleteProduct = function(id){
+                
+                var answer = confirm("Are you sure?")
+                if(answer){
+                    //call  api to delete the product
+
+
+                    $scope.form.adminForm.$dirty = false;
+                    $state.go("app.adminNewArticle");
+                }
+
             }
             //To ask confirmation is user sure to leave the page
             $scope.$on('$stateChangeStart', function (event) {
-                if ($scope.form.$dirty) {
+                if ($scope.form.adminForm.$dirty) {
                     var answer = confirm("You may have pending changes, are you sure you want to leave this page?")
                     if (!answer) {
                         event.preventDefault();

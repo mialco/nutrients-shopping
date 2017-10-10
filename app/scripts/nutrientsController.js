@@ -131,7 +131,7 @@ angular.module('amcomanApp')
                         //$scope.gridOptions.data = data.aflProducts;
                     }, function (error) {
                         console.log('From within the controller we received data ERROR from the service');
-                        $scope.gridData = SimpleMockData.nutrientsList.aflProducts;
+                        $scope.gridData =angular.copy(SimpleMockData.nutrientsList.aflProducts);
                     });
             };
 

@@ -1,6 +1,6 @@
 <div class="container">
 
-    <form name="form" ng-if="mode=='New' || product.prodId">
+    <form name="form.adminForm" ng-if="mode=='New' || product.prodId">
         <div class="row">
             <div class="col-md-10 col-md-offset-1 col-sm-12 text-xs-center">
 
@@ -12,11 +12,11 @@
             <div class="col-md-6 col-sm-12">
 
 
-                <div class="row form-groups " ng-if="product.prodId">
-                    <div class="col-md-12">
-                        <label for="ProductId" name="ProductId">Product Id :</label>
-                        <label for="" name="ProductId" ng-bind="product.prodId"></label>
-                    </div>
+                <div class=" form-groups " ng-if="product.prodId">
+
+                    <label for="ProductId" name="ProductId">Product Id :</label>
+                    <label for="" name="ProductId" ng-bind="product.prodId"></label>
+
 
                 </div>
                 <div class="form-group">
@@ -101,23 +101,24 @@
             <div class="col-md-12 form-group">
                 <a href="">Back to previous page</a>
             </div>
-            <div class="col-md-12 ">
-                <div ng-if="isSaveAllowed" class="col-md-1 form-group">
-                    <button class="form-control col-md-12 btn btn-primary" ng-disabled="!form.$dirty" ng-click="saveProduct(product);"> Save</button>
+            <div class="col-md-12">
+                <div class="row">
+                    <div ng-if="mode!='View'" class="col-md-1 form-group">
+                        <button class="form-control btn btn-primary" ng-disabled="!form.adminForm.$dirty" ng-click="saveProduct(product);"> Save</button>
+                    </div>
+                    <div ng-if="mode=='View'" class="col-md-1 form-group">
+                        <a ui-sref="app.adminEditArticle({id:{{product.prodId}}})" class="form-control  btn btn-success"> Edit</a>
+                    </div>
+                    <div ng-if="mode!='New'" class="col-md-1 form-group">
+                        <a ui-sref="app.adminNewArticle" class="form-control  btn btn-success"> New</a>
+                    </div>
+                    <div ng-if="mode!='New'" class="col-md-1 form-group">
+                        <button class="form-control  btn btn-danger" ng-click="deleteProduct(product.prodId);"> Delete</button>
+                    </div>
+                    <div ng-if="mode!='View'" class="pull-right form-group">
+                        <button class="form-control  btn btn-default" ng-click="cancelChanges();"> Cancel</button>
+                    </div>
                 </div>
-                <div ng-if="isEditAllowed" class="col-md-1 form-group">
-                    <button class="form-control col-md-12 btn btn-success"> Edit</button>
-                </div>
-                <div ng-if="isNewAllowed" class="col-md-1 form-group">
-                    <button class="form-control col-md-12 btn btn-success"> New</button>
-                </div>
-                <div ng-if="isDeleteAllowed" class="col-md-1 form-group">
-                    <button class="form-control col-md-12 btn btn-danger"> Delete</button>
-                </div>
-                <div class="pull-right form-group">
-                    <button class="form-control col-md-12 btn btn-default" ng-click="cancelChanges();"> Cancel</button>
-                </div>
-
             </div>
         </div>
     </form>
