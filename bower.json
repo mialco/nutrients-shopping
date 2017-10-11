@@ -32,7 +32,8 @@
     "font-awesome": "fontawesome#~4.6.1",
     "ng-dialog": "~0.6.0",
     "angular-ui-grid": "^4.0.6",
-    "angular-sanitize": "~1.5.5"
+    "angular-sanitize": "~1.5.5",
+    "underscore": "^1.8.3"
   },
   "overrides": {
     "bootstrap": {

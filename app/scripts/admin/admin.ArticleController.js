@@ -8,8 +8,10 @@ angular.module('amcomanApp')
             //to store product info and reset on click of cancel
             var backedupProductObj = {};
 
+            var backedupCategories = [];
             //To resolve the form variable undefined issue. Ref : https://stackoverflow.com/questions/22436501/simple-angularjs-form-is-undefined-in-scope
             $scope.form = {};
+            $scope.selectedCategories = [];
             switch ($state.current.name) {
                 case 'app.admin.newarticle':
                     $scope.mode = 'New';
@@ -21,7 +23,7 @@ angular.module('amcomanApp')
                     $scope.mode = 'View';
                     
             }
-            
+            getCategories();
 
             if($scope.mode== "New"){
                 $scope.product = {};
@@ -38,18 +40,26 @@ angular.module('amcomanApp')
                 });
             }
 
+            function getCategories(){
+                $scope.categories = [{id:1,name:'abc'},{id:1,name:'pqr'},{id:1,name:'xyz'},{id:1,name:'def'}];
+                backedupCategories = angular.copy($scope.categories);
+            }
             $scope.saveProduct = function(product){
                 //call api to save peroduct
                 if($scope.mode=='New')
                 {
                     //call POST API
+                    //if success
+                    $scope.form.adminForm.$dirty = false;
+                    $state.go("app.admin.editarticle",{id:$scope.product.prodId});
                 }
                 else{
                     //Call PUT API
+
+                    //if success
+                    $scope.form.adminForm.$dirty = false;
+                    $state.go("app.admin.viewarticle",{id:$scope.product.prodId});
                 }
-                
-                $scope.form.adminForm.$dirty = false;
-                $state.go("app.admin.viewarticle",{id:$scope.product.prodId});
                 
             }
 
@@ -68,7 +78,29 @@ angular.module('amcomanApp')
                     $scope.form.adminForm.$dirty = false;
                     $state.go("app.admin.newarticle");
                 }
+            }
 
+            $scope.selectCategory = function(selectedCategory){
+                if(selectedCategory){
+                    $scope.selectedCategories.push(selectedCategory);
+                    $scope.categories.splice($scope.categories.indexOf(selectedCategory),1);
+                }
+                
+            }
+
+            $scope.removeSelectedCategory= function(index){
+                $scope.selectedCategories.splice(index,1);
+
+                //restore categories and remove alread exist
+                $scope.categories = angular.copy(backedupCategories);
+
+                $scope.categories = _.reject($scope.categories, function(cat){
+                    var res =  _.findIndex($scope.selectedCategories,cat);
+                    return res!=-1;// should not exist
+                });
+                
+                    
+                
             }
             //To ask confirmation is user sure to leave the page
             $scope.$on('$stateChangeStart', function (event) {

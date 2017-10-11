@@ -97,6 +97,23 @@
 
                     </div>
                 </div>
+                <div>
+                    <span class="tag label label-info" ng-if="selectedCategories.length>0" ng-repeat="category in selectedCategories track by $index">
+                        <span ng-bind="category.name"></span>
+                        <a ng-click="removeSelectedCategory($index)">
+                            <i class="remove glyphicon glyphicon-remove-sign glyphicon-white"></i>
+                        </a>
+                    </span>
+                    <span ng-if="selectedCategories.length==0">No category selected</span>
+                </div>
+                <div class="form-group">
+                    <label for="categories"> Select category(ies)</label>
+                    <select name="categories" id="" class="form-control" ng-model="selectedCategory" ng-options="category as category.name for category in categories"
+                        ng-change="selectCategory(selectedCategory)">
+                        <option value="">-- Select --</option>
+
+                    </select>
+                </div>
             </div>
             <div class="col-md-12 form-group">
                 <a href="">Back to previous page</a>
