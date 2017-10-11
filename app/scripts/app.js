@@ -133,9 +133,11 @@ angular.module('amcomanApp', ['ui.router', 'ui.grid', 'ngResource', 'ngDialog', 
             //     }
 
             // })
-            .state('app.adminNewArticle', {
-                name: 'adminNewArticle',
-                //parent: 'admin',
+            .state("app.admin",{
+                name : "admin",
+                abstract : true
+            })
+            .state('app.admin.newarticle', {
                 url: 'admin/product/new',
                 views: {
                     'header@': {
@@ -148,7 +150,7 @@ angular.module('amcomanApp', ['ui.router', 'ui.grid', 'ngResource', 'ngDialog', 
                     }
                 }
             })
-            .state('app.adminEditArticle', {
+            .state('app.admin.editarticle', {
                 url: 'admin/product/edit/:id',
                 views: {
                     'header@': {
@@ -161,7 +163,7 @@ angular.module('amcomanApp', ['ui.router', 'ui.grid', 'ngResource', 'ngDialog', 
                     }
                 }
             })
-            .state('app.adminViewArticle', {
+            .state('app.admin.viewarticle', {
                 url: 'admin/product/view/:id',
                 views: {
                     'header@': {

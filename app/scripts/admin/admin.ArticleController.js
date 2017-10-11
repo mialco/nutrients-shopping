@@ -11,10 +11,10 @@ angular.module('amcomanApp')
             //To resolve the form variable undefined issue. Ref : https://stackoverflow.com/questions/22436501/simple-angularjs-form-is-undefined-in-scope
             $scope.form = {};
             switch ($state.current.name) {
-                case 'app.adminNewArticle':
+                case 'app.admin.newarticle':
                     $scope.mode = 'New';
                     break;
-                case 'app.adminEditArticle':
+                case 'app.admin.editarticle':
                     $scope.mode = 'Edit';
                     break;
                 default:
@@ -49,7 +49,7 @@ angular.module('amcomanApp')
                 }
                 
                 $scope.form.adminForm.$dirty = false;
-                $state.go("app.adminViewArticle",{id:$scope.product.prodId});
+                $state.go("app.admin.viewarticle",{id:$scope.product.prodId});
                 
             }
 
@@ -66,7 +66,7 @@ angular.module('amcomanApp')
 
 
                     $scope.form.adminForm.$dirty = false;
-                    $state.go("app.adminNewArticle");
+                    $state.go("app.admin.newarticle");
                 }
 
             }

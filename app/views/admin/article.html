@@ -107,10 +107,10 @@
                         <button class="form-control btn btn-primary" ng-disabled="!form.adminForm.$dirty" ng-click="saveProduct(product);"> Save</button>
                     </div>
                     <div ng-if="mode=='View'" class="col-md-1 form-group">
-                        <a ui-sref="app.adminEditArticle({id:{{product.prodId}}})" class="form-control  btn btn-success"> Edit</a>
+                        <a ui-sref="app.admin.editarticle({id:{{product.prodId}}})" class="form-control  btn btn-success"> Edit</a>
                     </div>
                     <div ng-if="mode!='New'" class="col-md-1 form-group">
-                        <a ui-sref="app.adminNewArticle" class="form-control  btn btn-success"> New</a>
+                        <a ui-sref="app.admin.newarticle" class="form-control  btn btn-success"> New</a>
                     </div>
                     <div ng-if="mode!='New'" class="col-md-1 form-group">
                         <button class="form-control  btn btn-danger" ng-click="deleteProduct(product.prodId);"> Delete</button>
