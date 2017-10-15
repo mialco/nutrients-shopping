@@ -4,7 +4,7 @@ angular.module('amcomanApp')
     //.constant("baseURL", "http://localhost:49970/api")
     .constant("baseURL", "http://nutrientsshoppingapi.azurewebsites.net/api")
     .constant('identityURL', "http://nutrientsshoppingapi.azurewebsites.net/api")
-    .constant('AppHeaderData', {title :"Nutrients Shopping", metaKeywords : "Keyword 1,keyword 2",metaDescription: "sample meta description"})
+    .constant('AppHeaderData', { title: "Nutrients Shopping", metaKeywords: "Keyword 1,keyword 2", metaDescription: "sample meta description" })
     //.constant("baseURL", "https://amcoman.mybluemix.net/")
     .factory('menuFactory', ['$resource', 'baseURL', function ($resource, baseURL) {
 
@@ -241,18 +241,35 @@ angular.module('amcomanApp')
             pageFac.metaDescription = headerInfo.metaDescription;
         }
         pageFac.getPageHeaderData = function () {
-            
-            return  { title :pageFac.title?pageFac.title +' | ' +AppHeaderData.title : AppHeaderData.title,
-            metaKeywords : pageFac.metaKeywords || '',
-            metaDescription : pageFac.metaDescription || ''}; 
+
+            return {
+                title: pageFac.title ? pageFac.title + ' | ' + AppHeaderData.title : AppHeaderData.title,
+                metaKeywords: pageFac.metaKeywords || '',
+                metaDescription: pageFac.metaDescription || ''
+            };
 
         }
         pageFac.getDefaultPageHeaderData = function () {
             return AppHeaderData;
         }
-        
+
         return pageFac;
 
     }])
-
-    ;
+    .factory('spinnerService', function () {
+        var spinnerFactory = {};
+        spinnerFactory.spinnerCount = 0;
+        spinnerFactory.increment = function () {
+            angular.element("#loader-div").show();
+            spinnerFactory.spinnerCount++;
+        }
+        spinnerFactory.decrement = function () {
+            spinnerFactory.spinnerCount--;
+            if(spinnerFactory.spinnerCount<=0){
+                spinnerFactory.spinnerCount = 0;
+                angular.element("#loader-div").hide();
+            }
+            return spinnerFactory.spinnerCount;
+        }
+        return spinnerFactory;
+    });
