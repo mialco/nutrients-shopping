@@ -3,7 +3,6 @@ angular.module('amcomanApp')
         var identityFac = {};
         var urlString = baseUrl;
         var urlIdentity = identityURL;
-        identityFac.enableAuthenticationCheck = false;
         console.log('nutrients Identity Service says that baseUrl = ' + baseUrl);
         console.log('nutrients Identity Service says that identityUrl = ' + urlIdentity);
 
