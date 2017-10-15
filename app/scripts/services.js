@@ -1,8 +1,9 @@
 //'use strict';
 angular.module('amcomanApp')
+    .constant("AppId", "nutrientsClient")
     //.constant("baseURL", "http://localhost:49970/api")
-    .constant("baseURL", "http://localhost:3001/api")
-    .constant('identityURL', "http://localhost:5001")
+    .constant("baseURL", "http://nutrientsshoppingapi.azurewebsites.net/api")
+    .constant('identityURL', "http://nutrientsshoppingapi.azurewebsites.net/api")
     .constant('AppHeaderData', {title :"Nutrients Shopping", metaKeywords : "Keyword 1,keyword 2",metaDescription: "sample meta description"})
     //.constant("baseURL", "https://amcoman.mybluemix.net/")
     .factory('menuFactory', ['$resource', 'baseURL', function ($resource, baseURL) {

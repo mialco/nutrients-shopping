@@ -28,99 +28,97 @@ angular.module('amcomanApp')
             //Returns web form data which structure is based on the storedToken
             // If username and password are not empty we return the web form for client credentials
             // else we return web form  data for user authentication
-            var authWebFormData = function (storedToken) {
-                var wfd = {};
-                if (storedToken) {
-                    if (storedToken.username && storedToken.password) {
-                        wfd = $.param(
-                            {
-                                'client_secret': 'mybestkeptnutrientsshoppingsecret',
-                                'client_id': 'nutrientsClient',
-                                'grant_type': 'client_credentials'
-                            });
-                    } else {
-                        wfd = $.param(
-                            {
-                                'client_id': encodeURIComponent('ro.client'),
-                                'client_secret': 'mybestkeptnutrientsshoppingsecret',
-                                'username': 'mikeo2',
-                                'password': 'mikeo2',
-                                'grant_type': 'password'
-                            });
-                    }
-                }
-                return wfd;
-            };
+            // var authWebFormData = function (storedToken) {
+            //     var wfd = {};
+            //     if (storedToken) {
+            //         if (storedToken.username && storedToken.password) {
+            //             wfd = $.param(
+            //                 {
+            //                     'client_secret': 'mybestkeptnutrientsshoppingsecret',
+            //                     'client_id': 'nutrientsClient',
+            //                     'grant_type': 'client_credentials'
+            //                 });
+            //         } else {
+            //             wfd = $.param(
+            //                 {
+            //                     'client_id': encodeURIComponent('ro.client'),
+            //                     'client_secret': 'mybestkeptnutrientsshoppingsecret',
+            //                     'username': 'mikeo2',
+            //                     'password': 'mikeo2',
+            //                     'grant_type': 'password'
+            //                 });
+            //         }
+            //     }
+            //     return wfd;
+            // };
 
 
-            //StoredToken object definition
-            /*
-            var StoredToken = function () {
-                this.tokenObject = {};
-                this.userName = '';
-                this.password = '';
-                this.updated = Date.now;
-            };
-            */
+            // //StoredToken object definition
+            // /*
+            // var StoredToken = function () {
+            //     this.tokenObject = {};
+            //     this.userName = '';
+            //     this.password = '';
+            //     this.updated = Date.now;
+            // };
+            // */
 
 
-            // Function will obtain a new identity bearer token from the identity Server
-            // If the token does not exist or if it is expired
-            var bearerToken = '';
-            var ensureToken = function (username, password) {
+            // // Function will obtain a new identity bearer token from the identity Server
+            // // If the token does not exist or if it is expired
+            // var bearerToken = '';
+            // var ensureToken = function (username, password) {
 
-                var storedToken = TokenStorage.getTokenObject();
-                //var storedToken = window.localStorage.getItem('storedToken');
-                if (!storedToken) {
-                    //storedToken = new   StoredToken();
-                    storedToken = CommonData.storedToken;
-                    storedToken.userName = username;
-                    storedToken.password = password;
-                }
-                var timenow = new Date();
-                var lastUpdated = new Date(storedToken.lastUpdated);
-                if (IdentityService.enableAuthenticationCheck && timenow - lastUpdated > ((storedToken.tokenObject.expires_in) - 10) * 1000) {
-                    storedToken.updated = new Date();
-                    storedToken.tokenObject = CommonData.tokenObject;
-                    //This is the data  that we post to the server in a webform data format
-                    // in order to get theauthentication token
-                    var authorizationFromData = authWebFormData(storedToken);
-                    IdentityService.bearerToken.gettoken(
-                        [],
-                        authorizationFromData,
-                        function (tokenData) {
-                            //IdentityService.bearerToken.save (function(data){
-                            console.log('Function responded with the token for Identity Service after token expiration');
-                            console.log('Storing the token in teh local storage');
-                            var appIdentity = CommonData.applicationIdentity;
-                            TokenStorage.storeToken(tokenData, username, password, appIdentity.client_id, appIdentity.client_secret, new Date(), true);
-                            console.log(tokenData);
-                            bearerToken = tokenData.access_token;
-                            getDataFromApi(bearerToken);
-                        },
-                        function () {
-                            console.log('Error getting the token after token expiration');
-                        }
-                    );
+            //     var storedToken = TokenStorage.getTokenObject();
+            //     //var storedToken = window.localStorage.getItem('storedToken');
+            //     if (!storedToken) {
+            //         //storedToken = new   StoredToken();
+            //         storedToken = CommonData.storedToken;
+            //         storedToken.userName = username;
+            //         storedToken.password = password;
+            //     }
+            //     var timenow = new Date();
+            //     var lastUpdated = new Date(storedToken.lastUpdated);
+            //     if (IdentityService.enableAuthenticationCheck && timenow - lastUpdated > ((storedToken.tokenObject.expires_in) - 10) * 1000) {
+            //         storedToken.updated = new Date();
+            //         storedToken.tokenObject = CommonData.tokenObject;
+            //         //This is the data  that we post to the server in a webform data format
+            //         // in order to get theauthentication token
+            //         var authorizationFromData = authWebFormData(storedToken);
+            //         IdentityService.bearerToken.gettoken(
+            //             [],
+            //             authorizationFromData,
+            //             function (tokenData) {
+            //                 //IdentityService.bearerToken.save (function(data){
+            //                 console.log('Function responded with the token for Identity Service after token expiration');
+            //                 console.log('Storing the token in teh local storage');
+            //                 var appIdentity = CommonData.applicationIdentity;
+            //                 TokenStorage.storeToken(tokenData, username, password, appIdentity.client_id, appIdentity.client_secret, new Date(), true);
+            //                 console.log(tokenData);
+            //                 bearerToken = tokenData.access_token;
+            //                 getDataFromApi(bearerToken);
+            //             },
+            //             function () {
+            //                 console.log('Error getting the token after token expiration');
+            //             }
+            //         );
 
-                } else {  // No need to get token from the server and using the one from storage
-                    bearerToken = storedToken.tokenObject.access_token;
-                    getDataFromApi(bearerToken);
-                }
+            //     } else {  // No need to get token from the server and using the one from storage
+            //         bearerToken = storedToken.tokenObject.access_token;
+            //         getDataFromApi(bearerToken);
+            //     }
 
-            };
+            // };
 
 
-            var getDataFromApi = function (bearerToken) {
-                NutrientsService.nutrients(bearerToken).query({
+            var getDataFromApi = function () {
+                NutrientsService.nutrients().query({
                     categoryName: categoryName,
                     page: page,
                     pageSize: pageSize
                 },
                     function (data) {
-                        //Data received here from resource
-                        NutrientsService.setBearerToken(bearerToken);
-                        // We set the pager information:
+                      
                         $scope.pagerData.pageSize = data.pageSize;
                         $scope.pagerData.currentPage = data.page;
                         $scope.pagerData.totalPages = data.pages;
@@ -131,14 +129,16 @@ angular.module('amcomanApp')
                         //$scope.gridOptions.data = data.aflProducts;
                     }, function (error) {
                         console.log('From within the controller we received data ERROR from the service');
-                        $scope.gridData =angular.copy(SimpleMockData.nutrientsList.aflProducts);
+                        // $scope.gridData =angular.copy(SimpleMockData.nutrientsList.aflProducts);
                     });
             };
 
             
 
 
-            $scope.data = ensureToken();
+            // $scope.data = ensureToken();
+
+            getDataFromApi();
 
 
 

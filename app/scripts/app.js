@@ -133,9 +133,9 @@ angular.module('amcomanApp', ['ui.router', 'ui.grid', 'ngResource', 'ngDialog', 
             //     }
 
             // })
-            .state("app.admin",{
-                name : "admin",
-                abstract : true
+            .state("app.admin", {
+                name: "admin",
+                abstract: true
             })
             .state('app.admin.newarticle', {
                 url: 'admin/product/new',
@@ -188,4 +188,11 @@ angular.module('amcomanApp', ['ui.router', 'ui.grid', 'ngResource', 'ngDialog', 
             });
 
         $urlRouterProvider.otherwise('/');
-    });
+    })
+    // .run(['IdentityService', function (IdentityService) {
+    //     //to get the token onLoad of page itself
+    //     IdentityService.getToken();
+    // }]);
+    .config(['$httpProvider', function($httpProvider) {  
+        $httpProvider.interceptors.push('AuthInterceptorService');
+    }]);
