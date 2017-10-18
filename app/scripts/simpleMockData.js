@@ -418,6 +418,12 @@ angular.module('amcomanApp')
             "categoryName": null,
             "detailIsActive": true
         };
-
+        smdfac.loginResponse = {
+            access_token : "dummy token",
+            expires_in : 3600,
+            token_type : "bearer",
+            username : "Dummy admin name",
+            user_role: 'admin'
+        }
         return smdfac;
         });

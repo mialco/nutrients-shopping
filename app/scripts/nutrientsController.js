@@ -69,7 +69,7 @@ angular.module('amcomanApp')
             // var bearerToken = '';
             // var ensureToken = function (username, password) {
 
-            //     var storedToken = TokenStorage.getTokenObject();
+            //     var storedToken = TokenStorage.getAuthObject();
             //     //var storedToken = window.localStorage.getItem('storedToken');
             //     if (!storedToken) {
             //         //storedToken = new   StoredToken();

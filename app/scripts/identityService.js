@@ -1,5 +1,5 @@
 angular.module('amcomanApp')
-    .factory('IdentityService', ['baseURL', 'identityURL', 'TokenStorage','$resource','$q', function (baseUrl, identityURL, TokenStorage,$resource,$q) {
+    .factory('IdentityService', ['baseURL', 'identityURL', 'TokenStorage', '$resource', '$q', 'SimpleMockData', function (baseUrl, identityURL, TokenStorage, $resource, $q, SimpleMockData) {
         var identityFac = {};
         var urlString = baseUrl;
         var urlIdentity = identityURL;
@@ -19,24 +19,24 @@ angular.module('amcomanApp')
         // },undefined,true);
 
         // identityFac.getToken = function(){
-        //     var existingToken = TokenStorage.getTokenObject();
+        //     var existingToken = TokenStorage.getAuthObject();
         //     if(existingToken && (existingToken.validUntill > new Date().getTime())){
-            
+
         //         return existingToken;
         //     }else{
         //         identityFac.bearerToken.gettoken({appId : 'nutrientsClient'},function(token){
         //             TokenStorage.storeToken(token);
-        //             return TokenStorage.getTokenObject();
+        //             return TokenStorage.getAuthObject();
         //         })
         //     }
 
         // }
 
-        identityFac.loginResource =  function(clientId,userName,password){
+        identityFac.loginResource = function (clientId, userName, password) {
             return $resource(baseUrl + '/Account/Login',
-            undefined, 
-            {
-                'abc':{method:'POST',params : { clientId : clientId, userName : userName, password:password}}
+                undefined,
+                {
+                    'post': { method: 'POST', params: { clientId: clientId, userName: userName, password: password } }
                 }
             )
         };
@@ -44,21 +44,34 @@ angular.module('amcomanApp')
             TokenStorage.clearToken();
         }
 
-        identityFac.login = function (clientId,userName,password) {
+        identityFac.login = function (clientId, userName, password) {
             var deferred = $q.defer();
-            identityFac.loginResource(clientId,userName,password).abc({},function(data){
+            identityFac.loginResource(clientId, userName, password).post({}, function (data) {
                 //TokenStorage.
+                data = SimpleMockData.loginResponse;
                 console.log(data);
+
+                TokenStorage.storeToken(data);
                 deferred.resolve(data);
-            },function(error){
+            }, function (error) {
                 deferred.reject(error);
             });
             return deferred.promise;
         }
 
-        identityFac.getUsername = function(){
-
+        identityFac.getUsername = function () {
+            return TokenStorage.getAuthObject() ? TokenStorage.getAuthObject().username : undefined;
         }
+
+        identityFac.isAdminUserLoggedIn = function () {
+            return TokenStorage.getAuthObject() &&  TokenStorage.getAuthObject().user_role == 'admin';
+        }
+
+        identityFac.isLoggedIn = function () {
+            return TokenStorage.getAuthObject() && TokenStorage.getAuthObject().access_token;
+        }
+
+        
 
         // nutrientsFac.nutrients = $resource(baseUrl + '/aflproducts/:categoryName/:page/:pageSize',{categoryName:'@categoryName',page:'@page',pageSize: '@pageSize'}, {
         //     query:{method: 'GET', 

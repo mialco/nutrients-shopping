@@ -10,7 +10,7 @@ angular.module('amcomanApp')
             config.headers = config.headers || {};
             var tokenObj = {};
 
-            tokenObj = TokenStorage.getTokenObject();
+            tokenObj = TokenStorage.getAuthObject();
 
             if (tokenObj) {
                 config.headers.Authorization = 'Bearer ' + tokenObj.access_token;
@@ -26,7 +26,7 @@ angular.module('amcomanApp')
                 deferred = $q.defer();
                 $injector.get("$http").get(identityURL + '/identity/token/'+AppId).then(function (token) {
                     TokenStorage.storeToken(token);
-                    if(TokenStorage.getTokenObject() && TokenStorage.getTokenObject().access_token){
+                    if(TokenStorage.getAuthObject() && TokenStorage.getAuthObject().access_token){
                         $injector.get("$http")(response.config).then(function (resp) {
                             deferred.resolve(resp);
                         }, function (resp) {

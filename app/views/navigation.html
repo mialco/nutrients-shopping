@@ -61,7 +61,7 @@
                 </li>
 
 
- 					<li class="dropdown">
+ 					<li class="dropdown" ng-if="isAdmin">
 					  <a  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin <span class="caret"></span></a>
                                     <ul class="dropdown-menu">
                                         <li ng-class="{active: stateis('app.orgs_zzzz')}">
@@ -98,14 +98,14 @@
                             </ul>
                             
                 <ul class="nav navbar-nav navbar-right">
-                    <li ng-if="!loggedIn"><a ng-click="openLogin()">
+                    <li ng-if="!loggedIn"><a  href="" ng-click="openLogin()">
                     <span class="glyphicon glyphicon-log-in"></span> Login</a>
                     </li>
                     <li ng-if="loggedIn">
-                    <a>{{username}}</a>
+                    <a href="">{{username}}</a>
                     </li>
                     <li ng-if="loggedIn">
-                    <a ng-click="logOut()">
+                    <a href="" ng-click="logout()">
                     <span class="glyphicon glyphicon-log-in"></span> Logout</a>
                     </li>
                 </ul>
