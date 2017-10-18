@@ -46,7 +46,7 @@ angular.module('amcomanApp')
         var isAdmin = false;
         var authToken;
 
-
+        
         function loadUserCredentials() {
             var credentials = $localStorage.getObject(TOKEN_KEY, '{}');
             if (credentials.username !== undefined) {
@@ -79,31 +79,31 @@ angular.module('amcomanApp')
         }
 
         authFac.login = function (loginData) {
+            authFac.test = "xyz";
+            // $resource(baseURL + "users/login")
+            //     .save(loginData,
+            //     function (response) {
+            //         storeUserCredentials({
+            //             username: loginData.username,
+            //             token: response.token,
+            //             admin: response.admin
+            //         });
+            //         $rootScope.$broadcast('login:Successful');
+            //     },
+            //     function (response) {
+            //         isAuthenticated = false;
 
-            $resource(baseURL + "users/login")
-                .save(loginData,
-                function (response) {
-                    storeUserCredentials({
-                        username: loginData.username,
-                        token: response.token,
-                        admin: response.admin
-                    });
-                    $rootScope.$broadcast('login:Successful');
-                },
-                function (response) {
-                    isAuthenticated = false;
+            //         var message = '<div class="ngdialog-message">' +
+            //             '<div><h3>Login Unsuccessful</h3></div>' +
+            //             '<div><p>' + response.data.err.message + '</p><p>' +
+            //             response.data.err.name + '</p></div>' +
+            //             '<div class="ngdialog-buttons">' +
+            //             '<button type="button" class="ngdialog-button ngdialog-button-primary" ng-click=confirm("OK")>OK</button>' +
+            //             '</div>';
 
-                    var message = '<div class="ngdialog-message">' +
-                        '<div><h3>Login Unsuccessful</h3></div>' +
-                        '<div><p>' + response.data.err.message + '</p><p>' +
-                        response.data.err.name + '</p></div>' +
-                        '<div class="ngdialog-buttons">' +
-                        '<button type="button" class="ngdialog-button ngdialog-button-primary" ng-click=confirm("OK")>OK</button>' +
-                        '</div>';
-
-                    ngDialog.openConfirm({ template: message, plain: 'true' });
-                }
-                );
+            //         ngDialog.openConfirm({ template: message, plain: 'true' });
+            //     }
+            //     );
 
         };
 

@@ -7,11 +7,11 @@
             <form ng-submit="doLogin()">
                 <div class="form-group">
                     <label class="sr-only" for="username">Username</label>
-                    <input type="text" class="form-control input-sm" id="username" placeholder="Username" ng-model="loginData.username">
+                    <input type="text" class="form-control input-sm" id="username" placeholder="Username" ng-model="loginData.username" ng-bind="loginData.username='mikeo1'">
                 </div>
                 <div class="form-group">
                     <label class="sr-only" for="password">Password</label>
-                    <input type="password" class="form-control input-sm" id="password" placeholder="Password" ng-model="loginData.password">
+                    <input type="password" class="form-control input-sm" id="password" placeholder="Password" ng-model="loginData.password" ng-bind="loginData.password = 'mikeo1'">
                 </div>
                 <div class="checkbox">
                     <label>
@@ -19,10 +19,10 @@
                     </label>
                 </div>
                 <!-- <button type="submit" class="btn btn-info btn-sm">Sign in</button> -->
-                <button type="button" class="btn btn-info btn-sm" onClick="login()">Sign in</button>
+                <button type="button" class="btn btn-info btn-sm" ng-click="doLogin()">Sign in</button>
                 <button type="button" class="btn btn-default btn-sm" ng-click=closeThisDialog("Cancel")>Cancel</button> &nbsp; &nbsp;
-                <button type="button" class="btn btn-default btn-sm" onClick="api()">Call API</button>
-                <a ng-click=openRegister()>Click here to register</a>
+                <!-- <button type="button" class="btn btn-default btn-sm" onClick="api()">Call API</button> -->
+                <!-- <a ng-click=openRegister()>Click here to register</a> -->
             </form>
         </div>
         <div>

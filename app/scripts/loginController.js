@@ -1,20 +1,15 @@
 angular.module('amcomanApp')
-.controller('LoginController', ['$scope', 'ngDialog', '$localStorage', 'AuthFactory', function ($scope, ngDialog, $localStorage, AuthFactory) {
-
-    $scope.loginData = $localStorage.getObject('userinfo', '{}');
+.controller('LoginController', ['$scope', 'ngDialog', 'IdentityService','AppId', function ($scope, ngDialog, IdentityService,AppId) {
 
     $scope.doLogin = function () {
-        if ($scope.rememberMe)
-            $localStorage.storeObject('userinfo', $scope.loginData);
-
-        AuthFactory.login($scope.loginData);
-
-        ngDialog.close();
+        
+        IdentityService.login(AppId,$scope.loginData.username,$scope.loginData.password).then(function(data){
+            console.log(data);
+        },function(error){
+            console.log(error);
+        });
 
     };
-
-    $scope.openRegister = function () {
-        ngDialog.open({ template: 'views/register.html', scope: $scope, className: 'ngdialog-theme-default', controller: "RegisterController" });
-    };
+    
 
 }])

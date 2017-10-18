@@ -1,8 +1,9 @@
 angular.module('amcomanApp')
     .factory('TokenStorage', ['CommonData', function ( CommonData) {
         var ts = {};
-        var storageKey = 'bearerToken';
+        var storageKey = 'authData';
         var storedToken  ={};
+        var authData = {};
         ts.getTokenObject = function () {
 
             //Previous coding
@@ -14,12 +15,17 @@ angular.module('amcomanApp')
             // storedToken = JSON.parse(tokenString);
             // }
             // return storedToken;
-
-            return JSON.parse(window.localStorage.getItem(storageKey));
+            return JSON.parse(window.localStorage.getItem(storageKey)) ? JSON.parse(window.localStorage.getItem(storageKey)).tokenObject : undefined;
+            
         };
+
+        ts.getUsername = function(){
+            return JSON.parse(window.localStorage.getItem(storageKey)) ? JSON.parse(window.localStorage.getItem(storageKey)).username : undefined;
+        }
 
 
         ts.storeToken = function (tokenObject) {
+            authData.tokenObject = tokenObject;
             //Previous coding
             // var storedToken = CommonData.storedToken;
             // storedToken.tokenObject = tokenObject;
@@ -30,8 +36,8 @@ angular.module('amcomanApp')
             // storedToken.lastUpdated = lastUpdated;
             // storedToken.isValid = isValid;
 
-            tokenObject.validUntill = new Date().getTime() + (tokenObject.expires_in-10)*1000;
-            window.localStorage.setItem(storageKey, JSON.stringify(tokenObject));
+            authData.tokenObject.validUntill = new Date().getTime() + (tokenObject.expires_in-10)*1000;
+            window.localStorage.setItem(storageKey, JSON.stringify(authData));
         };
 
         ts.clearToken = function (){

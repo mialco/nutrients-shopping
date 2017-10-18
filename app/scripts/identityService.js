@@ -1,5 +1,5 @@
 angular.module('amcomanApp')
-    .factory('IdentityService', ['baseURL', 'identityURL', 'TokenStorage', function (baseUrl, identityURL, TokenStorage) {
+    .factory('IdentityService', ['baseURL', 'identityURL', 'TokenStorage','$resource','$q', function (baseUrl, identityURL, TokenStorage,$resource,$q) {
         var identityFac = {};
         var urlString = baseUrl;
         var urlIdentity = identityURL;
@@ -31,11 +31,32 @@ angular.module('amcomanApp')
         //     }
 
         // }
+
+        identityFac.loginResource =  function(clientId,userName,password){
+            return $resource(baseUrl + '/Account/Login',
+            undefined, 
+            {
+                'abc':{method:'POST',params : { clientId : clientId, userName : userName, password:password}}
+                }
+            )
+        };
         identityFac.logout = function () {
             TokenStorage.clearToken();
         }
 
-        identityFac.login = function () {
+        identityFac.login = function (clientId,userName,password) {
+            var deferred = $q.defer();
+            identityFac.loginResource(clientId,userName,password).abc({},function(data){
+                //TokenStorage.
+                console.log(data);
+                deferred.resolve(data);
+            },function(error){
+                deferred.reject(error);
+            });
+            return deferred.promise;
+        }
+
+        identityFac.getUsername = function(){
 
         }
 

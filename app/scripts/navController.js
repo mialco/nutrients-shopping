@@ -1,14 +1,17 @@
 angular.module("amcomanApp")
-    .controller('NavController',['$scope', '$state', '$rootScope', 'ngDialog', 'AuthFactory', function ($scope, $state, $rootScope, ngDialog, AuthFactory) {
+    .controller('NavController', ['$scope', '$state', '$rootScope', 'ngDialog', 'AuthFactory', function ($scope, $state, $rootScope, ngDialog, AuthFactory) {
 
         $scope.loggedIn = false;
         $scope.username = '';
         $scope.isAdmin = false;
 
-        if (AuthFactory.isAuthenticated()) {
-            $scope.loggedIn = true;
-            $scope.username = AuthFactory.getUsername();
-            $scope.isAdmin = AuthFactory.isAdmin();
+
+        function getAuthData() {
+            if (AuthFactory.isAuthenticated()) {
+                $scope.loggedIn = true;
+                $scope.username = AuthFactory.getUsername();
+                $scope.isAdmin = AuthFactory.isAdmin();
+            }
         }
 
         $scope.openLogin = function () {
