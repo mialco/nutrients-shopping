@@ -33,10 +33,11 @@ angular.module('amcomanApp')
                 var id = $stateParams.id;
                 AdminArticleService.product.get({ id: id }, function (data) {
                     console.log(JSON.stringify(data));
+                    $scope.product = angular.copy(data);
+                    backedupProductObj = angular.copy($scope.product);
                 }, function (error) {
                     console.log(JSON.stringify(error));
-                    $scope.product = angular.copy(SimpleMockData.nutrientItem);
-                    backedupProductObj = angular.copy($scope.product);
+                    
                 });
             }
 

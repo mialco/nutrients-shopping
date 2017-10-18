@@ -16,7 +16,7 @@
 
                 <div class="row" ng-if="productDetails.desc2">
                     <div class="col-md-12">
-                        <h5 ng-bind="productDetails.desc2">
+                        <h5 ng-bind-html ="productDetails.desc2">
                         </h5>
                     </div>
                 </div>
@@ -28,7 +28,7 @@
                 </div>
                 <div class="row" ng-if="productDetails.description">
                     <div class="col-md-12">
-                        <span ng-bind="productDetails.description"></span>
+                        <span ng-bind-html="productDetails.description"></span>
                     </div>
                 </div>
 
