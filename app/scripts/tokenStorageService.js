@@ -17,13 +17,10 @@ angular.module('amcomanApp')
 
         ts.storeToken = function (tokenObject) {
             authData.access_token = tokenObject.access_token;
-            authData.expires_in = tokenObject.expires_in;
+            authData.valid_till = tokenObject.valid_till;
             authData.token_type = tokenObject.token_type;
             authData.username = tokenObject.username;
-            authData.user_role = tokenObject.user_role;
-            
-            //we should not need this
-            //authData.token_valid_untill = new Date().getTime() + (authData.expires_in-10)*1000;
+            authData.isAdmin = tokenObject.isAdmin;
             
             window.localStorage.setItem(storageKey, JSON.stringify(authData));
         };

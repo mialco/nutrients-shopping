@@ -1,6 +1,6 @@
 //'use strict';
 angular.module('amcomanApp')
-    .constant("AppId", "nutrientsClient")
+    .constant("AppId", "roclient")
     //.constant("baseURL", "http://localhost:49970/api")
     .constant("baseURL", "http://nutrientsshoppingapi.azurewebsites.net/api")
     .constant('identityURL', "http://nutrientsshoppingapi.azurewebsites.net/api")
