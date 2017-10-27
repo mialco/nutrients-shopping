@@ -24,7 +24,7 @@ angular.module('amcomanApp')
                 isArray: false
             }
             }
-        )
+        );
     };
     return nutrientsFac;
 }]);

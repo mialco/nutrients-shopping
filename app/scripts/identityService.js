@@ -38,11 +38,11 @@ angular.module('amcomanApp')
                 {
                     'post': { method: 'POST', params: { clientId: clientId, userName: userName, password: password } }
                 }
-            )
+            );
         };
         identityFac.logout = function () {
             TokenStorage.clearToken();
-        }
+        };
 
         identityFac.login = function (clientId, userName, password) {
             var deferred = $q.defer();
@@ -57,19 +57,19 @@ angular.module('amcomanApp')
                 deferred.reject(error);
             });
             return deferred.promise;
-        }
+        };
 
         identityFac.getUsername = function () {
             return TokenStorage.getAuthObject() ? TokenStorage.getAuthObject().username : undefined;
-        }
+        };
 
         identityFac.isAdminUserLoggedIn = function () {
             return TokenStorage.getAuthObject() &&  TokenStorage.getAuthObject().user_role == 'admin';
-        }
+        };
 
         identityFac.isLoggedIn = function () {
             return TokenStorage.getAuthObject() && TokenStorage.getAuthObject().access_token;
-        }
+        };
 
         
 

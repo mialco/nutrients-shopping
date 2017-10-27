@@ -60,18 +60,17 @@ angular.module('amcomanApp')
                     //if success
                     $scope.form.adminForm.$dirty = false;
                     $state.go("app.admin.viewarticle",{id:$scope.product.prodId});
-                }
-                
-            }
+                }                
+            };
 
             $scope.cancelChanges = function(){
                 $scope.product = angular.copy(backedupProductObj);
                 $scope.form.adminForm.$dirty = false;
-            }
+            };
 
             $scope.deleteProduct = function(id){
                 
-                var answer = confirm("Are you sure?")
+                var answer = confirm("Are you sure?");
                 if(answer){
                     //call  api to delete the product
 
@@ -79,7 +78,7 @@ angular.module('amcomanApp')
                     $scope.form.adminForm.$dirty = false;
                     $state.go("app.admin.newarticle");
                 }
-            }
+            };
 
             $scope.selectCategory = function(selectedCategory){
                 if(selectedCategory){
@@ -87,7 +86,7 @@ angular.module('amcomanApp')
                     $scope.categories.splice($scope.categories.indexOf(selectedCategory),1);
                 }
                 
-            }
+            };
 
             $scope.removeSelectedCategory= function(index){
                 $scope.selectedCategories.splice(index,1);
@@ -102,11 +101,11 @@ angular.module('amcomanApp')
                 
                     
                 
-            }
+            };
             //To ask confirmation is user sure to leave the page
             $scope.$on('$stateChangeStart', function (event) {
                 if ($scope.form.adminForm.$dirty) {
-                    var answer = confirm("You may have pending changes, are you sure you want to leave this page?")
+                    var answer = confirm("You may have pending changes, are you sure you want to leave this page?");
                     if (!answer) {
                         event.preventDefault();
                     }

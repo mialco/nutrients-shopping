@@ -10,11 +10,8 @@ angular.module('amcomanApp')
                     //The controller respective to the state should set custom header data if want
                     return PageService.getPageHeaderData();
                 } else {
-                    
+
                     return PageService.getDefaultPageHeaderData();
                 }
-
-            }
-
-
+            };
         }]);

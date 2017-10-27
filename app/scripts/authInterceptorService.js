@@ -1,5 +1,6 @@
 angular.module('amcomanApp')
     .factory('AuthInterceptorService', ['$injector','TokenStorage','identityURL','AppId','spinnerService', function ($injector,TokenStorage,identityURL,AppId,spinnerService) {
+
         var authInterceptorFactory = {};
 
 
@@ -17,10 +18,10 @@ angular.module('amcomanApp')
             }
 
             return config;
-        }
+        };
 
         var _responseError = function (response) {
-            var deferred = undefined;
+            var deferred ;
             if (response.status === 401) {
 
                 deferred = $q.defer();
@@ -49,13 +50,13 @@ angular.module('amcomanApp')
             }
 
             
-        }
+        };
 
         var _response = function(response){
             spinnerService.decrement();
             
             return response;
-        }
+        };
 
         authInterceptorFactory.request = _request;
         authInterceptorFactory.responseError = _responseError;

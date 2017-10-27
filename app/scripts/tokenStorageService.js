@@ -12,7 +12,7 @@ angular.module('amcomanApp')
 
         ts.getUsername = function(){
             return JSON.parse(window.localStorage.getItem(storageKey)) ? JSON.parse(window.localStorage.getItem(storageKey)).username : undefined;
-        }
+        };
 
 
         ts.storeToken = function (tokenObject) {

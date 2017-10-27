@@ -239,7 +239,7 @@ angular.module('amcomanApp')
             pageFac.title = headerInfo.title;
             pageFac.metaKeywords = headerInfo.metaKeywords;
             pageFac.metaDescription = headerInfo.metaDescription;
-        }
+        };
         pageFac.getPageHeaderData = function () {
 
             return {
@@ -248,10 +248,10 @@ angular.module('amcomanApp')
                 metaDescription: pageFac.metaDescription || ''
             };
 
-        }
+        };
         pageFac.getDefaultPageHeaderData = function () {
             return AppHeaderData;
-        }
+        };
 
         return pageFac;
 
@@ -262,7 +262,7 @@ angular.module('amcomanApp')
         spinnerFactory.increment = function () {
             angular.element("#loader-div").show();
             spinnerFactory.spinnerCount++;
-        }
+        };
         spinnerFactory.decrement = function () {
             spinnerFactory.spinnerCount--;
             if(spinnerFactory.spinnerCount<=0){
@@ -270,6 +270,6 @@ angular.module('amcomanApp')
                 angular.element("#loader-div").hide();
             }
             return spinnerFactory.spinnerCount;
-        }
+        };
         return spinnerFactory;
     });

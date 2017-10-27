@@ -7,7 +7,7 @@ angular.module('amcomanApp')
 
         //Defining bearerToken as undefined for now 
         //To Do : Get bearerToken properly whhen connecting app with authentication server
-        var bearerToken =undefined;
+        var bearerToken;
         $scope.queryParamObject = $location.search();
 
         //Load Item data from the productId received in stateparams
@@ -28,7 +28,7 @@ angular.module('amcomanApp')
                     PageService.setPageHeaderData({title :$scope.productDetails.title, metaKeywords : $scope.productDetails.metaKeywords,metaDescription: $scope.productDetails.metaDescription});
                     
                 });
-        };
+        }
 
         getItemDataFromApi(bearerToken);
         

@@ -7,7 +7,7 @@ angular.module("amcomanApp")
 
 
         $scope.getAuthData =function() {
-            let authData = IdentityService.isLoggedIn();
+            var authData = IdentityService.isLoggedIn();
             if (IdentityService.isLoggedIn()) {
 
                 $scope.loggedIn = true;
@@ -16,7 +16,7 @@ angular.module("amcomanApp")
             }else{
                 resetUserAndLoginData();
             }
-        }
+        };
 
         function resetUserAndLoginData(){
             $scope.loggedIn = false;
