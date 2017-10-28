@@ -1,5 +1,5 @@
 angular.module('amcomanApp')
-    .factory('AuthInterceptorService', ['$injector','TokenStorage','identityURL','AppId','spinnerService', function ($injector,TokenStorage,identityURL,AppId,spinnerService) {
+    .factory('AuthInterceptorService', ['$q','$injector','TokenStorage','identityURL','AppId','spinnerService','$rootScope', function ($q,$injector,TokenStorage,identityURL,AppId,spinnerService,$rootScope) {
 
         var authInterceptorFactory = {};
 
@@ -21,33 +21,38 @@ angular.module('amcomanApp')
         };
 
         var _responseError = function (response) {
-            var deferred ;
             if (response.status === 401) {
-
-                deferred = $q.defer();
-                $injector.get("$http").get(identityURL + '/identity/token/'+AppId).then(function (token) {
-                    TokenStorage.storeToken(token);
-                    if(TokenStorage.getAuthObject() && TokenStorage.getAuthObject().access_token){
-                        $injector.get("$http")(response.config).then(function (resp) {
-                            deferred.resolve(resp);
-                        }, function (resp) {
-                            deferred.reject();
-                        });
-                    } else {
-                        deferred.reject();
-                    }
-
-                }, function (response) {
-                    deferred.reject();
-                    
-                });
                 
+                $rootScope.$broadcast('logout');
             }
             spinnerService.decrement();
-            if(deferred){
-                return deferred.promise;
+            // var deferred ;
+            // if (response.status === 401) {
+
+            //     deferred = $q.defer();
+            //     $injector.get("$http").get(identityURL + '/identity/token/'+AppId).then(function (token) {
+            //         TokenStorage.storeToken(token);
+            //         if(TokenStorage.getAuthObject() && TokenStorage.getAuthObject().access_token){
+            //             $injector.get("$http")(response.config).then(function (resp) {
+            //                 deferred.resolve(resp);
+            //             }, function (resp) {
+            //                 deferred.reject();
+            //             });
+            //         } else {
+            //             deferred.reject();
+            //         }
+
+            //     }, function (response) {
+            //         deferred.reject();
+                    
+            //     });
+                
+            // }
+            // spinnerService.decrement();
+            // if(deferred){
+            //     return deferred.promise;
             
-            }
+            // }
 
             
         };

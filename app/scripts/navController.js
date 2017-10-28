@@ -1,5 +1,5 @@
 angular.module("amcomanApp")
-    .controller('NavController', ['$scope', '$state', 'ngDialog','IdentityService', function ($scope, $state,ngDialog,IdentityService) {
+    .controller('NavController', ['$rootScope','$scope', '$state', 'ngDialog','IdentityService', function ($rootScope,$scope, $state,ngDialog,IdentityService) {
 
         $scope.loggedIn = false;
         $scope.username = '';
@@ -17,6 +17,10 @@ angular.module("amcomanApp")
                 resetUserAndLoginData();
             }
         };
+
+        $rootScope.$on('logout', function () {
+            $scope.logout();
+        });
 
         function resetUserAndLoginData(){
             $scope.loggedIn = false;
