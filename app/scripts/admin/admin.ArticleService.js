@@ -7,8 +7,13 @@ angular.module('amcomanApp')
         bearerToken = token;
     };
     var bearerToken ='';
-    adminArticleFac.product = $resource(baseUrl+'/aflproducts/:id',{id: '@id'});
-    
+    adminArticleFac.product = function() {
+       return $resource(baseUrl+'/aflproducts/:id',{id: '@id'});
+    }
+
+    adminArticleFac.category = function(){
+        return $resource(baseUrl+'/category',{},{'query':  {method:'GET', isArray:true}});
+    };
     
 
 

@@ -11,7 +11,7 @@ angular.module('amcomanApp')
             var backedupCategories = [];
             //To resolve the form variable undefined issue. Ref : https://stackoverflow.com/questions/22436501/simple-angularjs-form-is-undefined-in-scope
             $scope.form = {};
-            $scope.selectedCategories = [];
+            
             switch ($state.current.name) {
                 case 'app.admin.newarticle':
                     $scope.mode = 'New';
@@ -42,9 +42,14 @@ angular.module('amcomanApp')
             }
 
             function getCategories(){
-                $scope.categories = [{id:1,name:'abc'},{id:1,name:'pqr'},{id:1,name:'xyz'},{id:1,name:'def'}];
-                backedupCategories = angular.copy($scope.categories);
-            }
+                AdminArticleService.category().query(function(data){
+                    $scope.categories = data;
+                    backedupCategories = angular.copy($scope.categories);
+                },function(error){
+                    console.log(error);
+                });
+                
+            };
             $scope.saveProduct = function(product){
                 //call api to save peroduct
                 if($scope.mode=='New')
@@ -82,20 +87,23 @@ angular.module('amcomanApp')
 
             $scope.selectCategory = function(selectedCategory){
                 if(selectedCategory){
-                    $scope.selectedCategories.push(selectedCategory);
+                    $scope.product.categories = $scope.product.categories || [];
+                    $scope.product.categories.push(selectedCategory);
                     $scope.categories.splice($scope.categories.indexOf(selectedCategory),1);
                 }
                 
             };
 
             $scope.removeSelectedCategory= function(index){
-                $scope.selectedCategories.splice(index,1);
+                $scope.product.categories.splice(index,1);
 
                 //restore categories and remove alread exist
                 $scope.categories = angular.copy(backedupCategories);
 
                 $scope.categories = _.reject($scope.categories, function(cat){
-                    var res =  _.findIndex($scope.selectedCategories,cat);
+
+                    var res = $scope.product.categories.indexOf(cat);
+                    
                     return res!=-1;// should not exist
                 });
                 

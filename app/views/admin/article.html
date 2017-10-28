@@ -98,17 +98,17 @@
                     </div>
                 </div>
                 <div>
-                    <span class="tag label label-info" ng-if="selectedCategories.length>0" ng-repeat="category in selectedCategories track by $index">
-                        <span ng-bind="category.name"></span>
+                    <span class="tag label label-info" ng-if="product.categories.length>0" ng-repeat="category in product.categories track by $index">
+                        <span ng-bind="category"></span>
                         <a ng-click="removeSelectedCategory($index)">
                             <i class="remove glyphicon glyphicon-remove-sign glyphicon-white"></i>
                         </a>
                     </span>
-                    <span ng-if="selectedCategories.length==0">No category selected</span>
+                    <span ng-if="product.categories.length==0">No category selected</span>
                 </div>
                 <div class="form-group">
                     <label for="categories"> Select category(ies)</label>
-                    <select name="categories" id="" class="form-control" ng-model="selectedCategory" ng-options="category as category.name for category in categories"
+                    <select name="categories" id="" class="form-control" ng-model="selectedCategory" ng-options="category as category for category in categories"
                         ng-change="selectCategory(selectedCategory)">
                         <option value="">-- Select --</option>
 
