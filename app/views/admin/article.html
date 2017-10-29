@@ -1,5 +1,5 @@
 <div class="container">
-
+    
     <form name="form.adminForm" ng-if="mode=='New' || product.prodId">
         <div class="row">
             <div class="col-md-10 col-md-offset-1 col-sm-12 text-xs-center">
@@ -97,16 +97,16 @@
 
                     </div>
                 </div>
-                <div>
+                <div class="form-group">
                     <span class="tag label label-info" ng-if="product.categories.length>0" ng-repeat="category in product.categories track by $index">
                         <span ng-bind="category"></span>
-                        <a ng-click="removeSelectedCategory($index)">
+                        <a ng-if="mode!='View'" ng-click="removeSelectedCategory($index)">
                             <i class="remove glyphicon glyphicon-remove-sign glyphicon-white"></i>
                         </a>
                     </span>
                     <span ng-if="product.categories.length==0">No category selected</span>
                 </div>
-                <div class="form-group">
+                <div class="form-group" ng-if="mode!='View'">
                     <label for="categories"> Select category(ies)</label>
                     <select name="categories" id="" class="form-control" ng-model="selectedCategory" ng-options="category as category for category in categories"
                         ng-change="selectCategory(selectedCategory)">
