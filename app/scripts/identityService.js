@@ -47,11 +47,8 @@ angular.module('amcomanApp')
         identityFac.login = function (clientId, userName, password) {
             var deferred = $q.defer();
             identityFac.loginResource(clientId, userName, password).post({}, function (data) {
-                var tokenDataToSave = getDecodedToken(data); 
-                tokenDataToSave.token_type = data.token_type;
-                tokenDataToSave.username = userName;
 
-                TokenStorage.storeToken(tokenDataToSave);
+                TokenStorage.storeToken(data);
                 deferred.resolve(data);
             }, function (error) {
                 deferred.reject(error);
@@ -60,28 +57,34 @@ angular.module('amcomanApp')
         };
 
         identityFac.getUsername = function () {
-            return TokenStorage.getAuthObject() ? TokenStorage.getAuthObject().username : undefined;
+            return TokenStorage.getAuthObject() ? getDecodedToken().client_id : undefined;
         };
 
         identityFac.isAdminUserLoggedIn = function () {
-            return TokenStorage.getAuthObject() && TokenStorage.getAuthObject().isAdmin;
+            return TokenStorage.getAuthObject() && getDecodedToken().client_isAdmin === "yes";
         };
 
         identityFac.isLoggedIn = function () {
             return TokenStorage.getAuthObject() && TokenStorage.getAuthObject().access_token;
         };
 
+        identityFac.getTokenValidTill = function () {
+            return TokenStorage.getAuthObject() ? getDecodedToken().exp : undefined;
+        };
 
-        function getDecodedToken(rawToken) {
-            var tokenData = {};
-            tokenData.access_token = rawToken.access_token;
-            var base64Url = tokenData.access_token.split('.')[1];
-            var base64 = base64Url.replace('-', '+').replace('_', '/');
-            var convertedToken = JSON.parse(window.atob(base64));
 
-            tokenData.valid_till = convertedToken.exp;
-            tokenData.isAdmin = convertedToken.client_isAdmin === "yes";
-            return tokenData;
+        function getDecodedToken() {
+            var rawToken = TokenStorage.getAuthObject();
+            if (rawToken) {
+                var tokenData = {};
+                tokenData.access_token = rawToken.access_token;
+                var base64Url = tokenData.access_token.split('.')[1];
+                var base64 = base64Url.replace('-', '+').replace('_', '/');
+                var convertedToken = JSON.parse(window.atob(base64));
+                return convertedToken;
+            } else {
+                return undefined;
+            }
         }
         // nutrientsFac.nutrients = $resource(baseUrl + '/aflproducts/:categoryName/:page/:pageSize',{categoryName:'@categoryName',page:'@page',pageSize: '@pageSize'}, {
         //     query:{method: 'GET', 
