@@ -22,37 +22,34 @@ angular.module('amcomanApp')
 
         var _responseError = function (response) {
             if (response.status === 401) {
+                var deferred ;
+                deferred = $q.defer();
+                $injector.get("$http").get(identityURL + '/identity/token/nutrientsClient').then(function (token) {
+                    TokenStorage.storeToken(token.data);
+                    if(TokenStorage.getAuthObject() && TokenStorage.getAuthObject().access_token){
+                        $injector.get("$http")(response.config).then(function (resp) {
+                            deferred.resolve(resp);
+                        }, function (resp) {
+                            deferred.reject();
+                        });
+                    } else {
+                        deferred.reject();
+                    }
+
+                }, function (response) {
+                    deferred.reject();
+                    
+                });
                 
-                $rootScope.$broadcast('logout');
             }
             spinnerService.decrement();
-            // var deferred ;
-            // if (response.status === 401) {
-
-            //     deferred = $q.defer();
-            //     $injector.get("$http").get(identityURL + '/identity/token/'+AppId).then(function (token) {
-            //         TokenStorage.storeToken(token);
-            //         if(TokenStorage.getAuthObject() && TokenStorage.getAuthObject().access_token){
-            //             $injector.get("$http")(response.config).then(function (resp) {
-            //                 deferred.resolve(resp);
-            //             }, function (resp) {
-            //                 deferred.reject();
-            //             });
-            //         } else {
-            //             deferred.reject();
-            //         }
-
-            //     }, function (response) {
-            //         deferred.reject();
-                    
-            //     });
-                
-            // }
-            // spinnerService.decrement();
-            // if(deferred){
-            //     return deferred.promise;
+            if(deferred){
+                return deferred.promise;
             
-            // }
+            }
+            
+            spinnerService.decrement();
+            
 
             
         };
