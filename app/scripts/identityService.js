@@ -48,7 +48,7 @@ angular.module('amcomanApp')
             var deferred = $q.defer();
             identityFac.loginResource(clientId, userName, password).post({}, function (data) {
 
-                TokenStorage.storeToken(data);
+                TokenStorage.storeToken(data,"user");
                 deferred.resolve(data);
             }, function (error) {
                 deferred.reject(error);
@@ -64,8 +64,8 @@ angular.module('amcomanApp')
             return TokenStorage.getAuthObject() && getDecodedToken().client_isAdmin === "yes";
         };
 
-        identityFac.isLoggedIn = function () {
-            return TokenStorage.getAuthObject() && TokenStorage.getAuthObject().access_token;
+        identityFac.tokenExistsOf = function () {
+            return TokenStorage.getAuthObject() && TokenStorage.getAuthObject().access_token && TokenStorage.getAuthObject().tokenOf;
         };
 
         identityFac.getTokenValidTill = function () {

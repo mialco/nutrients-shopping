@@ -25,7 +25,7 @@ angular.module('amcomanApp')
                 var deferred ;
                 deferred = $q.defer();
                 $injector.get("$http").get(identityURL + '/identity/token/nutrientsClient').then(function (token) {
-                    TokenStorage.storeToken(token.data);
+                    TokenStorage.storeToken(token.data,"application");
                     if(TokenStorage.getAuthObject() && TokenStorage.getAuthObject().access_token){
                         $injector.get("$http")(response.config).then(function (resp) {
                             deferred.resolve(resp);

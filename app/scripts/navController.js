@@ -1,19 +1,18 @@
 angular.module("amcomanApp")
-    .controller('NavController', ['$rootScope','$scope', '$state', 'ngDialog','IdentityService', function ($rootScope,$scope, $state,ngDialog,IdentityService) {
+    .controller('NavController', ['$rootScope', '$scope', '$state', 'ngDialog', 'IdentityService', function ($rootScope, $scope, $state, ngDialog, IdentityService) {
 
         $scope.loggedIn = false;
         $scope.username = '';
         $scope.isAdmin = false;
 
 
-        $scope.getAuthData =function() {
-            var authData = IdentityService.isLoggedIn();
-            if (IdentityService.isLoggedIn()) {
+        $scope.getAuthData = function () {
+            if (IdentityService.tokenExistsOf() === "user") {
 
                 $scope.loggedIn = true;
                 $scope.username = IdentityService.getUsername();
                 $scope.isAdmin = IdentityService.isAdminUserLoggedIn();
-            }else{
+            } else {
                 resetUserAndLoginData();
             }
         };
@@ -22,7 +21,7 @@ angular.module("amcomanApp")
             $scope.logout();
         });
 
-        function resetUserAndLoginData(){
+        function resetUserAndLoginData() {
             $scope.loggedIn = false;
             $scope.username = undefined;
             $scope.isAdmin = false;
@@ -32,8 +31,12 @@ angular.module("amcomanApp")
         };
 
         $scope.logout = function () {
+            
             IdentityService.logout();
             $scope.getAuthData();
+            if($state.current.name.startsWith("app.admin")){
+                $state.go("app");
+            }
         };
 
         $scope.getAuthData();
