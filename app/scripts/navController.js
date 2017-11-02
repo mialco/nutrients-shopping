@@ -21,6 +21,9 @@ angular.module("amcomanApp")
             $scope.logout();
         });
 
+        $scope.search = function(searchQuery){
+            $state.go("app.search",{query : searchQuery});
+        }
         function resetUserAndLoginData() {
             $scope.loggedIn = false;
             $scope.username = undefined;

@@ -86,7 +86,21 @@ angular.module('amcomanApp', ['ui.router', 'ui.grid', 'ngResource', 'ngDialog', 
                     }
                 }
             })
+            .state('app.search', {
+                url: 'search/:query',
+                views: {
+                    'header@': {
+                        templateUrl: 'views/headerArticleList.html',
+                        controller: 'HeaderController'
+                    },
+                    'content@': {
+                        templateUrl: 'views/search.html',
+                        controller: 'SearchController'
 
+                    }
+                }
+
+            })
             // route for the admin home page
             // .state('app.admin', {
             //     name : 'admin',
