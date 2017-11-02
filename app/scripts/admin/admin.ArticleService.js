@@ -9,7 +9,7 @@ angular.module('amcomanApp')
     var bearerToken ='';
     adminArticleFac.product = function() {
        return $resource(baseUrl+'/aflproducts/:id',{id: '@id'},{'insert': {method:'POST' },'update': {method:'PUT' },'delete': {method:'DELETE'} });
-    }
+    };
 
     adminArticleFac.category = function(){
         return $resource(baseUrl+'/category',{},{'query':  {method:'GET', isArray:true}});

@@ -21,8 +21,8 @@ angular.module('amcomanApp')
         };
 
         var _responseError = function (response) {
-            if (response.status === 401) {
-                var deferred ;
+            var deferred ;
+            if (response.status === 401) {               
                 deferred = $q.defer();
                 $injector.get("$http").get(identityURL + '/identity/token/nutrientsClient').then(function (token) {
                     TokenStorage.storeToken(token.data,"application");

@@ -48,7 +48,7 @@ angular.module('amcomanApp')
                     console.log(error);
                 });
 
-            };
+            }
             $scope.saveProduct = function (product) {
                 //call api to save peroduct
                 if ($scope.mode == 'New') {
