@@ -195,4 +195,12 @@ angular.module('amcomanApp', ['ui.router', 'ui.grid', 'ngResource', 'ngDialog', 
     // }]);
     .config(['$httpProvider', function($httpProvider) {  
         $httpProvider.interceptors.push('AuthInterceptorService');
-    }]);
+    }])
+    .run(['$rootScope','$state','IdentityService',function($rootScope,$state,IdentityService){
+        $rootScope.$on('$stateChangeStart', 
+        function(event, toState, toParams, fromState, fromParams){ 
+            if(toState.name.startsWith("app.admin") && !IdentityService.isAdminUserLoggedIn()){
+                $state.go("app");
+            }
+        })
+    }]);    
