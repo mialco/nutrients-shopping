@@ -17,8 +17,10 @@ angular.module("amcomanApp")
             }
         };
 
-        $rootScope.$on('logout', function () {
-            $scope.logout();
+        //Will be called from the stateChnage Listerner, if state is not related to search,
+        // this will be used to clear the search box
+        $rootScope.$on('clearSearchQuery', function () {
+            $scope.searchQuery = undefined;
         });
 
         $scope.search = function(searchQuery){

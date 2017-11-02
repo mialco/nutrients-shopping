@@ -213,6 +213,14 @@ angular.module('amcomanApp', ['ui.router', 'ui.grid', 'ngResource', 'ngDialog', 
     .run(['$rootScope','$state','IdentityService',function($rootScope,$state,IdentityService){
         $rootScope.$on('$stateChangeStart', 
         function(event, toState, toParams, fromState, fromParams){ 
+
+            //clear search box if the state is not related to search
+            //Otherwise the searched text will aleays be shown in the searchbox
+            //The clearSearchQuery funtion is part of navController
+            if(!toState.name.startsWith("app.search")){
+                $rootScope.$broadcast('clearSearchQuery');
+            }
+            console.log($rootScope);
             if(toState.name.startsWith("app.admin") && !IdentityService.isAdminUserLoggedIn()){
                 $state.go("app");
             }
