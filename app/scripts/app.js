@@ -202,5 +202,5 @@ angular.module('amcomanApp', ['ui.router', 'ui.grid', 'ngResource', 'ngDialog', 
             if(toState.name.startsWith("app.admin") && !IdentityService.isAdminUserLoggedIn()){
                 $state.go("app");
             }
-        })
+        });
     }]);    
