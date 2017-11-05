@@ -4,40 +4,7 @@
             Nutrients Dynamic Page {{pageName}}
         </div>
     </div>
-    <div class="table-responsive nutrients-table">
-        <table class="table">
-            <thead>
-                <tr>
-                    <td></td>
-                    <td>Product</td>
-                    <td>Price</td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="line in gridData">
-                    <td style="min-width:11em">
-                        <product-image product="line" object-to-pass= "objectToPassToItemState">
-
-                        </product-image>
-                        
-                    </td>
-                    <td ng-bind-html="line.description"></td>
-                    <td>${{line.price}}</td>
-                </tr>
-            </tbody>
-            <!-- <tfoot>
-                <tr>
-                    <td>cdcdcdc</td>
-                    <td>
-                        xcxvcxcv
-                        </td>
-                            <td>hghg</td>
-
-                </tr>
-            </tfoot> -->
-        </table>
-
-    </div>
+  <product-list products="gridData" ></product-list>
 <ul class="pager">
     <li><a href="{{pagerData.firstPageLink}}">First</a></li>
   <li><a href="{{pagerData.previousPageLink}}">Previous</a></li>
