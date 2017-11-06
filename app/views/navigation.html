@@ -89,17 +89,18 @@
                         <li ng-class="{active: stateis('app.entities')}">
                             <a ui-sref="app.entities">Entities</a>
                         </li>
+                        <li role="separator" class="divider"></li>
                         <li ng-class="{active: stateis('app.articles')}">
-                            <a ui-sref="app.admin.newarticle">Articles New</a>
+                            <a ui-sref="app.admin.newarticle">Add Product</a>
                         </li>
-                        <li ng-class="{active: stateis('app.articles')}">
+                        <!-- <li ng-class="{active: stateis('app.articles')}">
                             <a ui-sref="app.admin.editarticle({id:1682})">Articles Edit</a>
                         </li>
                         <li ng-class="{active: stateis('app.articles')}">
                             <a ui-sref="app.admin.viewarticle({id:1682})">Articles View</a>
-                        </li>
-                        <li role="separator" class="divider"></li>
-                        <li role="separator" class="divider"></li>
+                        </li> -->
+                        <!--
+                        <li role="separator" class="divider"></li> -->
                     </ul>
                 </li>
                 <li ng-class="{active: stateis('app.aboutus')}">
@@ -131,7 +132,7 @@
                 </li>
 
                 <li class="dropdown" ng-if="loggedIn">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{::username}}
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{::username}}
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
