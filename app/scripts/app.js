@@ -225,4 +225,12 @@ angular.module('amcomanApp', ['ui.router', 'ui.grid', 'ngResource', 'ngDialog', 
                 $state.go("app");
             }
         });
+
+        $rootScope.$on('$stateChangeSuccess', function(event, to, toParams, from, fromParams) {
+            //save the previous state in a rootScope variable so that it's accessible from everywhere
+            $rootScope.previousStateInfo =  $rootScope.previousStateInfo || {};
+            $rootScope.previousStateInfo.name = from.name;
+            $rootScope.previousStateInfo.params = fromParams;
+        });
+      
     }]);    

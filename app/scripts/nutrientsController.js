@@ -24,7 +24,7 @@ angular.module('amcomanApp')
 
             $scope.pagerData = CommonData.pagerData;
             $scope.stateParams = $stateParams;
-            $scope.objectToPassToItemState = {categoryName : categoryName,page:page,pageSize:pageSize};
+            // $scope.objectToPassToItemState = {queryText : categoryName,page:page,pageSize:pageSize,prevState : $state.current.name};
             //Returns web form data which structure is based on the storedToken
             // If username and password are not empty we return the web form for client credentials
             // else we return web form  data for user authentication
@@ -125,6 +125,7 @@ angular.module('amcomanApp')
                         calculatePagerValues($scope.pagerData);
                         console.log('From within the controller we received data from the service');
                         //console.log(JSON.stringify(data));
+                        //$scope.gridData =angular.copy(SimpleMockData.nutrientsList.aflProducts);
                         $scope.gridData = data.aflProducts;
                         //$scope.gridOptions.data = data.aflProducts;
                     }, function (error) {
