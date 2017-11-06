@@ -107,6 +107,7 @@ angular.module('amcomanApp')
             $scope.removeSelectedCategory = function (index) {
                 $scope.product.categories.splice(index, 1);
 
+                $scope.form.adminForm.$dirty = true; 
                 //restore categories and remove alread exist
                 $scope.categories = angular.copy(backedupCategories);
 
