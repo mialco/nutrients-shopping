@@ -3,13 +3,11 @@ angular.module('amcomanApp')
         var searchFac = {};
 
         searchFac.products = function () {
-            return $resource(baseUrl + '/search/:searchTerms/:page/:pageSize',
+            return $resource(baseUrl + '/aflproducts/search/:searchTerms/:page/:pageSize',
                 { searchTerms: '@searchTerms', page: '@page', pageSize: '@pageSize' },
                 {
                     query: {
-                        method: 'GET',
-
-                        isArray: true
+                        method: 'GET'
                     }
                 });
         };

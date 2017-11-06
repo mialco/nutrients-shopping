@@ -1,4 +1,13 @@
-Results for {{query}}. Total {{searchResult.totalRecords}} results found
+<div class="container">
 
+    <h2 class="break-word">Results for "{{query}}"</h2>
 
-<product-list products="searchResult.aflProducts"></product-list>
+    <div ng-if="searchResult">
+        <h5 ng-if="searchResult.totalRecords">Total
+            <strong> {{searchResult.totalRecords}}</strong> results found</h5>
+        <h5 ng-if="!searchResult.totalRecords"> No results found</h5>
+    </div>
+
+    <product-list ng-if="searchResult.aflProducts.length >0" products="searchResult.aflProducts"></product-list>
+
+</div>

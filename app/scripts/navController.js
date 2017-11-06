@@ -23,6 +23,11 @@ angular.module("amcomanApp")
             $scope.searchQuery = undefined;
         });
 
+        //Will be usefull if search screen calle from anywhere in the application the search text box should be populated with query
+        $rootScope.$on('setSearchQuery', function (event,query) {
+            $scope.searchQuery = query;
+        });
+
         $scope.search = function(searchQuery){
             $state.go("app.search",{query : searchQuery});
         }

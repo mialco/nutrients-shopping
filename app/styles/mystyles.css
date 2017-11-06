@@ -239,3 +239,7 @@ body {
 .search.icon:hover{
   color: #ffffff;
 }
+
+.break-word{
+  word-wrap: break-word;
+}
