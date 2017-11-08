@@ -119,11 +119,11 @@
 
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <form class="navbar-form" role="search">
+                    <form class="navbar-form" role="search" ng-submit="searchQuery && search(searchQuery)">
                         <div class="">
-                            <input class="form-control search text-box" placeholder="Search" name="srch-term" id="srch-term" type="text">
-                                    <i class="glyphicon glyphicon-search search icon"></i>
-                            </div>
+                            <input class="form-control search text-box" ng-model="searchQuery" placeholder="Search" name="srch-term" id="srch-term" type="text">
+                            <i class="glyphicon glyphicon-search search icon" ng-click="searchQuery && search(searchQuery)"></i>
+                        </div>
                     </form>
                 </li>
                 <li ng-if="!loggedIn">
@@ -140,7 +140,7 @@
                             <a href="" ng-click="logout()">
                                 Logout</a>
                         </li>
-                     
+
                     </ul>
                 </li>
 

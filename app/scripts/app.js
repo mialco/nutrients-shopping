@@ -86,7 +86,21 @@ angular.module('amcomanApp', ['ui.router', 'ui.grid', 'ngResource', 'ngDialog', 
                     }
                 }
             })
+            .state('app.search', {
+                url: 'search/:query',
+                views: {
+                    'header@': {
+                        templateUrl: 'views/headerArticleList.html',
+                        controller: 'HeaderController'
+                    },
+                    'content@': {
+                        templateUrl: 'views/search.html',
+                        controller: 'SearchController'
 
+                    }
+                }
+
+            })
             // route for the admin home page
             // .state('app.admin', {
             //     name : 'admin',
@@ -199,8 +213,24 @@ angular.module('amcomanApp', ['ui.router', 'ui.grid', 'ngResource', 'ngDialog', 
     .run(['$rootScope','$state','IdentityService',function($rootScope,$state,IdentityService){
         $rootScope.$on('$stateChangeStart', 
         function(event, toState, toParams, fromState, fromParams){ 
+
+            //clear search box if the state is not related to search
+            //Otherwise the searched text will aleays be shown in the searchbox
+            //The clearSearchQuery funtion is part of navController
+            if(!toState.name.startsWith("app.search")){
+                $rootScope.$broadcast('clearSearchQuery');
+            }
+            console.log($rootScope);
             if(toState.name.startsWith("app.admin") && !IdentityService.isAdminUserLoggedIn()){
                 $state.go("app");
             }
         });
+
+        $rootScope.$on('$stateChangeSuccess', function(event, to, toParams, from, fromParams) {
+            //save the previous state in a rootScope variable so that it's accessible from everywhere
+            $rootScope.previousStateInfo =  $rootScope.previousStateInfo || {};
+            $rootScope.previousStateInfo.name = from.name;
+            $rootScope.previousStateInfo.params = fromParams;
+        });
+      
     }]);    

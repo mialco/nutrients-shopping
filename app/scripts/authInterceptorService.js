@@ -1,5 +1,5 @@
 angular.module('amcomanApp')
-    .factory('AuthInterceptorService', ['$q','$injector','TokenStorage','identityURL','AppId','spinnerService','$rootScope', function ($q,$injector,TokenStorage,identityURL,AppId,spinnerService,$rootScope) {
+    .factory('AuthInterceptorService', ['$q', '$injector', 'TokenStorage', 'identityURL', 'AppId', 'spinnerService', '$rootScope', function ($q, $injector, TokenStorage, identityURL, AppId, spinnerService, $rootScope) {
 
         var authInterceptorFactory = {};
 
@@ -21,12 +21,12 @@ angular.module('amcomanApp')
         };
 
         var _responseError = function (response) {
-            var deferred ;
-            if (response.status === 401) {               
-                deferred = $q.defer();
+            var deferred = $q.defer();
+            if (response.status === 401) {
+
                 $injector.get("$http").get(identityURL + '/identity/token/nutrientsClient').then(function (token) {
-                    TokenStorage.storeToken(token.data,"application");
-                    if(TokenStorage.getAuthObject() && TokenStorage.getAuthObject().access_token){
+                    TokenStorage.storeToken(token.data, "application");
+                    if (TokenStorage.getAuthObject() && TokenStorage.getAuthObject().access_token) {
                         $injector.get("$http")(response.config).then(function (resp) {
                             deferred.resolve(resp);
                         }, function (resp) {
@@ -38,32 +38,31 @@ angular.module('amcomanApp')
 
                 }, function (response) {
                     deferred.reject();
-                    
-                });
-                
-            }
-            spinnerService.decrement();
-            if(deferred){
-                return deferred.promise;
-            
-            }
-            
-            spinnerService.decrement();
-            
 
-            
+                });
+
+            } else {
+                deferred.reject();
+            }
+
+            spinnerService.decrement();
+            return deferred.promise;
+
+
+
+
         };
 
-        var _response = function(response){
+        var _response = function (response) {
             spinnerService.decrement();
-            
+
             return response;
         };
 
         authInterceptorFactory.request = _request;
         authInterceptorFactory.responseError = _responseError;
         authInterceptorFactory.response = _response;
-      
+
         return authInterceptorFactory;
 
 

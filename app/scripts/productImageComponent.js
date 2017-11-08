@@ -6,7 +6,6 @@ angular.module('amcomanApp').component('productImage', {
     },
     controller: ['$state','$httpParamSerializer', function ($state,$httpParamSerializer) {
         var ctrl = this;
-
         if (ctrl.product.detailIsActive) {
 
             if (ctrl.objectToPass) {

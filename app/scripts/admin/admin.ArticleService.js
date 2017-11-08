@@ -15,27 +15,5 @@ angular.module('amcomanApp')
         return $resource(baseUrl+'/category',{},{'query':  {method:'GET', isArray:true}});
     };
     
-
-
-    // nutrientsFac.nutrients = function(bearerToken){return  $resource(baseUrl + '/aflproducts/:categoryName/:page/:pageSize',
-    // {categoryName:'@categoryName',page:'@page',pageSize: '@pageSize'}, 
-    // {
-    //     query: {method: 'GET',
-    //     headers: {'Authorization': 'bearer ' + bearerToken}, 
-    //     //params: {categoryName:'',page:0 },
-    //     isArray: false
-    // }});};
-
-    // nutrientsFac.nutrientItem =  function(bearerToken){
-    //     return $resource(baseUrl + '/aflProducts/:productId',
-    //     {productId:'@productId'}, 
-    //     {
-    //         query:{method:'GET',
-    //             headers: {'Authorization': 'bearer ' + bearerToken},
-    //             isArray: false
-    //         }
-    //         }
-    //     )
-    // };
     return adminArticleFac;
 }]);
