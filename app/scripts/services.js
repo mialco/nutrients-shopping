@@ -4,7 +4,7 @@ angular.module('amcomanApp')
     //.constant("baseURL", "http://localhost:49970/api")
     .constant("baseURL", "http://nutrientsshoppingapi.azurewebsites.net/api")
     .constant('identityURL', "http://nutrientsshoppingapi.azurewebsites.net/api")
-    .constant('AppHeaderData', { title: "Nutrients Shopping", metaKeywords: "Keyword 1,keyword 2", metaDescription: "sample meta description" })
+    .constant('DefaultAppHeaderData', { title: "Nutrient Shopping. Natural Nutrition Products", metaKeywords: "Nutrition Products,Nutrients,shopping", metaDescription: "Shopping for Nutrition Products" })
     //.constant("baseURL", "https://amcoman.mybluemix.net/")
     .factory('menuFactory', ['$resource', 'baseURL', function ($resource, baseURL) {
 
@@ -229,7 +229,7 @@ angular.module('amcomanApp')
         return artFac;
     }])
 
-    .factory('PageService', ['AppHeaderData', '$state', function (AppHeaderData, $state) {
+    .factory('PageService', ['DefaultAppHeaderData', '$state', function (DefaultAppHeaderData, $state) {
 
         var pageFac = {};
         var stateData = $state;
@@ -241,18 +241,15 @@ angular.module('amcomanApp')
             pageFac.metaDescription = headerInfo.metaDescription;
         };
         pageFac.getPageHeaderData = function () {
-
+            
             return {
-                title: pageFac.title ? pageFac.title + ' | ' + AppHeaderData.title : AppHeaderData.title,
-                metaKeywords: pageFac.metaKeywords || '',
-                metaDescription: pageFac.metaDescription || ''
+                title: pageFac.title ? pageFac.title + ' | ' + DefaultAppHeaderData.title : DefaultAppHeaderData.title,
+                metaKeywords: pageFac.metaKeywords || DefaultAppHeaderData.metaKeywords,
+                metaDescription: pageFac.metaDescription || DefaultAppHeaderData.metaDescription
             };
 
         };
-        pageFac.getDefaultPageHeaderData = function () {
-            return AppHeaderData;
-        };
-
+        
         return pageFac;
 
     }])
