@@ -34,6 +34,6 @@ angular.module('amcomanApp')
             getItemDataFromApi(bearerToken);
             $scope.getBackState =function(){
                 return $rootScope.previousStateInfo.name+"("+JSON.stringify($rootScope.previousStateInfo.params)+")";
-            }
+            };
 
         }]);
