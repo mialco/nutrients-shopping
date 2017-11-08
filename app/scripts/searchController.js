@@ -1,9 +1,9 @@
 angular.module('amcomanApp')
-    .controller('SearchController', ['$scope', '$stateParams','SearchService','$rootScope',
-     function ($scope, $stateParams,SearchService,$rootScope) {
+    .controller('SearchController', ['$scope', '$stateParams','SearchService','$rootScope','$state',
+     function ($scope, $stateParams,SearchService,$rootScope,$state) {
 
         $scope.query = $stateParams.query;
-
+        $scope.stateObject = {name : $state.current.name, params : $stateParams};
         //If search screen with query called irectly from altering url or simple menu, it should update search text box of navController
         $rootScope.$broadcast('setSearchQuery',angular.copy($scope.query));
 

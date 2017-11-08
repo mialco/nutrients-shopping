@@ -8,7 +8,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="line in $ctrl.products">
+            <tr ng-repeat="line in $ctrl.productsData.aflProducts">
                 <td style="min-width:11em">
                     <product-image product="line">
 
@@ -32,3 +32,5 @@
     </table>
 
 </div>
+
+<pager state-obj="$ctrl.stateObj"  total-pages="$ctrl.productsData.pages" current-page="$ctrl.productsData.page" ng-if="$ctrl.productsData.pages"></pager>
