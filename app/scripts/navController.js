@@ -29,7 +29,7 @@ angular.module("amcomanApp")
         });
 
         $scope.search = function(searchQuery){
-            $state.go("app.search",{query : searchQuery});
+            $state.go("app.search",{searchTerms : searchQuery, page:1, pageSize : 10});
         };
         function resetUserAndLoginData() {
             $scope.loggedIn = false;

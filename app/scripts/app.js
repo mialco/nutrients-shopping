@@ -87,7 +87,7 @@ angular.module('amcomanApp', ['ui.router', 'ui.grid', 'ngResource', 'ngDialog', 
                 }
             })
             .state('app.search', {
-                url: 'search/:query',
+                url: 'search/:searchTerms/:page/:pageSize',
                 views: {
                     'header@': {
                         templateUrl: 'views/headerArticleList.html',
