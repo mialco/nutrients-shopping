@@ -210,7 +210,7 @@ angular.module('amcomanApp', ['ui.router', 'ui.grid', 'ngResource', 'ngDialog', 
     .config(['$httpProvider', function($httpProvider) {  
         $httpProvider.interceptors.push('AuthInterceptorService');
     }])
-    .run(['$rootScope','$state','IdentityService',function($rootScope,$state,IdentityService){
+    .run(['$rootScope','$state','IdentityService','PageService',function($rootScope,$state,IdentityService,PageService){
         $rootScope.$on('$stateChangeStart', 
         function(event, toState, toParams, fromState, fromParams){ 
 
@@ -223,6 +223,9 @@ angular.module('amcomanApp', ['ui.router', 'ui.grid', 'ngResource', 'ngDialog', 
             console.log($rootScope);
             if(toState.name.startsWith("app.admin") && !IdentityService.isAdminUserLoggedIn()){
                 $state.go("app");
+            }
+            if(fromState.name == "app.nutrientItem"){
+                PageService.setDefaultPageHeaderData();
             }
         });
 

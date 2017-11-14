@@ -249,7 +249,9 @@ angular.module('amcomanApp')
             };
 
         };
-        
+        pageFac.setDefaultPageHeaderData = function () {
+            pageFac.setPageHeaderData(DefaultAppHeaderData);
+        };
         return pageFac;
 
     }])
