@@ -26,14 +26,23 @@ angular.module('amcomanApp')
 
                 $injector.get("$http").get(identityURL + '/identity/token/nutrientsClient').then(function (token) {
                     TokenStorage.storeToken(token.data, "application");
-                    if (TokenStorage.getAuthObject() && TokenStorage.getAuthObject().access_token) {
-                        $injector.get("$http")(response.config).then(function (resp) {
-                            deferred.resolve(resp);
-                        }, function (resp) {
-                            deferred.reject();
-                        });
-                    } else {
+
+                    //don't retry if an admin token return 401. Just get the application token and redirect user to home page, he/she shall re-try login manually
+                    if (response.config.headers.isAdminRequest) {
+
+                        $rootScope.$broadcast('logout');
                         deferred.reject();
+                    } else {
+                        if (TokenStorage.getAuthObject() && TokenStorage.getAuthObject().access_token) {
+                            //original request was not an admin request
+                            $injector.get("$http")(response.config).then(function (resp) {
+                                deferred.resolve(resp);
+                            }, function (resp) {
+                                deferred.reject();
+                            });
+                        } else {
+                            deferred.reject();
+                        }
                     }
 
                 }, function (response) {

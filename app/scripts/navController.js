@@ -13,7 +13,7 @@ angular.module("amcomanApp")
                 $scope.username = IdentityService.getUsername();
                 $scope.isAdmin = IdentityService.isAdminUserLoggedIn();
             } else {
-                resetUserAndLoginData();
+                resetAuthData();               
             }
         };
 
@@ -24,28 +24,35 @@ angular.module("amcomanApp")
         });
 
         //Will be usefull if search screen calle from anywhere in the application the search text box should be populated with query
-        $rootScope.$on('setSearchQuery', function (event,query) {
+        $rootScope.$on('setSearchQuery', function (event, query) {
             $scope.searchQuery = query;
         });
 
-        $scope.search = function(searchQuery){
-            $state.go("app.search",{searchTerms : searchQuery, page:1, pageSize : 10});
+        //Will be useful to logout the user from anywhere in the the application,
+        $rootScope.$on('logout', function () {
+            $scope.logout();
+        });
+
+        $scope.search = function (searchQuery) {
+            $state.go("app.search", { searchTerms: searchQuery, page: 1, pageSize: 10 });
         };
-        function resetUserAndLoginData() {
+
+        $scope.openLogin = function () {
+            ngDialog.open({ template: 'views/login.html', scope: $scope, className: 'ngdialog-theme-default', controller: "LoginController" });
+        };
+        function resetAuthData(){
             $scope.loggedIn = false;
             $scope.username = undefined;
             $scope.isAdmin = false;
         }
-        $scope.openLogin = function () {
-            ngDialog.open({ template: 'views/login.html', scope: $scope, className: 'ngdialog-theme-default', controller: "LoginController" });
-        };
-
         $scope.logout = function () {
-            
+
             IdentityService.logout();
-            $scope.getAuthData();
-            if($state.current.name.startsWith("app.admin")){
-                $state.go("app");
+            resetAuthData();
+            if ($state.current.name.startsWith("app.admin")) {
+                $state.go("app",
+                    { logout: true }
+                );
             }
         };
 

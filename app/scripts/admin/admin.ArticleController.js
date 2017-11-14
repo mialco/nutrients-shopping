@@ -56,7 +56,7 @@ angular.module('amcomanApp')
                         $scope.form.adminForm.$dirty = false;
                         $state.go("app.admin.viewarticle", { id: data.newId });
                     }, function (error) {
-                        alert(JSON.stringify(error));
+                        alert("Unable to process add product request " + JSON.stringify(error));
                     });
 
                 }
@@ -66,10 +66,10 @@ angular.module('amcomanApp')
                             $scope.form.adminForm.$dirty = false;
                             $state.go("app.admin.viewarticle", { id: product.prodId });
                         }, function (error) {
-                            alert(JSON.stringify(error));
+                            alert("Unable tp process update product request " + JSON.stringify(error));
                         });
 
-                    }else{
+                    } else {
                         alert("Invalid data to update");
                     }
 
@@ -82,16 +82,16 @@ angular.module('amcomanApp')
             };
 
             $scope.deleteProduct = function (id) {
-                
+
                 var answer = confirm("Are you sure?");
                 if (answer) {
-                    AdminArticleService.product().delete({id:id}, function (data) {
+                    AdminArticleService.product().delete({ id: id }, function (data) {
                         $scope.form.adminForm.$dirty = false;
                         $state.go("app.admin.newarticle");
                     }, function (error) {
-                        alert(JSON.stringify(error));
-                    });    
-                    
+                        alert("unable to process delete product request " + JSON.stringify(error));
+                    });
+
                 }
             };
 
@@ -107,7 +107,7 @@ angular.module('amcomanApp')
             $scope.removeSelectedCategory = function (index) {
                 $scope.product.categories.splice(index, 1);
 
-                $scope.form.adminForm.$dirty = true; 
+                $scope.form.adminForm.$dirty = true;
                 //restore categories and remove alread exist
                 $scope.categories = angular.copy(backedupCategories);
 
@@ -122,11 +122,14 @@ angular.module('amcomanApp')
 
             };
             //To ask confirmation is user sure to leave the page
-            $scope.$on('$stateChangeStart', function (event) {
-                if ($scope.form.adminForm.$dirty) {
-                    var answer = confirm("You may have pending changes, are you sure you want to leave this page?");
-                    if (!answer) {
-                        event.preventDefault();
+            $scope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
+
+                if (!toParams.logout) {
+                    if ($scope.form.adminForm.$dirty) {
+                        var answer = confirm("You may have pending changes, are you sure you want to leave this page?");
+                        if (!answer) {
+                            event.preventDefault();
+                        }
                     }
                 }
             });

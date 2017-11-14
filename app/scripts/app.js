@@ -7,6 +7,9 @@ angular.module('amcomanApp', ['ui.router', 'ui.grid', 'ngResource', 'ngDialog', 
             // route for the home page
             .state('app', {
                 url: '/',
+                params : {
+                    logout : false
+                },
                 views: {
                     'navigation': {
                         templateUrl: 'views/navigation.html',
@@ -219,8 +222,7 @@ angular.module('amcomanApp', ['ui.router', 'ui.grid', 'ngResource', 'ngDialog', 
             //The clearSearchQuery funtion is part of navController
             if(!toState.name.startsWith("app.search")){
                 $rootScope.$broadcast('clearSearchQuery');
-            }
-            console.log($rootScope);
+            }          
             if(toState.name.startsWith("app.admin") && !IdentityService.isAdminUserLoggedIn()){
                 $state.go("app");
             }
