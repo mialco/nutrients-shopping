@@ -104,52 +104,6 @@ angular.module('amcomanApp', ['ui.router', 'ui.grid', 'ngResource', 'ngDialog', 
                 }
 
             })
-            // route for the admin home page
-            // .state('app.admin', {
-            //     name : 'admin',
-            //     url:  'admin',
-            //     views: {
-            //         // 'navigation': {
-            //         //     templateUrl: 'views/navigation.html',
-            //         //     controller: 'NavController'
-            //         // },
-            //         // 'header': {
-            //         //     templateUrl: 'views/header.html',
-            //         //     controller: 'HeaderController'
-            //         // },
-            //          'content@': {
-            //             templateUrl: 'views/admin/home.html',
-            //             controller: 'HomeController'
-            //         }
-            //     //     'footer': {
-            //     //         templateUrl: 'views/footer.html',
-            //     //     }
-            //     }
-
-            // })
-
-            // .state('admin', {
-            //     name: 'admin',
-            //     url: '/admin',
-            //     views: {
-            //         'navigation': {
-            //             templateUrl: 'views/navigation.html',
-            //             controller: 'NavController'
-            //         },
-            //         'header': {
-            //             templateUrl: 'views/header.html',
-            //             controller: 'HeaderController'
-            //         },
-            //         'content': {
-            //             templateUrl: 'views/admin/home.html',
-            //             controller: 'HomeController'
-            //         },
-            //         'footer': {
-            //             templateUrl: 'views/footer.html',
-            //         }
-            //     }
-
-            // })
             .state("app.admin", {
                 name: "admin",
                 abstract: true
@@ -202,7 +156,35 @@ angular.module('amcomanApp', ['ui.router', 'ui.grid', 'ngResource', 'ngDialog', 
                         templateUrl: 'views/affiliateDisclosure.html'
                     }
                 }
-            });
+            })
+            .state('app.terms-of-use',{
+                url: 'terms-of-use',
+                views: {
+                    'header@' : '',
+                    'content@': {
+                        templateUrl : 'views/terms-of-use.html'
+                    }
+                }
+            })
+            .state('app.medical-disclaimer',{
+                url: 'medical-disclaimer',
+                views: {
+                    'header@' : '',
+                    'content@': {
+                        templateUrl : 'views/medical-diclaimer.html'
+                    }
+                }
+            })
+            .state('app.privacy-policy',{
+                url: 'privacy-policy',
+                views: {
+                    'header@' : '',
+                    'content@': {
+                        templateUrl : 'views/privacy-policy.html'
+                    }
+                }
+            })
+            ;
 
         $urlRouterProvider.otherwise('/');
     })

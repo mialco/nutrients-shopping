@@ -1,0 +1,230 @@
+<div class="container">
+
+    <form name="form.adminForm" ng-if="mode=='New' || product.prodId">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1 col-sm-12 text-xs-center">
+
+                <h1 class="">{{product.productName || 'Nutrient Product'}}
+                    <small>({{::mode}})</small>
+                </h1>
+            </div>
+
+            <div class="col-md-6 col-sm-12">
+
+
+                <div class=" form-groups " ng-if="product.prodId">
+
+                    <label for="ProductId" name="ProductId">Product Id :</label>
+                    <label for="" name="ProductId" ng-bind="product.prodId"></label>
+
+
+                </div>
+                <div class="form-group">
+                    <label for="ProductName">Product Name :</label>
+                    <input type="text" ng-if="mode!='View'" name="ProductName" ng-model="product.productName" class="form-control" id="">
+                    <span ng-if="mode=='View'" ng-bind="product.productName"></span>
+
+                </div>
+                <div class="form-group">
+                    <label for="ProductDesc1">Product Short Description 1:</label>
+                    <input type="text" ng-if="mode!='View'" name="ProductDesc1" ng-model="product.desc1" class="form-control" id="">
+                    <span ng-if="mode=='View'" ng-bind="product.desc1"></span>
+
+                </div>
+                <div class="form-group">
+                    <label for="ProductDesc2">Product Short Description 2 :</label>
+                    <input type="text" ng-if="mode!='View'" name="ProductDesc2" ng-model="product.desc2" class="form-control" id="">
+                    <span ng-if="mode=='View'" ng-bind="product.desc2"></span>
+
+                </div>
+                <div class="form-group">
+
+                    <label for="ProductDescription">Product Description :</label>
+
+                    <textarea ng-if="mode!='View'" name="ProductDescription" id="" class="form-control" ng-model="product.description" rows=10></textarea>
+                    <span ng-if="mode=='View'" ng-bind="product.description"></span>
+
+                </div>
+            </div>
+
+            <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+
+                    <label for="ImageAlt">Image Alt :</label>
+
+                    <input ng-if="mode!='View'" type="text" ng-model="product.imgAlt" name="ImageAlt" ng-model="product.imgAlt" class="form-control"
+                        id="">
+                    <span ng-if="mode=='View'" ng-bind="product.imgAlt"></span>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="ImageSrc">Image Source (External Url) :</label>
+                    <input ng-if="mode!='View'" type="text" name="ImageSrc" ng-model="product.imgUrl" class="form-control" id="">
+                    <span ng-if="mode=='View'" ng-bind="product.imgUrl"></span>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="ImageDescription">Image Description :</label>
+                    <input type="text" ng-if="mode!='View'" name="ImageDescription" class="form-control" id="" ng-model="product.imgDescription">
+                    <span ng-if="mode=='View'" ng-bind="product.imgDescription"></span>
+
+                </div>
+                <div class=" form-group text-center" ng-if="product.imgUrl" style="min-height:12.5em">
+                    <a href="{{product.imgUrl}}" target="_blank">
+                        <img src="{{product.imgUrl}}" alt="{{product.imgAlt}}" style="max-height:12.5em;">
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+
+
+                <div class="form-group">
+
+                    <label for="NavigateUrl">Navigate Url :</label>
+                    <input type="text" ng-if="mode!='View'" name="NavigateUrl" class="form-control" ng-model="product.navigateUrl" id="">
+                    <span ng-if="mode=='View'" ng-bind="product.navigateUrl"></span>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="Title">Title :</label>
+                    <input type="text" ng-if="mode!='View'" name="Title" class="form-control" ng-model="product.title" id="">
+                    <span ng-if="mode=='View'" ng-bind="product.title"></span>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="Metakeywords">Meta keywords :</label>
+                    <input type="text" ng-if="mode!='View'" name="Metakeywords" class="form-control" ng-model="product.metaKeywords" id="">
+                    <span ng-if="mode=='View'" ng-bind="product.metaKeywords"></span>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="MetaDescription">Meta description :</label>
+                    <input type="text" ng-if="mode!='View'" name="MetaDescription" class="form-control" ng-model="product.metaDescription" id="">
+                    <span ng-if="mode=='View'" ng-bind="product.metaDescription "></span>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="ArticleTitle">Article Title :</label>
+                    <input type="text" ng-if="mode!='View'" name="ArticleTitle" class="form-control" ng-model="product.articleTitle" id="">
+                    <span ng-if="mode=='View'" ng-bind="product.articleTitle"></span>
+
+                </div>
+
+                <div class="row text-left">
+
+                    <div ng-class="{'col-md-8' : mode!='View','col-md-12' : mode=='View', 'form-group': true}">
+
+                        <label for="Advertizer">Advertizer :</label>
+
+                        <input type="text" ng-if="mode!='View'" name="Advertizer" class="form-control" ng-model="product.advertiser" id="">
+                        <span ng-if="mode=='View'" ng-bind="product.advertiser"></span>
+
+                    </div>
+                    <!-- <div class="col-md-6 form-group"> -->
+                    <!-- <div ng-class="{'col-md-4': true, bold: important, 'has-error': error}"> -->
+                    <div ng-class="{'col-md-4' : mode!='View','col-md-12' : mode=='View', 'form-group': true}">
+                        <!-- <div class="col-md-6 form-group"> -->
+
+                        <label for="Price">Price :</label>
+                        <input type="number" ng-if="mode!='View'" name="Price" class="form-control" step="any" ng-model="product.price" id="">
+                        <span ng-if="mode=='View'" ng-bind="product.price"></span>
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+
+                    <label for="AdvertizerLinkId">Advertizer Link Id :</label>
+                    <input type="text" ng-if="mode!='View'" name="AdvertizerLinkId" class="form-control" ng-model="product.advertizerLinkID"
+                        id="">
+                    <span ng-if="mode=='View'" ng-bind="product.advertizerLinkID"></span>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="AdditionalInfoTitle">Additional Info Title :</label>
+                    <input type="text" ng-if="mode!='View'" name="AdditionalInfoTitle" class="form-control" ng-model="product.additionalInfoTitle"
+                        id="">
+                    <span ng-if="mode=='View'" ng-bind="product.additionalInfoTitle "></span>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="AdditionalInfoURL">Additional Info URL :</label>
+                    <input type="text" ng-if="mode!='View'" name="AdditionalInfoURL" class="form-control" ng-model="product.additionalInfoUrl"
+                        id="">
+                    <span ng-if="mode=='View'" ng-bind="product.additionalInfoUrl "></span>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="LinkCode">Link Code :</label>
+                    <input type="text" ng-if="mode!='View'" name="LinkCode" class="form-control" ng-model="product.linkCode" id="">
+                    <span ng-if="mode=='View'" ng-bind="product.linkCode"></span>
+
+                </div>
+
+                <div class="form-group">
+                    <span class="tag label label-info" ng-if="product.categories.length>0" ng-repeat="category in product.categories track by $index">
+                        <span ng-bind="category"></span>
+                        <a ng-if="mode!='View'" ng-click="removeSelectedCategory($index)">
+                            <i class="remove glyphicon glyphicon-remove-sign glyphicon-white"></i>
+                        </a>
+                    </span>
+                    <span ng-if="product.categories.length==0">No category selected</span>
+                </div>
+                <div class="form-group" ng-if="mode!='View'">
+                    <label for="categories"> Select category(ies)</label>
+                    <select name="categories" id="" class="form-control" ng-model="selectedCategory" ng-options="category as category for category in categories"
+                        ng-selected="selectCategory(selectedCategory)">
+                        <option value="">-- Select --</option>
+
+                    </select>
+                </div>
+            </div>
+            <!-- <div class="col-md-12 form-group">
+                <a href="" onclick="window.history.back()">Back to previous page</a>
+            </div> -->
+            <div class="col-md-12">
+                <div class="row">
+                    <div ng-if="mode!='View'" class="col-md-1 form-group">
+                        <button class="form-control btn btn-primary" ng-disabled="!form.adminForm.$dirty" ng-click="saveProduct(product);"> Save</button>
+                    </div>
+                    <div ng-if="mode=='View'" class="col-md-1 form-group">
+                        <a ui-sref="app.admin.editarticle({id:{{product.prodId}}})" class="form-control  btn btn-success"> Edit</a>
+                    </div>
+                    <div ng-if="mode!='New'" class="col-md-1 form-group">
+                        <a ui-sref="app.admin.newarticle" class="form-control  btn btn-success"> New</a>
+                    </div>
+                    <div ng-if="mode!='New'" class="col-md-1 form-group">
+                        <button class="form-control  btn btn-danger" ng-click="deleteProduct(product.prodId);"> Delete</button>
+                    </div>
+                    <div ng-if="mode!='View'" class="pull-right form-group">
+                        <button class="form-control  btn btn-default" ng-click="cancelChanges();"> Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+</div>
