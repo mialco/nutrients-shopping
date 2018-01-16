@@ -19,13 +19,25 @@
 .row-footer {
   margin: 0px auto;
   padding: 20px 0px;
-  background-color: #D9F0BC;
+  background-color: #023F0C;
+  color: #FFFFFF;
+}
+
+.row-footer a {
+  color: #ffffff;
+  text-decoration: underline;
 }
 .jumbotron {
   margin: 0px auto;
   padding: 10px 10px;
-  background: #79CB97;
-  color: floralwhite;
+  /* background: #79CB97; */
+  /* background-image: url('/app/images/bigstock-Fun-Food-For-Kids-5935034.jpg'); */
+  background-image: url('../images/nutrients-shopping-shelf.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: black;
+  height: 800px; 
+
 }
 .carousel {
   background: #1a237e;
@@ -40,7 +52,7 @@
   top: 0;
 }
 .navbar-inverse {
-  background: #3D6A5E;
+  background: rgb(0, 0, 0);
   color: #ffffff;
 }
 .navbar-inverse .navbar-nav > .active > a {
@@ -79,7 +91,7 @@
   color: #eeeeee;
 }
 address {
-  color: #0f0f0f;
+  color: #ffffff;
   font-size: 80%;
   margin: 0px;
 }
@@ -147,6 +159,10 @@ body {
   overflow-y: scroll;
 }
 
+.appContent{
+  min-height: 20em;
+  background-color: #FFFFFF
+}
 .aflProduct{
   min-height: 20em;
 }
@@ -169,4 +185,122 @@ body {
 {
   margin-top: 1em;
   margin-bottom: 1em;
+}
+@media (max-width: 767px){
+  .text-xs-center { text-align: center; }
+}
+
+.tag {
+  font-size: 14px;
+  padding: .3em .4em .4em;
+  margin: 0 .1em;
+}
+.tag a {
+  color: #bbb;
+  cursor: pointer;
+  opacity: 0.6;
+}
+.tag a:hover {
+  opacity: 1.0
+}
+.tag .remove {
+  vertical-align: bottom;
+  top: 0;
+}
+.tag a {
+  margin: 0 0 0 .3em;
+}
+.tag a .glyphicon-white {
+  color: #fff;
+  margin-bottom: 2px;
+}
+    
+#loader-div {  
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  z-index:12000;
+  background-color:white;
+  opacity: .8;
+}
+
+.ajax-loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -128px; /* -1 * image width / 2 */
+  margin-top: -128px;  /* -1 * image height / 2 */
+  display: block;     
+}
+
+.search.text-box{
+  background: #3D6A5E;
+  color:#ffffff;
+}
+
+.search.icon{
+  position: absolute;
+  right: 0;
+  z-index: 2;
+  padding-right: 21px;
+  padding-top: 16px;
+  color: #9d9d9d;
+}
+
+.search.icon:hover{
+  color: #ffffff;
+}
+
+.break-word{
+  word-wrap: break-word;
+}
+
+.disclosure-container {
+  margin: 15px;
+}
+
+div.well p{
+  font-size: 1.2em;
+} 
+
+section .well h2{
+  font-size: 1.3em;
+  font-weight: bold;
+}
+
+.header-panel{
+  margin-top : 20px;
+  padding : 10px;
+  opacity: 0.9;
+  background-color: #54CE20;
+  border-color : #ffffff;
+  border-width:  3px 3px 3px 3px;
+  border-style: solid;
+  /* box-shadow: 10px 10px 5px rgba(99, 94, 94, 0.29); */
+  border-radius: 35px;
+}
+
+
+.header-image{
+  margin-top : 50px;
+  border-color : #ffffff;
+  border-width:  3px 3px 3px 3px;
+  border-style: solid;
+  border-radius: 35px;
+}
+
+
+.header-panel h1 {
+  font-size: 2.2em;
+  font-weight: bold;
+  text-shadow: 2px 2px;
+  color: white;
+}
+
+.header-panel p {
+  font-size: 1.2em;
+  font-weight: normal;
+  color: black;
 }

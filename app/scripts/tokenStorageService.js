@@ -1,35 +1,30 @@
 angular.module('amcomanApp')
-    .factory('TokenStorage', ['CommonData', function ( CommonData) {
+    .factory('TokenStorage', ['CommonData', function (CommonData) {
         var ts = {};
-        var storageKey = 'bearerToken';
-        var storedToken  ={};
-        ts.getTokenObject = function () {
-            var tokenString = window.localStorage.getItem(storageKey);
-            if (!tokenString){
-                storedToken = CommonData.storedToken;
-            }
-            else{
-            storedToken = JSON.parse(tokenString);
-            }
-            return storedToken;
+        var storageKey = 'authData';
+        var storedToken = {};
+        var authData = {};
+        ts.getAuthObject = function () {
+
+            return JSON.parse(window.localStorage.getItem(storageKey));
+
         };
 
 
-        ts.storeToken = function (tokenObject, userName, password,clientId, secret,lastUpdated, isValid) {
-            var storedToken = CommonData.storedToken;
-            storedToken.tokenObject = tokenObject;
-            storedToken.userName = userName;
-            storedToken.password = password;
-            storedToken.clientId = clientId;
-            storedToken.secret = secret;
-            storedToken.lastUpdated = lastUpdated;
-            storedToken.isValid = isValid;
-            window.localStorage.setItem(storageKey, JSON.stringify(storedToken));
+
+        ts.storeToken = function (tokenObject, tokenOf) {
+            authData.access_token = tokenObject.access_token;
+            authData.token_type = tokenObject.token_type;
+            authData.tokenOf = tokenOf;
+            window.localStorage.setItem(storageKey, JSON.stringify(authData));
         };
 
-        ts.clearToken = function (){
-            tokenObject =  CommonData.tokenObject;
-            window.localStorage.setItem(storageKey,tokenObject,'','','','',new Date(),false);
+        ts.clearToken = function () {
+            //Previous coding
+            // tokenObject =  CommonData.tokenObject;
+            // window.localStorage.setItem(storageKey,tokenObject,'','','','',new Date(),false);
+
+            window.localStorage.clear();
         };
         return ts;
 

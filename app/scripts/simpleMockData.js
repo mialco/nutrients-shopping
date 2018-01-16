@@ -32,7 +32,7 @@ angular.module('amcomanApp')
                 {
                     "prodId": 31741,
                     "productName": " Clean & Clear Advantage Acne Spot Treatment, .75 fl oz ",
-                    "description": "Salicylic Acid Acne Medication     Quickly reduces pimple size and redness    Won t overdry skin   Clean & Clear® Advantage Acne Spot Treatment has a unique formula that quickly reduces the visible signs of breakouts.  That s because Clean & Clear® Advantage Acne Spot Treatment is a breakthrough in acne fighting.  In clinical testing, this clear formula was shown to make pimples smaller and visibly reduce pimple redness.  In just days, you will see noticeably clearer skin.  Plus, this unique formula will treat pimples without overdrying - leaving your skin looking clear and beautiful.  Give yourself an unfair advantage with new Clean & Clear® Advantage Acne Spot Treatment.  Questions?  ;",
+                    "description": "Salicylic Acid Acne Medication     Quickly reduces pimple size and redness    Won t overdry skin   Clean & Clear® Advantage Acne Spot Treatment has a unique formula that quickly reduces the visible signs of breakouts.  That s because Clean & Clear® Advantage Acne Spot Treatment is a breakthrough in acne fighting.  In clinical testing, this clear formula was shown to make pimples smaller and visibly reduce pimple redness.  In just days, you will see noticeably clearer skin.  Plus, this unique formula will treat pimples without overdrying - leaving your skin looking clear and beautiful.  Give yourself an unfair advantage with new Clean & Clear® Advantage Acne Spot Treatment.  Questions?  ;",
                     "navigateUrl": "http://click.linksynergy.com/fs-bin/click?id=pSK2wtK8sX8&offerid=221686.87659&type=15&subid=0",
                     "imgUrl": "http://pics1.ds-static.com/prodimg/87659/300.jpg",
                     "imgAlt": " Clean & Clear Advantage Acne Spot Treatment, .75 fl oz ",
@@ -108,7 +108,7 @@ angular.module('amcomanApp')
                 {
                     "prodId": 31745,
                     "productName": " CLARISONIC Replacement Brush Head, Delicate Skin, 2 ea ",
-                    "description": "Now you can purchase Brush Heads in convenient packs of two.  These Twin-Packs are valued at $50, so you ll save $10 for every set you purchase.  An ultra-soft brush for those with delicate or extra-sensitive skin and for skin sensitivities like rosacea and acne-prone skin.   All CLARISONIC® brush heads are made from a nonporous, soft elastomeric material, resistant to bacterial attachment.  All brush heads are precision-designed to oscillate bi-directionally at a sonic frequency.   For use with the CLARISONIC skin care brush.",
+                    "description": "Now you can purchase Brush Heads in convenient packs of two.  These Twin-Packs are valued at $50, so you ll save $10 for every set you purchase.  An ultra-soft brush for those with delicate or extra-sensitive skin and for skin sensitivities like rosacea and acne-prone skin.   All CLARISONIC® brush heads are made from a nonporous, soft elastomeric material, resistant to bacterial attachment.  All brush heads are precision-designed to oscillate bi-directionally at a sonic frequency.   For use with the CLARISONIC skin care brush.",
                     "navigateUrl": "http://click.linksynergy.com/fs-bin/click?id=pSK2wtK8sX8&offerid=250677.228320&type=15&subid=0",
                     "imgUrl": "http://s7d2.scene7.com/is/image/Drugstore/228320?wid=300&hei=300&op_sharpen=1",
                     "imgAlt": " CLARISONIC Replacement Brush Head, Delicate Skin, 2 ea ",
@@ -418,6 +418,12 @@ angular.module('amcomanApp')
             "categoryName": null,
             "detailIsActive": true
         };
-
+        smdfac.loginResponse = {
+            access_token : "dummy token",
+            expires_in : 3600,
+            token_type : "bearer",
+            username : "Dummy admin name",
+            user_role: 'admin'
+        };
         return smdfac;
         });

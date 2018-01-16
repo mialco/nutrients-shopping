@@ -1,9 +1,10 @@
 //'use strict';
 angular.module('amcomanApp')
+    .constant("AppId", "roclient")
     //.constant("baseURL", "http://localhost:49970/api")
-    .constant("baseURL", "http://localhost:3001/api")
-    .constant('identityURL', "http://localhost:5001")
-    .constant('AppHeaderData', {title :"Nutrients Shopping", metaKeywords : "Keyword 1,keyword 2",metaDescription: "sample meta description"})
+    .constant("baseURL", "http://nutrientsshoppingapi.azurewebsites.net/api")
+    .constant('identityURL', "http://nutrientsshoppingapi.azurewebsites.net/api")
+    .constant('DefaultAppHeaderData', { title: "Nutrient Shopping. Natural Nutrition Products", metaKeywords: "Nutrition Products,Nutrients,shopping", metaDescription: "Shopping for Nutrition Products" })
     //.constant("baseURL", "https://amcoman.mybluemix.net/")
     .factory('menuFactory', ['$resource', 'baseURL', function ($resource, baseURL) {
 
@@ -45,7 +46,7 @@ angular.module('amcomanApp')
         var isAdmin = false;
         var authToken;
 
-
+        
         function loadUserCredentials() {
             var credentials = $localStorage.getObject(TOKEN_KEY, '{}');
             if (credentials.username !== undefined) {
@@ -78,31 +79,31 @@ angular.module('amcomanApp')
         }
 
         authFac.login = function (loginData) {
+            authFac.test = "xyz";
+            // $resource(baseURL + "users/login")
+            //     .save(loginData,
+            //     function (response) {
+            //         storeUserCredentials({
+            //             username: loginData.username,
+            //             token: response.token,
+            //             admin: response.admin
+            //         });
+            //         $rootScope.$broadcast('login:Successful');
+            //     },
+            //     function (response) {
+            //         isAuthenticated = false;
 
-            $resource(baseURL + "users/login")
-                .save(loginData,
-                function (response) {
-                    storeUserCredentials({
-                        username: loginData.username,
-                        token: response.token,
-                        admin: response.admin
-                    });
-                    $rootScope.$broadcast('login:Successful');
-                },
-                function (response) {
-                    isAuthenticated = false;
+            //         var message = '<div class="ngdialog-message">' +
+            //             '<div><h3>Login Unsuccessful</h3></div>' +
+            //             '<div><p>' + response.data.err.message + '</p><p>' +
+            //             response.data.err.name + '</p></div>' +
+            //             '<div class="ngdialog-buttons">' +
+            //             '<button type="button" class="ngdialog-button ngdialog-button-primary" ng-click=confirm("OK")>OK</button>' +
+            //             '</div>';
 
-                    var message = '<div class="ngdialog-message">' +
-                        '<div><h3>Login Unsuccessful</h3></div>' +
-                        '<div><p>' + response.data.err.message + '</p><p>' +
-                        response.data.err.name + '</p></div>' +
-                        '<div class="ngdialog-buttons">' +
-                        '<button type="button" class="ngdialog-button ngdialog-button-primary" ng-click=confirm("OK")>OK</button>' +
-                        '</div>';
-
-                    ngDialog.openConfirm({ template: message, plain: 'true' });
-                }
-                );
+            //         ngDialog.openConfirm({ template: message, plain: 'true' });
+            //     }
+            //     );
 
         };
 
@@ -228,7 +229,7 @@ angular.module('amcomanApp')
         return artFac;
     }])
 
-    .factory('PageService', ['AppHeaderData', '$state', function (AppHeaderData, $state) {
+    .factory('PageService', ['DefaultAppHeaderData', '$state', function (DefaultAppHeaderData, $state) {
 
         var pageFac = {};
         var stateData = $state;
@@ -238,20 +239,36 @@ angular.module('amcomanApp')
             pageFac.title = headerInfo.title;
             pageFac.metaKeywords = headerInfo.metaKeywords;
             pageFac.metaDescription = headerInfo.metaDescription;
-        }
+        };
         pageFac.getPageHeaderData = function () {
             
-            return  { title :pageFac.title?pageFac.title +' | ' +AppHeaderData.title : AppHeaderData.title,
-            metaKeywords : pageFac.metaKeywords || '',
-            metaDescription : pageFac.metaDescription || ''}; 
+            return {
+                title: pageFac.title ? pageFac.title + ' | ' + DefaultAppHeaderData.title : DefaultAppHeaderData.title,
+                metaKeywords: pageFac.metaKeywords || DefaultAppHeaderData.metaKeywords,
+                metaDescription: pageFac.metaDescription || DefaultAppHeaderData.metaDescription
+            };
 
-        }
-        pageFac.getDefaultPageHeaderData = function () {
-            return AppHeaderData;
-        }
-        
+        };
+        pageFac.setDefaultPageHeaderData = function () {
+            pageFac.setPageHeaderData(DefaultAppHeaderData);
+        };
         return pageFac;
 
     }])
-
-    ;
+    .factory('spinnerService', function () {
+        var spinnerFactory = {};
+        spinnerFactory.spinnerCount = 0;
+        spinnerFactory.increment = function () {
+            angular.element("#loader-div").show();
+            spinnerFactory.spinnerCount++;
+        };
+        spinnerFactory.decrement = function () {
+            spinnerFactory.spinnerCount--;
+            if(spinnerFactory.spinnerCount<=0){
+                spinnerFactory.spinnerCount = 0;
+                angular.element("#loader-div").hide();
+            }
+            return spinnerFactory.spinnerCount;
+        };
+        return spinnerFactory;
+    });
