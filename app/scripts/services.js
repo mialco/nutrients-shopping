@@ -2,8 +2,10 @@
 angular.module('amcomanApp')
     .constant("AppId", "roclient")
     //.constant("baseURL", "http://localhost:49970/api")
-    .constant("baseURL", "http://nutrientsshoppingapi.azurewebsites.net/api")
-    .constant('identityURL', "http://nutrientsshoppingapi.azurewebsites.net/api")
+    .constant("baseURLazure", "http://nutrientsshoppingapi.azurewebsites.net/api")
+    .constant('identityURLAzure', "http://nutrientsshoppingapi.azurewebsites.net/api")
+    .constant("baseURL", "http://ec2-18-216-130-34.us-east-2.compute.amazonaws.com:83/api")
+    .constant('identityURL', "http://ec2-18-216-130-34.us-east-2.compute.amazonaws.com:83/api")
     .constant('DefaultAppHeaderData', { title: "Nutrient Shopping. Natural Nutrition Products", metaKeywords: "Nutrition Products,Nutrients,shopping", metaDescription: "Shopping for Nutrition Products" })
     //.constant("baseURL", "https://amcoman.mybluemix.net/")
     .factory('menuFactory', ['$resource', 'baseURL', function ($resource, baseURL) {

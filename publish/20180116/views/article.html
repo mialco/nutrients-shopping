@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="row aflProduct">
+        <div ng-if="productDetails">
+            <div class="col-md-4 aflProductImage">
+                <a href="{{productDetails.navigateUrl}}" target="_blank" rel="nofollow"><img src={{productDetails.imgUrl}} alt="{{productDetails.imgAlt}}"  /> </a>
+            </div>
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 ng-bind="productDetails.articleTitle"></h1>
+                        <hr>
+                        <h5 ng-if="productDetails.desc1" ng-bind-html="productDetails.desc1"></h5>
+
+                    </div>
+                </div>
+
+                <div class="row" ng-if="productDetails.desc2">
+                    <div class="col-md-12">
+                        <h5 ng-bind-html ="productDetails.desc2">
+                        </h5>
+                    </div>
+                </div>
+                <div class="row" ng-if="productDetails.price">
+                    <div class="col-md-12">
+                        <h2>$ {{::productDetails.price}}
+                        </h2>
+                    </div>
+                </div>
+                <div class="row" ng-if="productDetails.description">
+                    <div class="col-md-12">
+                        <span ng-bind-html="productDetails.description"></span>
+                    </div>
+                </div>
+                <back-link></back-link>
+               
+
+            </div>
+        </div>
+
+    </div>
+    
+</div>

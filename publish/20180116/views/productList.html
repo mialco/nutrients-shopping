@@ -1,0 +1,25 @@
+<div class="table-responsive nutrients-table">
+    <table class="table">
+        <thead>
+            <tr>
+                <td></td>
+                <td>Product</td>
+                <td>Price</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="line in $ctrl.productsData.aflProducts">
+                <td style="min-width:11em">
+                    <product-image product="line">
+
+                    </product-image>
+                    
+                </td>
+                <td ng-bind-html="line.description"></td>
+                <td>${{line.price}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<pager state-obj="$ctrl.stateObj"  total-pages="$ctrl.productsData.pages" current-page="$ctrl.productsData.page" ng-if="$ctrl.productsData.pages"></pager>

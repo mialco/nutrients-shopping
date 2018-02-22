@@ -1,0 +1,13 @@
+<div class="container">
+
+    <h2 class="break-word">Results for "{{query}}"</h2>
+
+    <div ng-if="searchResult">
+        <h5 ng-if="searchResult.totalRecords">Total
+            <strong> {{searchResult.totalRecords}}</strong> results found</h5>
+        <h5 ng-if="!searchResult.totalRecords"> No results found</h5>
+    </div>
+
+    <product-list ng-if="searchResult.aflProducts.length >0" products-data="searchResult" state-obj="stateObject"></product-list>
+
+</div>
