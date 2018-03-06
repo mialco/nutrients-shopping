@@ -104,6 +104,19 @@ angular.module('amcomanApp', ['ui.router', 'ui.grid', 'ngResource', 'ngDialog', 
                 }
 
             })
+            .state("app.special-offers",{
+                url: "special-offers",
+                views: {
+                    'header@': {
+                        templateUrl: 'views/headerArticleList.html',
+                        controller: 'HeaderController'
+                    },
+                    'content@': {
+                        templateUrl: 'views/special-offers.html',
+                    }
+                    
+                }
+            })
             .state("app.admin", {
                 name: "admin",
                 abstract: true

@@ -97,11 +97,24 @@
                             <a ui-sref="app.nutrients({categoryName:'Stevia',page:1, pageSize: 10})">Stevia
                                 <a/>
                         </li>
-                    </ul>    
+                    </ul>
+                </li>
+                <!-- Special offers -->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" area-haspopup="true" area-expanded="false">Special Offers
+                        <span class=caret></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a ui-sref="app.special-offers">General
+                                <a/>
+                        </li>
+                    </ul>
+                </li>
+                <!-- End Special offers -->
 
+                <!-- Admin and Login section -->
 
-<!-- Admin and Login section -->
-                
 
                 <li class="dropdown" ng-if="isAdmin">
                     <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin

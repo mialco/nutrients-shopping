@@ -9,14 +9,15 @@
         </thead>
         <tbody>
             <tr ng-repeat="line in $ctrl.productsData.aflProducts">
-                <td style="min-width:11em">
+                <td style="min-width:11em" ng-if="!line.linkCodeActive">
                     <product-image product="line">
 
                     </product-image>
                     
                 </td>
-                <td ng-bind-html="line.description"></td>
-                <td>${{line.price}}</td>
+                <td ng-bind-html="line.description" ng-if="!line.linkCodeActive"></td>
+                <td ng-if="!line.linkCodeActive">${{line.price}}</td>
+                <td colspan="3" ng-if="line.linkCodeActive"  ng-bind-html="line.linkCode"></td>
             </tr>
         </tbody>
     </table>

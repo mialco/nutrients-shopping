@@ -304,3 +304,14 @@ section .well h2{
   font-weight: normal;
   color: black;
 }
+
+.center-block {
+  position: relative;
+  width:90%;
+  margin-left: auto;
+  margin-right : auto;
+}
+
+.offer-block{
+  margin-bottom:  10px
+}
